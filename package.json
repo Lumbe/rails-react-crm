@@ -35,6 +35,28 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
     "webpack-dev-server": "^2.4.5"
-  }
+  },
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lumbe/rails-react-crm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lumbe/rails-react-crm/issues"
+  },
+  "homepage": "https://github.com/Lumbe/rails-react-crm#readme"
 }
