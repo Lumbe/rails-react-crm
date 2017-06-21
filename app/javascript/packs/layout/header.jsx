@@ -1,4 +1,6 @@
 import React from 'react'
+import axios from 'axios'
+import {Label} from 'react-bootstrap'
 
 class Header extends React.Component {
   constructor(props) {
@@ -12,6 +14,13 @@ class Header extends React.Component {
 
   componentDidMount() {
     // executes when component is mounted
+    axios.get('/users.json')
+      .then(function(response){
+        console.log(response)
+      })
+      .catch(function(error) {
+        console.log(error)
+      });
     this.setState({app_name: 'CRM'});
   }
 
@@ -35,6 +44,7 @@ class Header extends React.Component {
         <button onClick={this.changeAppName.bind(this)}>
           Change app name
         </button>
+        <Label bsStyle="succes"}>{this.props.email}</Label>
       </div>
     );
   }
