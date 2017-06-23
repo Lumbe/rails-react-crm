@@ -44,7 +44,7 @@ class Header extends React.Component {
         <button onClick={this.changeAppName.bind(this)}>
           Change app name
         </button>
-        <Label bsStyle="succes"}>{this.props.email}</Label>
+        <Label bsStyle="succes">{this.props.email}</Label>
       </div>
     );
   }
