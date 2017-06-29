@@ -11,7 +11,9 @@ class Main extends React.Component {
   }
 
   render() {
-  return <div className="main">Main for {this.state.app_name}!</div>
+  return <div className="main">
+    Main for {this.state.app_name}!
+  </div>
   }
 }
 

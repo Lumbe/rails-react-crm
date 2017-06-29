@@ -1,6 +1,8 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import axios from 'axios'
-import {Label} from 'react-bootstrap'
+import {Label, Button} from 'react-bootstrap'
+import Navigation from './navigation'
 
 class Header extends React.Component {
   constructor(props) {
@@ -9,17 +11,15 @@ class Header extends React.Component {
   }
 
   defaultProps() {
-    return {app_name: ''};
+    return {app_name: '', users: []};
   }
 
   componentDidMount() {
     // executes when component is mounted
-    axios.get('/users.json')
-      .then(function(response){
-        console.log(response)
-      })
-      .catch(function(error) {
-        console.log(error)
+    var self = this;
+    axios.get('users.json')
+      .then(response => {
+        self.setState({users: response.data});
       });
     this.setState({app_name: 'CRM'});
   }
@@ -38,13 +38,20 @@ class Header extends React.Component {
   render() {
     return (
       <div>
+        <Navigation/>
         <div className="header">
           Header for {this.state.app_name}!
         </div>
+
         <button onClick={this.changeAppName.bind(this)}>
           Change app name
         </button>
-        <Label bsStyle="success">label</Label>
+
+        <ul>
+          {this.state.users.map((user) => {
+            return <li key={user.id}>{user.email}</li>
+          })}
+        </ul>
       </div>
     );
   }
