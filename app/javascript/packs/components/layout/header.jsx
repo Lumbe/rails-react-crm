@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
 import axios from 'axios'
-import {Label, Button} from 'react-bootstrap'
+import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
 import Navigation from './navigation'
 
 class Header extends React.Component {
@@ -37,22 +37,9 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div>
+      <header>
         <Navigation/>
-        <div className="header">
-          Header for {this.state.app_name}!
-        </div>
-
-        <button onClick={this.changeAppName.bind(this)}>
-          Change app name
-        </button>
-
-        <ul>
-          {this.state.users.map((user) => {
-            return <li key={user.id}>{user.email}</li>
-          })}
-        </ul>
-      </div>
+      </header>
     );
   }
 }
