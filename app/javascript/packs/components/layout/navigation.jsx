@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Routes from '../../routes';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import {LinkContainer} from "react-router-bootstrap";
+import {IndexLinkContainer, LinkContainer} from "react-router-bootstrap";
 
 class Navigation extends React.Component {
   render() {
@@ -16,9 +16,9 @@ class Navigation extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer to="/">
+            <IndexLinkContainer to="/">
               <NavItem eventKey={1}>Главная</NavItem>
-            </LinkContainer>
+            </IndexLinkContainer>
             <LinkContainer to="/leads">
               <NavItem eventKey={2}>Лиды</NavItem>
             </LinkContainer>
