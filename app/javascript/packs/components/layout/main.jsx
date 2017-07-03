@@ -1,4 +1,5 @@
 import React from 'react'
+import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
 
 class Main extends React.Component {
   constructor(props) {
@@ -11,9 +12,9 @@ class Main extends React.Component {
   }
 
   render() {
-  return <div className="main">
-    Main for {this.state.app_name}!
-  </div>
+  return <Grid className="main-wrapper" fluid>
+    {this.props.children}
+  </Grid>
   }
 }
 

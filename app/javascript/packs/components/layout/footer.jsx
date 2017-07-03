@@ -1,4 +1,5 @@
 import React from 'react'
+import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
 
 class Footer extends React.Component {
   constructor(props) {
@@ -11,7 +12,11 @@ class Footer extends React.Component {
   }
 
   render() {
-  return <div className="footer">Footer for {this.state.app_name}!</div>
+  return <footer className="footer">
+    <Grid fluid>
+      <p className="text-center footer-text">Some footer text here</p>
+    </Grid>
+  </footer>
   }
 }
 

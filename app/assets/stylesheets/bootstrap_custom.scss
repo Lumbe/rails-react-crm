@@ -1,1 +1,21 @@
 $navbar-border-radius: 0;
+
+// main wrapper styles
+.main-wrapper {
+  margin-bottom: 60px;
+}
+
+// sticky Footer
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #222222;
+}
+
+.footer .footer-text {
+  margin: 20px 0;
+  color: #f2f2f2;
+}

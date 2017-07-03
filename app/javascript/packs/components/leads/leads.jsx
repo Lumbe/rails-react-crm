@@ -17,11 +17,6 @@ class Leads extends React.Component {
 
   componentDidMount() {
     this.props.actions.loadLeads();
-    // var self = this;
-    // axios.get('api/v1/leads')
-    //   .then(response => {
-    //     self.setState({leads: response.data});
-    //   });
   }
 
   render() {
