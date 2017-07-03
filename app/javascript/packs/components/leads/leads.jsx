@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as leadActions from '../../actions/leadActions'
-import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
+import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
 
 
 class Leads extends React.Component {
@@ -21,13 +21,43 @@ class Leads extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          {this.props.leads.map((lead) => {
-            return <li key={lead.id}>{lead.name}</li>
-          })}
-        </ul>
-      </div>
+      <Row>
+          <PageHeader className="page-header-default">
+            Лиды <small>Холодные контакты</small>
+            <Button bsStyle="success" className="pull-right">Добавить лид</Button>
+          </PageHeader>
+        <Col md={12} xs={12}>
+          <Panel>
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>Статус</th>
+                  <th>Имя</th>
+                  <th>Телефон</th>
+                  <th>E-mail</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.props.leads.map((lead) => {
+                  return <tr key={lead.id}>
+                    <td>статус</td>
+                    <td>{lead.name}</td>
+                    <td>{lead.phone}</td>
+                    <td>{lead.email}</td>
+                    <td>
+                      <ButtonToolbar>
+                        <Button>edit</Button>
+                        <Button bsStyle="danger">delete</Button>
+                      </ButtonToolbar>
+                    </td>
+                  </tr>
+                })}
+              </tbody>
+            </Table>
+          </Panel>
+        </Col>
+      </Row>
     );
   }
 }

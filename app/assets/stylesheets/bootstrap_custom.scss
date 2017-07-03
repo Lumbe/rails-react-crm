@@ -1,21 +1,19 @@
-$navbar-border-radius: 0;
-
-// main wrapper styles
-.main-wrapper {
-  margin-bottom: 60px;
+.navbar {
+  margin-bottom: 0;
 }
 
-// sticky Footer
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #222222;
+.page-header {
+  margin: 0;
+  padding: 0;
 }
 
-.footer .footer-text {
-  margin: 20px 0;
-  color: #f2f2f2;
+.page-header-default {
+  padding: 10px 40px 10px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 40px;
+}
+
+.page-header h1 {
+  font-size: 30px;
 }
