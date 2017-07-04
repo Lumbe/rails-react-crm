@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Link} from 'react-router-dom';
 import * as leadActions from '../../actions/leadActions'
 import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
 
@@ -42,7 +43,11 @@ class Leads extends React.Component {
                 {this.props.leads.map((lead) => {
                   return <tr key={lead.id}>
                     <td>статус</td>
-                    <td>{lead.name}</td>
+                    <td>
+                      <Link to={'leads/' + lead.id}>
+                        {lead.name}
+                      </Link>
+                    </td>
                     <td>{lead.phone}</td>
                     <td>{lead.email}</td>
                     <td>
