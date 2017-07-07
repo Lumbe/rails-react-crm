@@ -1,23 +1,56 @@
-import * as types from './actionTypes';
 import leadApi from '../api/leadApi';
 
+// Action types
+// export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
+// export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
+
+//Lead list
+export const LOAD_LEADS = 'LOAD_LEADS';
+export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
+export const LOAD_LEADS_FAILURE = 'LOAD_LEADS_FAILURE';
+
+//Create new lead
+export const CREATE_LEAD = 'CREATE_LEAD';
+export const CREATE_LEAD_SUCCESS = 'CREATE_LEAD_SUCCESS';
+export const CREATE_LEAD_FAILURE = 'CREATE_LEAD_FAILURE';
+
+//Validate lead fields like Name, Phone on the server
+export const VALIDATE_LEAD_FIELDS = 'VALIDATE_LEAD_FIELDS';
+export const VALIDATE_LEAD_FIELDS_SUCCESS = 'VALIDATE_LEAD_FIELDS_SUCCESS';
+export const VALIDATE_LEAD_FIELDS_FAILURE = 'VALIDATE_LEAD_FIELDS_FAILURE';
+
+//Load lead
+export const LOAD_LEAD = 'LOAD_LEAD';
+export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
+export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_FAILURE';
+
+//Delete lead
+export const DELETE_LEAD = 'DELETE_LEAD';
+export const DELETE_LEAD_SUCCESS = 'DELETE_LEAD_SUCCESS';
+export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
+
+
+
+
+// Actions
 export function loadLeadsSuccess(leads) {
-  return {type: types.LOAD_LEADS_SUCCESS, leads};
+  return {type: LOAD_LEADS_SUCCESS, leads};
 }
 export function createLeadSuccess(lead) {
-  return {type: types.CREATE_LEAD_SUCCESS, lead}
+  return {type: CREATE_LEAD_SUCCESS, lead}
 }
-export function showLeadSuccess(lead) {
-  return {type: types.SHOW_LEAD_SUCCESS, lead};
+export function loadLeadSuccess(lead) {
+  return {type: LOAD_LEAD_SUCCESS, lead};
 }
 export function updateLeadSuccess(lead) {
-  return {type: types.UPDATE_LEAD_SUCCESS, lead}
+  return {type: UPDATE_LEAD_SUCCESS, lead}
 }
 export function deleteLeadSuccess(lead) {
-  return {type: types.DELETE_LEAD_SUCCESS, lead}
+  return {type: DELETE_LEAD_SUCCESS, lead}
 }
 
 
+// Dispatch actions and send to reducers with redux-thunk
 export function loadLeads() {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
@@ -27,11 +60,11 @@ export function loadLeads() {
   };
 }
 
-export function showLead(lead_id) {
+export function loadLead(lead_id) {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.getOne(lead_id).then(response => {
-      dispatch(showLeadSuccess(response.data.lead));
+      dispatch(loadLeadSuccess(response.data.lead));
     })
   };
 }

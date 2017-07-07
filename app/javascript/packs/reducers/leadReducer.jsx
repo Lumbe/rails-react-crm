@@ -2,15 +2,16 @@ import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 import {browserHistory} from 'react-router';
 
-export default function leadReducer(state = initialState.leads, action) {
+export function leads(state = initialState.leads, action) {
   // state variable here reps just an array of courses
   switch(action.type) {
     case types.LOAD_LEADS_SUCCESS:
       // return action.cats;
      // return action.cats.map(cat => Object.assign({}, cat, Object.assign([], cat.hobby_ids)))
-      return Object.assign([], state, action.leads)
-    case types.SHOW_LEAD_SUCCESS:
-      return Object.assign({}, action.lead)
+      return action.leads
+    // case types.LOAD_LEAD_SUCCESS:
+    //   state = initialState.lead
+    //   return Object.assign({}, action.lead)
     // case types.CREATE_CAT_SUCCESS:
     //   browserHistory.push(`/cats/${action.cat.id}`)
     //   return [
@@ -29,6 +30,15 @@ export default function leadReducer(state = initialState.leads, action) {
     //   browserHistory.push('/cats');
     //   return newState;
     // }
+    default:
+      return state;
+  }
+}
+
+export function lead(state = initialState.lead, action) {
+  switch(action.type) {
+    case types.LOAD_LEAD_SUCCESS:
+      return action.lead
     default:
       return state;
   }

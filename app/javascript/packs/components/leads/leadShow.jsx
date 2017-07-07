@@ -9,28 +9,23 @@ import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} f
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {lead: {name: '', phone: ''}};
+    // this.state = this.props;
   }
 
   componentDidMount() {
-    // this.props.actions.loadLeads();
     var lead_id = this.props.match.params.id
-    // leadApi.getOne(this.props.match.params.id).then(response => {
-    //   this.setState({lead: response.data.lead});
-    // });
-    this.props.actions.showLead(lead_id);
-    
-    console.log(this.state);
-    console.log("props:");
-    console.log(this.props);
-    window.leadApi = leadApi;
+    this.props.actions.loadLead(lead_id);
+  }
+
+  componentWillUnmount() {
+    // this.setState(lead: {});
   }
 
   render() {
     return (
       <Row>
         <PageHeader className="page-header-default">
-          asdasd<br/>
+          {this.props.lead.name}<br/>
           <small>лид</small>
           <Button className="pull-right">Редактировать</Button>
         </PageHeader>
@@ -44,15 +39,17 @@ class LeadShow extends React.Component {
                     <tbody>
                         <tr>
                           <th>Имя</th>
-                          <td>Ваня</td>
+                          <td>
+                            {this.props.lead.name}
+                          </td>
                         </tr>
                         <tr>
                           <th>телефон</th>
-                          <td>098 125-78-85</td>
+                          <td>{this.props.lead.phone}</td>
                         </tr>
                         <tr>
                           <th>email</th>
-                          <td>test@test.com</td>
+                          <td>{this.props.lead.email}</td>
                         </tr>
                     </tbody>
                   </Table>
@@ -117,9 +114,7 @@ class LeadShow extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {
-    lead: state.lead
-  };
+  return { lead: state.lead };
 }
 
 function mapDispatchToProps(dispatch) {

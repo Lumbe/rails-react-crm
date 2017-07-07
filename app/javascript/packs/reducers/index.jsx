@@ -1,10 +1,11 @@
 
 import {combineReducers} from 'redux';
-import leads from './leadReducer';
+import {leads, lead} from './leadReducer';
 
 const rootReducer = combineReducers({
   // short hand property names
-  leads
+  leads,
+  lead
 })
 
 export default rootReducer;
