@@ -8,7 +8,9 @@ export default function leadReducer(state = initialState.leads, action) {
     case types.LOAD_LEADS_SUCCESS:
       // return action.cats;
      // return action.cats.map(cat => Object.assign({}, cat, Object.assign([], cat.hobby_ids)))
-     return Object.assign([], state, action.leads)
+      return Object.assign([], state, action.leads)
+    case types.SHOW_LEAD_SUCCESS:
+      return Object.assign({}, action.lead)
     // case types.CREATE_CAT_SUCCESS:
     //   browserHistory.push(`/cats/${action.cat.id}`)
     //   return [
@@ -27,7 +29,7 @@ export default function leadReducer(state = initialState.leads, action) {
     //   browserHistory.push('/cats');
     //   return newState;
     // }
-    default: 
+    default:
       return state;
   }
 }

@@ -16,11 +16,6 @@ class Header extends React.Component {
 
   componentDidMount() {
     // executes when component is mounted
-    var self = this;
-    axios.get('users.json')
-      .then(response => {
-        self.setState({users: response.data});
-      });
     this.setState({app_name: 'CRM'});
   }
 

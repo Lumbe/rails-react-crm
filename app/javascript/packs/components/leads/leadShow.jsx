@@ -2,32 +2,35 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as leadActions from '../../actions/leadActions'
+import leadApi from '../../api/leadApi'
 import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
 
 
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.defaultProps();
-  }
-
-  defaultProps() {
-    return {
-      name: '',
-      phone: '',
-      email: ''
-    };
+    this.state = {lead: {name: '', phone: ''}};
   }
 
   componentDidMount() {
     // this.props.actions.loadLeads();
+    var lead_id = this.props.match.params.id
+    // leadApi.getOne(this.props.match.params.id).then(response => {
+    //   this.setState({lead: response.data.lead});
+    // });
+    this.props.actions.showLead(lead_id);
+    
+    console.log(this.state);
+    console.log("props:");
+    console.log(this.props);
+    window.leadApi = leadApi;
   }
 
   render() {
     return (
       <Row>
         <PageHeader className="page-header-default">
-          Иван<br/>
+          asdasd<br/>
           <small>лид</small>
           <Button className="pull-right">Редактировать</Button>
         </PageHeader>
@@ -113,18 +116,16 @@ class LeadShow extends React.Component {
   }
 }
 
-export default LeadShow
+function mapStateToProps(state, ownProps) {
+  return {
+    lead: state.lead
+  };
+}
 
-// function mapStateToProps(state, ownProps) {
-//   return {
-//     leads: state.leads
-//   };
-// }
-//
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(leadActions, dispatch)
-//   };
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Leads);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(leadActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeadShow);

@@ -22,7 +22,16 @@ export function loadLeads() {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.getAll().then(response => {
-      dispatch(loadLeadsSuccess(response.data));
+      dispatch(loadLeadsSuccess(response.data.leads));
+    })
+  };
+}
+
+export function showLead(lead_id) {
+  // make async call to api, handle promise, dispatch action when promise is resolved
+  return function(dispatch) {
+    return leadApi.getOne(lead_id).then(response => {
+      dispatch(showLeadSuccess(response.data.lead));
     })
   };
 }
