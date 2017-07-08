@@ -1,11 +1,11 @@
-import * as types from '../actions/actionTypes';
+import {LOAD_LEADS_SUCCESS, LOAD_LEAD_SUCCESS, RESET_LEAD} from '../actions/leadActions';
 import initialState from './initialState';
 import {browserHistory} from 'react-router';
 
 export function leads(state = initialState.leads, action) {
   // state variable here reps just an array of courses
   switch(action.type) {
-    case types.LOAD_LEADS_SUCCESS:
+    case LOAD_LEADS_SUCCESS:
       // return action.cats;
      // return action.cats.map(cat => Object.assign({}, cat, Object.assign([], cat.hobby_ids)))
       return action.leads
@@ -37,7 +37,9 @@ export function leads(state = initialState.leads, action) {
 
 export function lead(state = initialState.lead, action) {
   switch(action.type) {
-    case types.LOAD_LEAD_SUCCESS:
+    case LOAD_LEAD_SUCCESS:
+      return action.lead
+    case RESET_LEAD:
       return action.lead
     default:
       return state;

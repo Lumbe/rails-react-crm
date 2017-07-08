@@ -13,8 +13,8 @@ class Routes extends React.Component {
     return <Main>
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route exact path="/leads/:id" component={LeadShow}/>
         <Route exact path="/leads/new" component={LeadNew}/>
+        <Route exact path="/leads/:id" component={LeadShow}/>
         <Route exact path="/leads" component={Leads}/>
         <Route exact path="/users" component={Users}/>
         <Route component={NotFound}/>

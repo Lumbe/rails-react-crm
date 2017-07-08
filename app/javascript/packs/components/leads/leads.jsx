@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import * as leadActions from '../../actions/leadActions'
 import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
-
+import LeadHeader from './leadHeader'
 
 class Leads extends React.Component {
   constructor(props) {
@@ -23,10 +23,11 @@ class Leads extends React.Component {
   render() {
     return (
       <Row>
-          <PageHeader className="page-header-default">
+          <LeadHeader lead={{}}/>
+          {/* <PageHeader className="page-header-default">
             Лиды <small>Холодные контакты</small>
             <Button bsStyle="success" className="pull-right">Добавить лид</Button>
-          </PageHeader>
+          </PageHeader> */}
         <Col md={12} xs={12}>
           <Panel>
             <Table responsive>

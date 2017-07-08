@@ -4,12 +4,13 @@ import {bindActionCreators} from 'redux';
 import * as leadActions from '../../actions/leadActions'
 import leadApi from '../../api/leadApi'
 import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
+import LeadHeader from './leadHeader'
 
 
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = this.props;
+    this.state = {lead: {}}
   }
 
   componentDidMount() {
@@ -18,17 +19,18 @@ class LeadShow extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.setState(lead: {});
+    this.props.actions.resetLead();
   }
 
   render() {
     return (
       <Row>
-        <PageHeader className="page-header-default">
+        {/* <PageHeader className="page-header-default">
           {this.props.lead.name}<br/>
           <small>лид</small>
           <Button className="pull-right">Редактировать</Button>
-        </PageHeader>
+        </PageHeader> */}
+        <LeadHeader lead={this.props.lead}/>
         <Col md={12} xs={12}>
           <Panel>
             <Tabs defaultActiveKey={1} id="lead-tabs">

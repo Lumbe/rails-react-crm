@@ -23,6 +23,7 @@ export const VALIDATE_LEAD_FIELDS_FAILURE = 'VALIDATE_LEAD_FIELDS_FAILURE';
 export const LOAD_LEAD = 'LOAD_LEAD';
 export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
 export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_FAILURE';
+export const RESET_LEAD = 'RESET_LEAD'
 
 //Delete lead
 export const DELETE_LEAD = 'DELETE_LEAD';
@@ -49,6 +50,10 @@ export function deleteLeadSuccess(lead) {
   return {type: DELETE_LEAD_SUCCESS, lead}
 }
 
+export function resetLeadSuccess() {
+  return {type: RESET_LEAD, lead: {}}
+}
+
 
 // Dispatch actions and send to reducers with redux-thunk
 export function loadLeads() {
@@ -66,5 +71,12 @@ export function loadLead(lead_id) {
     return leadApi.getOne(lead_id).then(response => {
       dispatch(loadLeadSuccess(response.data.lead));
     })
+  };
+}
+
+export function resetLead() {
+  // make async call to api, handle promise, dispatch action when promise is resolved
+  return function(dispatch) {
+    dispatch(resetLeadSuccess());
   };
 }
