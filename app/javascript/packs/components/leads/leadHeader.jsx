@@ -10,31 +10,35 @@ class LeadHeader extends React.Component {
   }
 
   defaultProps() {
-    return {
-      name: 'Лиды',
-      description: 'Холодные контакты'
-    }
+    return {isEditing: false};
   }
 
   componentDidMount() {
-    // if lead object exists && has a 'name' property update state 'name'
-    // console.log(this.props)
-    // if (Object.keys(this.props.lead).length && this.props.lead.name.length) {
-    //   this.setState({name: this.props.lead.name,
-    //                 description: 'лид'
-    //   })
-    // }
   }
 
+  handleClick(e) {
+    (e).preventDefault();
+    console.log('clicked Edit!')
+  }
 
   render() {
+    const title = this.props.lead.name || 'Лиды'
+    const description = this.props.description || 'Холодные контакты'
     return (
       <PageHeader className="page-header-default">
-        {this.state.name}<br/>
-        <small>{this.state.description}</small>
-        <Button bsStyle="success" className="pull-right">Добавить лид</Button>
+        {title}<br/>
+        <small>{description}</small>
+        <Link to="new">
+          <Button bsStyle="success" className="pull-right" id="new-lead-button">
+            Добавить лид
+          </Button>
+        </Link>
+          <Button bsStyle="default" onClick={this.handleClick.bind(this)} className="pull-right" id="new-lead-button">
+            Редактировать
+          </Button>
       </PageHeader>
-  )}
+    )
+  }
 }
 
 export default LeadHeader

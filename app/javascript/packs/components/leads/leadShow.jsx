@@ -5,12 +5,13 @@ import * as leadActions from '../../actions/leadActions'
 import leadApi from '../../api/leadApi'
 import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
+import LeadForm from './leadForm'
 
 
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {lead: {}}
+    this.state = {lead: {}, isEditing: false}
   }
 
   componentDidMount() {
@@ -23,14 +24,14 @@ class LeadShow extends React.Component {
   }
 
   render() {
+    if (this.state.isEditing) {
+      return (
+        <LeadForm lead={this.props.lead}/>
+      )
+    }
     return (
       <Row>
-        {/* <PageHeader className="page-header-default">
-          {this.props.lead.name}<br/>
-          <small>лид</small>
-          <Button className="pull-right">Редактировать</Button>
-        </PageHeader> */}
-        <LeadHeader lead={this.props.lead}/>
+        <LeadHeader lead={this.props.lead} description='Лид'/>
         <Col md={12} xs={12}>
           <Panel>
             <Tabs defaultActiveKey={1} id="lead-tabs">
