@@ -6,6 +6,7 @@ import leadApi from '../../api/leadApi'
 import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadForm from './leadForm'
+import LeadDetail from './leadDetail'
 
 
 class LeadShow extends React.Component {
@@ -24,15 +25,11 @@ class LeadShow extends React.Component {
   }
 
   render() {
-    if (this.state.isEditing) {
-      return (
-        <LeadForm lead={this.props.lead}/>
-      )
-    }
     return (
       <Row>
-        <LeadHeader lead={this.props.lead} description='Лид'/>
-        <Col md={12} xs={12}>
+        <LeadHeader title={this.props.lead.name} description='Лид'/>
+        {this.state.isEditing ? <LeadForm lead={this.props.lead}/> : <LeadDetail lead={this.props.lead}/>}
+        {/* <Col md={12} xs={12}>
           <Panel>
             <Tabs defaultActiveKey={1} id="lead-tabs">
             <Tab eventKey={1} title="Контакты">
@@ -110,7 +107,7 @@ class LeadShow extends React.Component {
             <Tab eventKey={3} title="Связанные контакты">В разработке</Tab>
           </Tabs>
           </Panel>
-        </Col>
+        </Col> */}
       </Row>
     );
   }

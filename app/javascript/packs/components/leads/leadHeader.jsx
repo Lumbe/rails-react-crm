@@ -22,13 +22,13 @@ class LeadHeader extends React.Component {
   }
 
   render() {
-    const title = this.props.lead.name || 'Лиды'
+    const title = this.props.title || 'Лиды'
     const description = this.props.description || 'Холодные контакты'
     return (
       <PageHeader className="page-header-default">
         {title}<br/>
         <small>{description}</small>
-        <Link to="new">
+        <Link to="/leads/new">
           <Button bsStyle="success" className="pull-right" id="new-lead-button">
             Добавить лид
           </Button>
