@@ -65,7 +65,7 @@ export function loadHouseProject(houseProjectId) {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return houseProjectApi.getOne(houseProjectId).then(response => {
-      dispatch(loadHouseProjectSuccess(response.data.houseProject));
+      dispatch(loadHouseProjectSuccess(response.data.house_project));
     })
   };
 }
