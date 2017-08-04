@@ -1,0 +1,2 @@
+class HouseProject < ApplicationRecord
+end

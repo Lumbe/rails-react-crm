@@ -1,4 +1,6 @@
 export default {
   leads: [],
-  lead: {}
+  lead: {},
+  houseProjects: [],
+  houseProject: {}
 }
