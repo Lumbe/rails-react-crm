@@ -114,6 +114,9 @@ class LeadForm extends React.Component {
                 </Row>
               </Tab>
             </Tabs>
+            <Button bsStyle="success" id="new-lead-button">
+              Сохранить
+            </Button>
           </form>
         </Panel>
       </Col>

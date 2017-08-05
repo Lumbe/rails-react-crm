@@ -24,11 +24,16 @@ class LeadShow extends React.Component {
     this.props.actions.resetLead();
   }
 
+  handleEditChange() {
+    this.setState({isEditing: true});
+  }
+
   render() {
     return (
       <Row>
-        <LeadHeader title={this.props.lead.name} description='Лид'/>
-        {this.state.isEditing ? <LeadForm lead={this.props.lead}/> : <LeadDetail lead={this.props.lead}/>}
+        <LeadHeader isShowing={true} onEditClick={this.handleEditChange.bind(this)} title={this.props.lead.name} description='Лид'/>
+
+        {this.state.isEditing ? <LeadForm lead={this.props.lead}/> : <LeadDetail  lead={this.props.lead}/>}
         {/* <Col md={12} xs={12}>
           <Panel>
             <Tabs defaultActiveKey={1} id="lead-tabs">

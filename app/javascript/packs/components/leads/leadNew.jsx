@@ -11,7 +11,7 @@ class LeadNew extends React.Component {
   render() {
     return (
       <Row>
-        <LeadHeader title="Новый лид" description=""/>
+        <LeadHeader isNew={true} title="Новый лид" description=""/>
         <LeadForm/>
       </Row>
     );

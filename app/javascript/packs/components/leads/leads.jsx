@@ -14,7 +14,10 @@ class Leads extends React.Component {
   }
 
   defaultProps() {
-    return {leads: []};
+    return {leads: [],
+            isEditing: false,
+            isNew: false,
+            };
   }
 
   componentDidMount() {
@@ -24,7 +27,7 @@ class Leads extends React.Component {
   render() {
     return (
       <Row>
-          <LeadHeader/>
+          <LeadHeader isIndex={true}/>
         <Col md={12} xs={12}>
           <Panel>
             <LeadsIndex leads={this.props.leads}/>
