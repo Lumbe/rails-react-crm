@@ -17,6 +17,10 @@ window.react = React;
 window.reactDOM = ReactDOM;
 
 class Application extends React.Component {
+  componentDidMount() {
+    // need to load current_user if access_token present
+  }
+
   render() {
     return <Provider store={store}>
       <BrowserRouter>
