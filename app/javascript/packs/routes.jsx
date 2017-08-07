@@ -6,6 +6,7 @@ import Leads from './components/leads/leads'
 import LeadShow from './components/leads/leadShow'
 import LeadNew from './components/leads/leadNew'
 import Users from './components/users/users'
+import SignIn from './components/users/signIn'
 import HouseProjects from './components/house_projects/houseProjects'
 import NotFound from './components/errors/notFound'
 
@@ -18,6 +19,7 @@ class Routes extends React.Component {
         <Route exact path="/leads/:id" component={LeadShow}/>
         <Route exact path="/leads" component={Leads}/>
         <Route exact path="/users" component={Users}/>
+        <Route exact path="/users/sign-in" component={SignIn}/>
         <Route exact path="/house-projects" component={HouseProjects}/>
         <Route component={NotFound}/>
       </Switch>

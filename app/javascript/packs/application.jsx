@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom'
 import {BrowserRouter} from 'react-router-dom'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import configureStore from './store/configureStore';
+import {persistStore} from 'redux-persist'
+import localForage from 'localforage'
+import configureStore from './store/configureStore'
 import Header from './components/layout/header'
 import Main from './components/layout/main'
 import Footer from './components/layout/footer'
 
-const store = configureStore();
+const store = configureStore()
+persistStore(store, {storage: localForage})
 // Just for tests
 window.store = store;
 import axios from 'axios';
