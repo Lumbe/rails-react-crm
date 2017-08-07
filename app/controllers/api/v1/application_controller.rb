@@ -1,14 +1,10 @@
 class Api::V1::ApplicationController < ApplicationController
-  # before_action :authenticate_user_with_jwt!
-  respond_to :json
   protect_from_forgery with: :null_session
-  before_action :authenticate_user_from_header_token
-  prepend_before_action :skip_devise_tracking
+  respond_to :json
 
-  # skip sign_in count in Devise
-  def skip_devise_tracking
-    request.env['devise.skip_trackable'] = true
-  end
+  before_action :authenticate_user_from_header_token
+  before_action :authenticate_user_with_jwt!
+  prepend_before_action :skip_devise_tracking
 
   def authenticate_user_from_header_token
     authenticate_with_http_token do |token|
@@ -19,7 +15,7 @@ class Api::V1::ApplicationController < ApplicationController
         return
       end
     end
-  rescue JWT::VerificationError, JWT::DecodeError, JWT::ExpiredSignature
+    rescue JWT::VerificationError, JWT::DecodeError, JWT::ExpiredSignature
   end
 
   def authenticate_user_with_jwt!
@@ -27,6 +23,16 @@ class Api::V1::ApplicationController < ApplicationController
     respond_with({ error: t('unauthorized') }, status: 401)
   end
 
+  # skip sign_in count in Devise
+  def skip_devise_tracking
+    request.env['devise.skip_trackable'] = true
+  end
+
+  # override respond_with internal methods (gem 'active_model_serializers')
+  # to include SessionsController#default_serializer_options.
+  # It allows to not pass :serializer parameter
+  # (e.g. respond_with Lead.all, serializer: LeadSerializer)
+  # to every respond_with calls.
   %i[_render_option_json _render_with_renderer_json].each do |renderer_method|
     define_method renderer_method do |resource, options|
       options = default_serializer_options.merge(options) if resource.is_a?(ActiveRecord::Base) || resource.is_a?(ActiveRecord::Relation)
