@@ -3,5 +3,10 @@ export default {
   lead: {},
   houseProjects: [],
   houseProject: {},
-  isAuthenticated: false
+  users: [],
+  user: {
+    isAuthenticated: false,
+    token: '',
+  }
+
 }

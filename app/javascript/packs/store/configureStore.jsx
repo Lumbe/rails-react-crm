@@ -3,6 +3,7 @@ import rootReducer from '../reducers';
 // import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import thunk from 'redux-thunk';
 import {autoRehydrate} from 'redux-persist'
+import {initialState} from '../reducers/initialState'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
