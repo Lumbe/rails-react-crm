@@ -5,7 +5,6 @@ import Home from './components/pages/home'
 import Leads from './components/leads/leads'
 import LeadShow from './components/leads/leadShow'
 import LeadNew from './components/leads/leadNew'
-import Users from './components/users/users'
 import User from './components/users/user'
 import SignIn from './components/users/signIn'
 import HouseProjects from './components/house_projects/houseProjects'
@@ -19,7 +18,6 @@ class Routes extends React.Component {
         <Route exact path="/leads/new" component={LeadNew}/>
         <Route exact path="/leads/:id" component={LeadShow}/>
         <Route exact path="/leads" component={Leads}/>
-        <Route exact path="/users" component={Users}/>
         <Route exact path="/users/current" component={User}/>
         <Route exact path="/users/sign-in" component={SignIn}/>
         <Route exact path="/house-projects" component={HouseProjects}/>

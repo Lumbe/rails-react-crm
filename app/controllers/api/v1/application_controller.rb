@@ -20,7 +20,7 @@ class Api::V1::ApplicationController < ApplicationController
 
   def authenticate_user_with_jwt!
     return if current_user
-    respond_with({ error: t('unauthorized') }, status: 401)
+    render json: { error: t('unauthorized') }, status: 401
   end
 
   # skip sign_in count in Devise

@@ -4,9 +4,9 @@ export default {
   houseProjects: [],
   houseProject: {},
   users: [],
-  user: {
+  currentUser: {
     isAuthenticated: false,
-    token: '',
+    token: null,
   }
 
 }

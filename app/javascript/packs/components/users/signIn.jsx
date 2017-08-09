@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import axios from 'axios'
+import * as userActions from '../../actions/userActions'
 import UserApi from '../../api/userApi'
 import {Form, FormGroup, FormControl, ControlLabel, Grid, Row, Col, Clearfix, Checkbox, Button} from 'react-bootstrap'
 
@@ -23,11 +26,14 @@ class SignIn extends React.Component {
   }
 
   handleChange(e) {
-    if (e.target.type === 'email') {
-      this.setState({email: e.target.value});
-    } else if (e.target.type === 'password') {
-      this.setState({password: e.target.value});
-    }
+    // if (e.target.type === 'email') {
+    //   this.setState({email: e.target.value});
+    // } else if (e.target.type === 'password') {
+    //   this.setState({password: e.target.value});
+    // }
+    var state = {};
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   }
 
   loginUser(e) {
@@ -36,9 +42,9 @@ class SignIn extends React.Component {
     // console.log(this.state.password);
     // var email = $('input[type=email]').value;
     // var password = $('input[type=password]').value;
-    UserApi.signIn(this.state);
-    console.log('clicked')
-    // console.log(this.state)
+    this.props.actions.createUserSession(this.state);
+    // UserApi.signIn(this.state);
+    // console.log('clicked')
   }
 
   render() {
@@ -51,7 +57,7 @@ class SignIn extends React.Component {
                 Email
               </Col>
               <Col sm={10}>
-                <FormControl type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange.bind(this)} />
+                <FormControl name="email" type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange.bind(this)} />
               </Col>
             </FormGroup>
 
@@ -60,7 +66,7 @@ class SignIn extends React.Component {
                 Password
               </Col>
               <Col sm={10}>
-                <FormControl type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange.bind(this)}/>
+                <FormControl name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange.bind(this)}/>
               </Col>
             </FormGroup>
 
@@ -84,4 +90,17 @@ class SignIn extends React.Component {
   }
 }
 
-export default SignIn
+function mapStateToProps(state, ownProps) {
+  return {
+    email: state.email,
+    password: state.password
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(userActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

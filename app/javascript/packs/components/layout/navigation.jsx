@@ -22,11 +22,8 @@ class Navigation extends React.Component {
             <LinkContainer to="/leads">
               <NavItem eventKey={2}>Лиды</NavItem>
             </LinkContainer>
-            <LinkContainer to="/users">
-              <NavItem eventKey={4}>Пользователи</NavItem>
-            </LinkContainer>
             <LinkContainer to="/house-projects">
-              <NavItem eventKey={5}>Проекты домов</NavItem>
+              <NavItem eventKey={4}>Проекты домов</NavItem>
             </LinkContainer>
             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}>Action</MenuItem>

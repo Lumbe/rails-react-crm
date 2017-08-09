@@ -20,13 +20,12 @@ class User extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
-          Юзер
-          {this.props.user.id}
+          Юзер:<br/>
+          id: {this.props.user.id}
           <br/>
-          {this.props.user.email}
+          email: {this.props.user.email}
       </div>
     );
   }
