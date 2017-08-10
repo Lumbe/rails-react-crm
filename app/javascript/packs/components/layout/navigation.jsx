@@ -40,7 +40,7 @@ class Navigation extends React.Component {
         </Navbar.Collapse>
       </Navbar>
 
-      <Routes/>
+      {/* <Routes/> */}
     </div>
   }
 }

@@ -12,6 +12,7 @@ import configureStore from './store/configureStore'
 import Header from './components/layout/header'
 import Main from './components/layout/main'
 import Footer from './components/layout/footer'
+import Routes from './routes'
 
 configureLocalForage();
 const store = configureStore();
@@ -32,13 +33,7 @@ class Application extends React.Component {
 
   render() {
     return <Provider store={store}>
-      <BrowserRouter>
-        <div>
-          <Header/>
-          <Main/>
-          <Footer/>
-        </div>
-      </BrowserRouter>
+      <Routes/>
     </Provider>
   }
 }
