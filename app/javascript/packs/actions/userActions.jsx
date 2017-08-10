@@ -17,8 +17,8 @@ export function loadCurrentUserSuccess(user) {
   return {type: LOAD_CURRENT_USER_SUCCESS, user};
 }
 
-export function createUserSessionSuccess(data) {
-  return {type: CREATE_USER_SESSION_SUCCESS, data}
+export function createUserSessionSuccess(user) {
+  return {type: CREATE_USER_SESSION_SUCCESS, user}
 }
 
 
@@ -52,7 +52,7 @@ export function loadCurrentUser(token) {
 export function createUserSession(user) {
   return function(dispatch) {
     return userApi.createSession(user).then(response => {
-      dispatch(createUserSessionSuccess(response.data));
+      dispatch(createUserSessionSuccess(response.data.user));
     })
   };
 }
