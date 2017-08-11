@@ -10,21 +10,24 @@ import SignIn from './components/users/signIn'
 import HouseProjects from './components/house_projects/houseProjects'
 import NotFound from './components/errors/notFound'
 import AppLayout from './components/layout/appLayout'
+// import CheckAuthentication from './components/common/checkAuthentication'
 
 class Routes extends React.Component {
   render() {
-    return <BrowserRouter>
-      <Switch>
-        <AppLayout exact path="/users/sign-in" component={SignIn}/>
-        <AppLayout exact path="/" component={Home}/>
-        <AppLayout exact path="/leads/new" component={LeadNew}/>
-        <AppLayout exact path="/leads/:id" component={LeadShow}/>
-        <AppLayout exact path="/leads" component={Leads}/>
-        <AppLayout exact path="/users/current" component={User}/>
-        <AppLayout exact path="/house-projects" component={HouseProjects}/>
-        <AppLayout component={NotFound}/>
-      </Switch>
-    </BrowserRouter>
+    return (
+      <BrowserRouter>
+        <Switch>
+          <AppLayout exact path="/users/sign-in" component={SignIn}/>
+          <AppLayout exact path="/" component={Home}/>
+          <AppLayout exact path="/leads/new" component={LeadNew}/>
+          <AppLayout exact path="/leads/:id" component={LeadShow}/>
+          <AppLayout exact path="/leads" component={Leads}/>
+          <AppLayout exact path="/users/current" component={User}/>
+          <AppLayout exact path="/house-projects" component={HouseProjects}/>
+          <AppLayout component={NotFound}/>
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
 

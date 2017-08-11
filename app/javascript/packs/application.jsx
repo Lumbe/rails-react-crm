@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, Switch} from 'react-router-dom'
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist'
@@ -13,6 +13,7 @@ import Header from './components/layout/header'
 import Main from './components/layout/main'
 import Footer from './components/layout/footer'
 import Routes from './routes'
+import CheckAuthentication from './components/common/checkAuthentication'
 
 configureLocalForage();
 const store = configureStore();
@@ -32,7 +33,14 @@ class Application extends React.Component {
   }
 
   render() {
+    // const CheckedRoutes = CheckAuthentication(Routes)
+    // console.log(<CheckedRoutes/>)
     return <Provider store={store}>
+      {/* <BrowserRouter>
+        <Switch>
+          <CheckedRoutes/>
+        </Switch>
+      </BrowserRouter> */}
       <Routes/>
     </Provider>
   }

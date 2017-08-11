@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 class RequireAuthentication extends React.Component {
   componentWillMount() {
     if (this.props.isAuthenticated) {
-      replace({pathname: '/users/sign-in'})
+      // replace({pathname: '/users/sign-in'})
+      
     }
   }
 

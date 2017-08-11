@@ -6,26 +6,35 @@ import Main from './main'
 import Footer from './footer'
 
 class AppLayout extends React.Component {
-  componentWillMount() {
+  // constructor(props) {
+  //   super(props);
+  //   // this.state = store.getState();
+  //   // // console.log('props: ', this.props)
+  //   // console.log('state: ', this.state)
+  //   // this.state = this.defaultProps();
+  // }
+  // componentDidMount() {
     // const isAuthenticated = this.props.isAuthenticated || false
-    console.log(this.props)
-  }
+    // console.log(this.props)
+  // }
+
+  // componentWillMount() {
+  //   console.log('will mount props: ',this.props)
+  // }
+  //
+  // componentWillReceive() {
+  //   console.log('did mount props: ',this.props)
+  // }
+
 
   render() {
-    console.log('render', this.props)
+    // console.log('render', this.props)
     const { component: Component, ...rest } = this.props;
     return <Route {...rest} render={matchProps => (
       <div>
         <Header/>
         <Main/>
-          {/* {this.props.isAuthenticated ? (
-            <Component {...matchProps} />
-          ) : (
-            <Redirect to={{
-              pathname: '/users/sign-in',
-              state: { from: matchProps.location }
-            }}/>
-          )} */}
+          <Component {...matchProps} />
         <Main/>
         <Footer/>
       </div>
@@ -33,8 +42,4 @@ class AppLayout extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { isAuthenticated: state.currentUser.isAuthenticated }
-}
-
-export default withRouter(connect(mapStateToProps)(AppLayout))
+export default AppLayout
