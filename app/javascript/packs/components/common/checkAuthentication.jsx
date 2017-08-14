@@ -1,30 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 
 export default function(WrappedComponent) {
   class CheckAuthentication extends React.Component {
     componentWillMount() {
-      console.log('wil mount props: ',this.props)
-    }
-
-    // componentDidMount() {
-    //   console.log('did mount props: ',this.props)
-    // }
-
-    componentWillUpdate() {
-      console.log('will update mount props: ',this.props)
+      // console.log('wil mount props: ', this.props)
+      // if (this.props.currentUser.isAuthenticated) {
+        // <Redirect to={{
+        //   pathname: '/users/sign-in',
+        //   state: { from: this.props.location }
+        // }}/>
+      // }
     }
 
     render() {
-      console.log('check auth props: ',this.props)
-      console.log('check auth state: ',this.state)
       return <WrappedComponent {...this.props}/>
     }
   }
 
   function mapStateToProps(state) {
-    console.log('mapping', state)
-    return { isAuthenticated: state.currentUser.isAuthenticated }
+    return { currentUser: state.currentUser}
   }
 
   return connect(mapStateToProps)(CheckAuthentication);

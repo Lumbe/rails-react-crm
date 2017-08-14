@@ -14,6 +14,7 @@ import AppLayout from './components/layout/appLayout'
 
 class Routes extends React.Component {
   render() {
+    const auth = this.props.currentUser
     return (
       <BrowserRouter>
         <Switch>

@@ -1,5 +1,5 @@
 class SessionSerializer < ActiveModel::Serializer
-  attributes :user_email, :access_token
+  attributes :token
 
   def user_id
     object.id
@@ -13,7 +13,7 @@ class SessionSerializer < ActiveModel::Serializer
     'Bearer'
   end
 
-  def access_token
+  def token
     ::JwtWebToken.encode({id: user_id, access_token: object.generate_access_token_and_save.access_token})
   end
 end

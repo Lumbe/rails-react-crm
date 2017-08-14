@@ -4,7 +4,9 @@ import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
 import {autoRehydrate} from 'redux-persist'
 import {initialState} from '../reducers/initialState'
+import configureLocalForage from './configureLocalForage'
 
+configureLocalForage();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function configureStore(initialState) {

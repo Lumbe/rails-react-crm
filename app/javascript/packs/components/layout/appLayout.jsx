@@ -18,9 +18,10 @@ class AppLayout extends React.Component {
     // console.log(this.props)
   // }
 
-  // componentWillMount() {
-  //   console.log('will mount props: ',this.props)
-  // }
+  componentWillMount() {
+    console.log('will mount props: ',this.props)
+    
+  }
   //
   // componentWillReceive() {
   //   console.log('did mount props: ',this.props)
@@ -29,6 +30,7 @@ class AppLayout extends React.Component {
 
   render() {
     // console.log('render', this.props)
+    console.log('from render: ', this.props)
     const { component: Component, ...rest } = this.props;
     return <Route {...rest} render={matchProps => (
       <div>
@@ -42,4 +44,9 @@ class AppLayout extends React.Component {
   }
 }
 
-export default AppLayout
+function mapStateToProps(state) {
+  return { currentUser: state.currentUser}
+}
+
+
+export default connect(mapStateToProps)(AppLayout)

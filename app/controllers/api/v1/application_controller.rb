@@ -9,7 +9,13 @@ class Api::V1::ApplicationController < ApplicationController
   def authenticate_user_from_header_token
     authenticate_with_http_token do |token|
       data = ::JwtWebToken.decode(token)
+      puts '#' * 80
+      puts data
+      puts '#' * 80
       user = User.find_by(id: data[:id])
+      puts '#' * 80
+      puts user
+      puts '#' * 80
       if user && Devise.secure_compare(user.access_token, data[:access_token])
         sign_in(user, store: false)
         return
@@ -19,7 +25,7 @@ class Api::V1::ApplicationController < ApplicationController
   end
 
   def authenticate_user_with_jwt!
-    return if current_user
+        return if current_user
     render json: { error: t('unauthorized') }, status: 401
   end
 

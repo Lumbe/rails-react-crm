@@ -49,9 +49,9 @@ export function loadCurrentUser(token) {
   };
 }
 
-export function createUserSession(user) {
+export function createUserSession(user_credentials) {
   return function(dispatch) {
-    return userApi.createSession(user).then(response => {
+    return userApi.createSession(user_credentials).then(response => {
       dispatch(createUserSessionSuccess(response.data.user));
     })
   };

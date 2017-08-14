@@ -6,9 +6,9 @@ class UserApi extends BaseApi {
     return 'user';
   }
 
-  static createSession(model) {
+  static createSession(user) {
     var data = {};
-    data[this.modelName()] = model;
+    data[this.modelName()] = user;
     return axios.post(this.path('/sign_in'), data).catch(this.catchError);
   }
 

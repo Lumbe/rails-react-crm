@@ -16,7 +16,8 @@ export function currentUser(state = initialState.currentUser, action) {
     case LOAD_CURRENT_USER_SUCCESS:
       return action.user
     case CREATE_USER_SESSION_SUCCESS:
-      return {email: action.user.user_email, token: action.user.access_token, isAuthenticated: true}
+      return {token: action.user.token, isAuthenticated: true}
+      // return ...state, {email: action.user.user_email, token: action.user.access_token, isAuthenticated: true}
     default:
       return state;
   }
