@@ -9,23 +9,24 @@ import User from './components/users/user'
 import SignIn from './components/users/signIn'
 import HouseProjects from './components/house_projects/houseProjects'
 import NotFound from './components/errors/notFound'
-import AppLayout from './components/layout/appLayout'
-// import CheckAuthentication from './components/common/checkAuthentication'
+import About from './components/pages/about'
+import ProtectedAppRoute from './components/layout/protectedAppLayout'
+import PublicAppRoute from './components/layout/publicAppLayout'
 
 class Routes extends React.Component {
   render() {
-    const auth = this.props.currentUser
     return (
       <BrowserRouter>
         <Switch>
-          <AppLayout exact path="/users/sign-in" component={SignIn}/>
-          <AppLayout exact path="/" component={Home}/>
-          <AppLayout exact path="/leads/new" component={LeadNew}/>
-          <AppLayout exact path="/leads/:id" component={LeadShow}/>
-          <AppLayout exact path="/leads" component={Leads}/>
-          <AppLayout exact path="/users/current" component={User}/>
-          <AppLayout exact path="/house-projects" component={HouseProjects}/>
-          <AppLayout component={NotFound}/>
+          <PublicAppRoute exact path="/about" component={About}/>
+          <ProtectedAppRoute exact path="/users/sign-in" component={SignIn}/>
+          <ProtectedAppRoute exact path="/" component={Home}/>
+          <ProtectedAppRoute exact path="/leads/new" component={LeadNew}/>
+          <ProtectedAppRoute exact path="/leads/:id" component={LeadShow}/>
+          <ProtectedAppRoute exact path="/leads" component={Leads}/>
+          <ProtectedAppRoute exact path="/users/current" component={User}/>
+          <ProtectedAppRoute exact path="/house-projects" component={HouseProjects}/>
+          <ProtectedAppRoute component={NotFound}/>
         </Switch>
       </BrowserRouter>
     )

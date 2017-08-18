@@ -12,7 +12,7 @@ class User extends React.Component {
 
   componentDidMount() {
     // console.log(this.props.actions)
-    this.props.actions.loadCurrentUser("asdasd");
+    this.props.actions.loadCurrentUser();
   }
 
   componentWillUnmount() {

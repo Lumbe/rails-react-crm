@@ -1,17 +1,17 @@
-
 import {combineReducers} from 'redux';
 import {leads, lead} from './leadReducer';
 import currentUser from './authUserReducer';
+import {user} from './userReducer';
 import {houseProjects, houseProject} from './houseProjectReducer';
-
 
 const appReducer = combineReducers({
   // short hand property names
+  currentUser,
   leads,
   lead,
   houseProjects,
   houseProject,
-  currentUser
+  user
 })
 
 const rootReducer = (state, action) => {

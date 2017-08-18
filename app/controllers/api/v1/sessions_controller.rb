@@ -1,6 +1,5 @@
 class Api::V1::SessionsController < Devise::SessionsController
-  # before_action :authenticate_user_with_jwt!, only: [:current]
-
+  skip_before_action :authenticate_user_with_jwt!, only: :create
   def default_serializer_options
     { serializer: SessionSerializer }
   end

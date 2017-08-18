@@ -12,7 +12,7 @@ import LeadDetail from './leadDetail'
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {lead: {}, isEditing: false}
+    this.state = {isEditing: false}
   }
 
   componentDidMount() {

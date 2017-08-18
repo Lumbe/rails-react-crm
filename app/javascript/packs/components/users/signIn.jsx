@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import axios from 'axios'
-import * as userActions from '../../actions/userActions'
-import UserApi from '../../api/userApi'
+import * as authActions from '../../actions/authActions'
+import AuthApi from '../../api/authApi'
 import {Form, FormGroup, FormControl, ControlLabel, Grid, Row, Col, Clearfix, Checkbox, Button} from 'react-bootstrap'
 
 class SignIn extends React.Component {
@@ -38,13 +38,9 @@ class SignIn extends React.Component {
 
   loginUser(e) {
     e.preventDefault();
-    // console.log(this.state.email);
-    // console.log(this.state.password);
-    // var email = $('input[type=email]').value;
-    // var password = $('input[type=password]').value;
-    this.props.actions.createUserSession(this.state);
-    // UserApi.signIn(this.state);
-    // console.log('clicked')
+    this.props.actions.createUserSession(this.state).then(() => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -99,7 +95,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(userActions, dispatch)
+    actions: bindActionCreators(authActions, dispatch)
   };
 }
 

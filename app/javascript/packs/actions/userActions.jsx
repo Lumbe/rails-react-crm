@@ -40,10 +40,9 @@ export function resetUserSuccess() {
 }
 
 
-export function loadCurrentUser(token) {
-  // make async call to api, handle promise, dispatch action when promise is resolved
+export function loadCurrentUser() {
   return function(dispatch) {
-    return userApi.loadCurrentUser(token).then(response => {
+    return userApi.loadCurrentUser().then(response => {
       dispatch(loadCurrentUserSuccess(response.data.user));
     })
   };

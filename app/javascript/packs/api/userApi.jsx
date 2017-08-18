@@ -6,14 +6,7 @@ class UserApi extends BaseApi {
     return 'user';
   }
 
-  static createSession(user) {
-    var data = {};
-    data[this.modelName()] = user;
-    return axios.post(this.path('/sign_in'), data).catch(this.catchError);
-  }
-
-  static loadCurrentUser(token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  static loadCurrentUser() {
     return axios.get(this.path('/current')).catch(this.catchError);
   }
 }
