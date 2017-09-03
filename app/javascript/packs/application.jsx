@@ -1,38 +1,38 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter} from 'react-router-dom'
-import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-import configureStore from './store/configureStore';
-import Header from './components/layout/header'
-import Main from './components/layout/main'
-import Footer from './components/layout/footer'
+import {persistStore} from 'redux-persist'
+import localForage from 'localforage'
+import configureStore from './store/configureStore'
+import Routes from './routes'
 
 const store = configureStore();
-// Just for tests
+
+// for tests
 window.store = store;
 import axios from 'axios';
 window.axios = axios;
 window.react = React;
 window.reactDOM = ReactDOM;
+// import leadApi from './api/leadApi'
+// window.leadApi = leadApi
+window.localForage = localForage;
 
 class Application extends React.Component {
   render() {
-    return <Provider store={store}>
-      <BrowserRouter>
-        <div>
-          <Header/>
-          <Main/>
-          <Footer/>
-        </div>
-      </BrowserRouter>
-    </Provider>
+    return (
+      <Provider store={store}>
+        <Routes/>
+      </Provider>
+    )
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <Application/>,
-    document.getElementById('root'),
-  )
+  persistStore(store,
+    {storage: localForage},
+    () => {
+      ReactDOM.render(<Application/>, document.getElementById('root'))
+    }
+  );
 });

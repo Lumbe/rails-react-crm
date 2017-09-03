@@ -7,6 +7,7 @@ export default function LeadDetail(props) {
   return (
     <Col md={12} xs={12}>
       <Panel>
+        {/* <Button bsStyle="link" className="pull-right">Редактировать</Button> */}
         <Tabs defaultActiveKey={1} id="lead-tabs">
         <Tab eventKey={1} title="Контакты">
           <Row>
