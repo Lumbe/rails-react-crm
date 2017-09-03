@@ -9,4 +9,8 @@
   Lead.create name: Faker::Name.name,
               phone: Faker::PhoneNumber.cell_phone,
               email: Faker::Internet.email
+
+  HouseProject.create title: Faker::Book.title,
+                      square: Faker::Number.decimal(2),
+                      project_description: Faker::Lorem.sentence
 end

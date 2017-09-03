@@ -1,5 +1,6 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
+axios.defaults.baseURL = 'http://localhost:5000'
 
 class BaseApi {
   static apiPath(){
@@ -19,8 +20,8 @@ class BaseApi {
     data[this.modelName()] = model;
     return axios.post(this.path(), data).catch(this.catchError);
   }
-  static getOne(model){
-    return axios.get(this.path('/' + model.id)).catch(this.catchError);
+  static getOne(id){
+    return axios.get(this.path('/' + id)).catch(this.catchError);
   }
   static update(model){
     var data = {};

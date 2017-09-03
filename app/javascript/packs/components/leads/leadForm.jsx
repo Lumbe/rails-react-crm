@@ -12,18 +12,20 @@ class LeadForm extends React.Component {
   }
 
   defaultProps() {
-    return {
+    return { lead: {
       name: '',
       phone: '',
       email: ''
-    };
+    }};
   }
 
   componentDidMount() {
     // this.props.actions.loadLeads();
+    console.log(this.props.lead)
   }
 
   render() {
+    const lead = this.props.lead || this.state.lead;
     return (
       <Col md={12} xs={12}>
         <Panel>
@@ -38,7 +40,7 @@ class LeadForm extends React.Component {
                             <th>Имя</th>
                             <td>
                               <FormGroup controlId="formHorizontalName">
-                                <FormControl bsSize="sm" type="text" placeholder="Имя или Имя и Отчество" />
+                                <FormControl bsSize="sm" type="text" placeholder="Имя или Имя и Отчество" value={lead.name} />
                               </FormGroup>
                             </td>
                           </tr>
@@ -46,7 +48,7 @@ class LeadForm extends React.Component {
                             <th>Телефон</th>
                             <td>
                               <FormGroup controlId="formHorizontalPhone">
-                                <FormControl bsSize="sm" type="text" placeholder="+38(097)123-45-67" />
+                                <FormControl bsSize="sm" type="text" placeholder="+38(097)123-45-67" value={lead.phone} />
                               </FormGroup>
                             </td>
                           </tr>
@@ -54,7 +56,7 @@ class LeadForm extends React.Component {
                             <th>e-mail</th>
                             <td>
                               <FormGroup controlId="formHorizontalEmail">
-                                <FormControl bsSize="sm" type="email" placeholder="example@example.com" />
+                                <FormControl bsSize="sm" type="email" placeholder="example@example.com" value={lead.email}/>
                               </FormGroup>
                             </td>
                           </tr>
@@ -112,6 +114,9 @@ class LeadForm extends React.Component {
                 </Row>
               </Tab>
             </Tabs>
+            <Button bsStyle="success" id="new-lead-button">
+              Сохранить
+            </Button>
           </form>
         </Panel>
       </Col>
