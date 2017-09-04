@@ -11,10 +11,24 @@ class Main extends React.Component {
     return {app_name: 'CRM'}
   }
 
+  componentDidMount() {
+    function resize() {
+      let heights = window.innerHeight;
+      let headerHeight = document.getElementById('header').clientHeight;
+      let footerHeight = document.getElementById('footer').clientHeight;
+      document.getElementById('main-container').style.minHeight = heights - headerHeight - footerHeight +'px';
+    }
+    resize();
+    window.onresize = () => {
+      resize();
+    }
+
+  }
+
   render() {
-  return <Grid className="main-wrapper" fluid>
-    {this.props.children}
-  </Grid>
+    return <Grid id="main-container" fluid>
+      {this.props.children}
+    </Grid>
   }
 }
 

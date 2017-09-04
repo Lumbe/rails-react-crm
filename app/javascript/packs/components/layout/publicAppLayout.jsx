@@ -11,9 +11,9 @@ class PublicAppLayout extends React.Component {
     return <Route {...rest} render={matchProps => (
       <div>
         <Header isPublic={true}/>
-        <Main/>
+        <Main>
           <Component {...matchProps} />
-        <Main/>
+        </Main>
         <Footer/>
       </div>
     )} />
