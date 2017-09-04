@@ -6,6 +6,7 @@ import axios from 'axios'
 import * as authActions from '../../actions/authActions'
 import AuthApi from '../../api/authApi'
 import {Panel, Form, FormGroup, FormControl, ControlLabel, Col, Checkbox, Button, InputGroup, Addon} from 'react-bootstrap'
+import FontAwesome from 'react-fontawesome'
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -48,7 +49,9 @@ class SignIn extends React.Component {
             <Col sm={12}>
               <FormGroup controlId="formHorizontalEmail">
                 <InputGroup>
-                  <InputGroup.Addon>@</InputGroup.Addon>
+                  <InputGroup.Addon>
+                    <FontAwesome name="envelope" fixedWidth={true}/>
+                  </InputGroup.Addon>
                   <FormControl name="email" type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange.bind(this)} />
                 </InputGroup>
               </FormGroup>
@@ -57,7 +60,9 @@ class SignIn extends React.Component {
             <Col sm={12}>
               <FormGroup controlId="formHorizontalPassword">
                 <InputGroup>
-                  <InputGroup.Addon>@</InputGroup.Addon>
+                  <InputGroup.Addon>
+                    <FontAwesome name="lock" fixedWidth={true}/>
+                  </InputGroup.Addon>
                   <FormControl name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange.bind(this)}/>
                 </InputGroup>
               </FormGroup>
