@@ -9,14 +9,16 @@
 //     )
 
 export default {
-  leads: [],
-  lead: {},
-  houseProjects: [],
-  houseProject: {},
-  user: {},
-  currentUser: {
+    leads: [],
+    lead: {},
+    houseProjects: [],
+    houseProject: {},
+    user: {},
+    currentUser: {
                   email: '',
                   token: null,
                   isAuthenticated: false,
-                }
+                },
+    notifications: null,
+    notification: null
 }

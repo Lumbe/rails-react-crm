@@ -7,6 +7,7 @@ import * as authActions from '../../actions/authActions'
 import AuthApi from '../../api/authApi'
 import {Panel, Form, FormGroup, FormControl, ControlLabel, Col, Checkbox, Button, InputGroup, Addon} from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
+import NotificationItem from '../common/notificationItem'
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -36,15 +37,18 @@ class SignIn extends React.Component {
     e.preventDefault();
     this.props.actions.createUserSession(this.state).then(() => {
       this.props.history.push('/');
-    });
+    }).catch((error) => {this.setState({error: error.response.data.error})});
   }
 
   render() {
+    console.log("props: ", this.props);
+    console.log('state: ', this.state);
     return (
       <div className="login-container">
         <Panel className='login-form center-block text-center'>
           <h5>Войдите в свой аккаунт</h5>
           <br/>
+            {this.state.error && <NotificationItem className="text-left" type="error" message={this.state.error}/>}
           <Form horizontal>
             <Col sm={12}>
               <FormGroup controlId="formHorizontalEmail">
