@@ -14,7 +14,7 @@ class Notifications extends React.Component {
         return (
             <div className="notifications">
                 {this.props.notifications.map((notification, index) => {
-                    <NotificationItem key={index} {...notification} onDismiss={() => this.handleDismiss(index)}/>
+                    return <NotificationItem key={index} {...notification} onDismiss={() => this.handleDismiss(index)}/>
                 })}
             </div>
         )

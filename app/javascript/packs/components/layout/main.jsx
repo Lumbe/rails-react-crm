@@ -29,7 +29,7 @@ class Main extends React.Component {
 
   render() {
     return <Grid id="main-container" fluid>
-        {this.props.notifications && <Notifications notifications={this.props.notifications}/>}
+        {this.props.notifications && <Notifications/>}
       {this.props.children}
     </Grid>
   }

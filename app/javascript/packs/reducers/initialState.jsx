@@ -19,6 +19,6 @@ export default {
                   token: null,
                   isAuthenticated: false,
                 },
-    notifications: null,
+    notifications: [],
     notification: null
 }
