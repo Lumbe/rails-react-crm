@@ -16,7 +16,7 @@ class LeadShow extends React.Component {
   }
 
   componentDidMount() {
-    var lead_id = this.props.match.params.id
+    var lead_id = this.props.match.params.id;
     this.props.actions.loadLead(lead_id);
   }
 

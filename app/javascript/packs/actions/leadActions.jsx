@@ -70,7 +70,7 @@ export function loadLead(lead_id) {
   return function(dispatch) {
     return leadApi.getOne(lead_id).then(response => {
       dispatch(loadLeadSuccess(response.data.lead));
-    }, leadApi.catchError(error))
+    }).catch((error) => {leadApi.catchError(error)})
   };
 }
 
