@@ -17,6 +17,6 @@ export function createNotification(notification) {
 
 export function destroyNotification(index) {
     return function(dispatch) {
-        return dispatch(createNotificationSuccess(index))
+        return dispatch(destroyNotificationSuccess(index))
     }
 }

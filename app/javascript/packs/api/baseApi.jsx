@@ -1,6 +1,6 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
-axios.defaults.baseURL = 'http://localhost:5000'
+axios.defaults.baseURL = 'http://localhost:5000';
 
 class BaseApi {
   static apiPath(){
@@ -21,7 +21,7 @@ class BaseApi {
     return axios.post(this.path(), data).catch(this.catchError);
   }
   static getOne(id){
-    return axios.get(this.path('/' + id)).catch(this.catchError);
+    return axios.get(this.path('/' + id))
   }
   static update(model){
     var data = {};
@@ -32,7 +32,9 @@ class BaseApi {
     return axios.delete(this.path('/' + model.id)).catch(this.catchError);
   }
   static catchError(error){
-    throw error;
+      window.store.dispatch(window.actions.createNotification({type: 'error', message: error.response.data.error}));
+      console.log(error.response);
+      // throw error;
   }
 }
 

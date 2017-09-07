@@ -4,10 +4,10 @@ import initialState from './initialState';
 export function notifications(state = initialState.notifications, action) {
     switch(action.type) {
         case CREATE_NOTIFICATION_SUCCESS:
-            console.log(state);
-            return [...state, action.notification]
+            return [...state, action.notification];
         case DESTROY_NOTIFICATION_SUCCESS:
-            return action.notification;
+            let notifications = [...state];
+            return notifications.filter((item) => {return action.index !== notifications.indexOf(item)});
         default:
             return state;
     }

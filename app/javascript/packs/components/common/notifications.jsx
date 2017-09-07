@@ -10,6 +10,14 @@ class Notifications extends React.Component {
         this.props.actions.destroyNotification(index);
     }
 
+    componentWillReceiveProps(props) {
+        if (props.notifications.length > 0) {
+            setTimeout(() => {this.handleDismiss(0)}, 2000);
+            // this.handleDismiss(0);
+            // console.log('notifications overload')
+        }
+    }
+
     render() {
         return (
             <div className="notifications">
