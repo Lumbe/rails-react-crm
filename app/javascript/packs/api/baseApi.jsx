@@ -1,7 +1,13 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
+import { dispatch } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as notificationActions from '../actions/notificationActions'
 axios.defaults.baseURL = 'http://localhost:5000';
 
+let boundActionCreators = bindActionCreators(notificationActions, dispatch)
+console.log('boundActionCreators: ',boundActionCreators);
+// console.log(notificationActions);
 class BaseApi {
   static apiPath(){
     return 'api/v1/';
@@ -13,7 +19,7 @@ class BaseApi {
     return this.apiPath() + pluralize(this.modelName()) + path;
   }
   static getAll(){
-    return axios.get(this.path()).catch(this.catchError);
+    return axios.get(this.path())
   }
   static create(model){
     var data = {};
@@ -32,9 +38,17 @@ class BaseApi {
     return axios.delete(this.path('/' + model.id)).catch(this.catchError);
   }
   static catchError(error){
-      window.store.dispatch(window.actions.createNotification({type: 'error', message: error.response.data.error}));
-      console.log(error.response);
-      // throw error;
+    if (error.response.status >= 500) {
+        window.store.dispatch(window.actions.createNotification({
+            type: 'error',
+            message: ("Server Error: " + error.response.status.toString())
+        }));
+        // throw error;
+    } else {
+        boundActionCreators.createNotification({type: 'error', message: error.response.data.error});
+        // throw error;
+    }
+      // console.log(error.response);
   }
 }
 

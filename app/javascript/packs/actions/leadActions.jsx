@@ -61,7 +61,7 @@ export function loadLeads() {
   return function(dispatch) {
     return leadApi.getAll().then(response => {
       dispatch(loadLeadsSuccess(response.data.leads));
-    })
+    }).catch((error) => {leadApi.catchError(error)});
   };
 }
 
