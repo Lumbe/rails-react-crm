@@ -1,4 +1,5 @@
 import leadApi from '../api/leadApi';
+import * as notificationActions from './notificationActions'
 
 // Action types
 // export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
@@ -23,7 +24,7 @@ export const VALIDATE_LEAD_FIELDS_FAILURE = 'VALIDATE_LEAD_FIELDS_FAILURE';
 export const LOAD_LEAD = 'LOAD_LEAD';
 export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
 export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_FAILURE';
-export const RESET_LEAD = 'RESET_LEAD'
+export const RESET_LEAD = 'RESET_LEAD';
 
 //Delete lead
 export const DELETE_LEAD = 'DELETE_LEAD';
@@ -37,11 +38,17 @@ export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 export function loadLeadsSuccess(leads) {
   return {type: LOAD_LEADS_SUCCESS, leads};
 }
+export function loadLeadsFailure() {
+  return {type: LOAD_LEADS_FAILURE, leads: []}
+}
 export function createLeadSuccess(lead) {
   return {type: CREATE_LEAD_SUCCESS, lead}
 }
 export function loadLeadSuccess(lead) {
   return {type: LOAD_LEAD_SUCCESS, lead};
+}
+export function loadLeadFailure() {
+  return {type: LOAD_LEAD_SUCCESS, lead: {}};
 }
 export function updateLeadSuccess(lead) {
   return {type: UPDATE_LEAD_SUCCESS, lead}
@@ -59,18 +66,29 @@ export function resetLeadSuccess() {
 export function loadLeads() {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
-    return leadApi.getAll().then(response => {
-      dispatch(loadLeadsSuccess(response.data.leads));
-    }).catch((error) => {leadApi.catchError(error)});
-  };
+    return leadApi.getAll().then(
+      response => {
+        dispatch(loadLeadsSuccess(response.data.leads));
+        },
+      error => {
+        leadApi.catchError(error);
+        dispatch(loadLeadsFailure());
+    })
+  }
 }
 
 export function loadLead(lead_id) {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
-    return leadApi.getOne(lead_id).then(response => {
-      dispatch(loadLeadSuccess(response.data.lead));
-    }).catch((error) => {leadApi.catchError(error)})
+    return leadApi.getOne(lead_id).then(
+      response => {
+        dispatch(loadLeadSuccess(response.data.lead));
+      },
+      error => {
+        leadApi.catchError(error);
+        dispatch(loadLeadFailure());
+      }
+    )
   };
 }
 

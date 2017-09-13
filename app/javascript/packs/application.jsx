@@ -5,9 +5,10 @@ import {persistStore} from 'redux-persist'
 import localForage from 'localforage'
 import configureStore from './store/configureStore'
 import Routes from './routes'
-import * as notificationActions from './actions/notificationActions'
+import {createNotification} from "./actions/notificationActions";
 
-const store = configureStore();
+
+export const store = configureStore();
 
 // for tests
 window.store = store;
@@ -17,8 +18,7 @@ window.react = React;
 window.reactDOM = ReactDOM;
 // import leadApi from './api/leadApi'
 // window.leadApi = leadApi
-window.localForage = localForage;
-window.actions = notificationActions; // window.store.dispatch(window.actions.createNotification({type: 'error', message: 'test7'}))
+
 
 class Application extends React.Component {
   render() {

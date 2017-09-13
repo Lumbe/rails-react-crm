@@ -1,12 +1,12 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
-import { dispatch } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as notificationActions from '../actions/notificationActions'
+import {createNotification} from '../actions/notificationActions'
+import {store} from '../application'
 axios.defaults.baseURL = 'http://localhost:5000';
 
-let boundActionCreators = bindActionCreators(notificationActions, dispatch)
-console.log('boundActionCreators: ',boundActionCreators);
+// let boundActionCreators = bindActionCreators(notificationActions, dispatch)
+// console.log('boundActionCreators: ',notificationActions);
 // console.log(notificationActions);
 class BaseApi {
   static apiPath(){
@@ -38,17 +38,24 @@ class BaseApi {
     return axios.delete(this.path('/' + model.id)).catch(this.catchError);
   }
   static catchError(error){
-    if (error.response.status >= 500) {
-        window.store.dispatch(window.actions.createNotification({
+    if (error.response && error.response.status >= 500) {
+      console.log('error catched: ', error.response);
+      return store.dispatch(createNotification({
+        type: 'error',
+        message: ("Server Error: " + error.response.status.toString()) || 'Something went wrong.'
+      }))
+      // throw error;
+    } else if (error.response && error.response.data.error) {
+        return store.dispatch(createNotification({
             type: 'error',
-            message: ("Server Error: " + error.response.status.toString())
-        }));
+            message: error.response.data.error || 'Something went wrong.'
+        }))
         // throw error;
+    } else if (error.response && error.response.data.errors) {
+        // make list from errors array and create notification from it
     } else {
-        boundActionCreators.createNotification({type: 'error', message: error.response.data.error});
-        // throw error;
+       throw error
     }
-      // console.log(error.response);
   }
 }
 
