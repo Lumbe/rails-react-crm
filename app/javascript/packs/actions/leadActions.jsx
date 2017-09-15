@@ -1,6 +1,5 @@
 import leadApi from '../api/leadApi';
 import * as notificationActions from './notificationActions'
-
 // Action types
 // export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
 // export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
@@ -35,6 +34,7 @@ export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 
 
 // Actions
+//Lead list
 export function loadLeadsSuccess(leads) {
   return {type: LOAD_LEADS_SUCCESS, leads};
 }
@@ -92,8 +92,23 @@ export function loadLead(lead_id) {
   };
 }
 
-export function resetLead() {
+export function createLead(lead) {
   // make async call to api, handle promise, dispatch action when promise is resolved
+  return function(dispatch) {
+    return leadApi.create(lead).then(
+      response => {
+        dispatch(createLeadSuccess(response.data.lead));
+        return response;
+      },
+      error => {
+        leadApi.catchError(error);
+        // dispatch(createLeadFailure());
+      }
+    )
+  };
+}
+
+export function resetLead() {
   return function(dispatch) {
     dispatch(resetLeadSuccess());
   };

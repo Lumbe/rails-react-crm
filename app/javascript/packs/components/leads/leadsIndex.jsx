@@ -1,8 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
-import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
+import {Table, Button, ButtonToolbar} from 'react-bootstrap'
 
 class LeadsIndex extends React.Component {
   constructor(props) {

@@ -2,20 +2,62 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as leadActions from '../../actions/leadActions';
-import {Grid, Row, Col, Clearfix, PageHeader, Form, FormGroup, FormControl, ControlLabel, Button, Panel} from 'react-bootstrap'
+import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader';
 import LeadForm from './leadForm';
 
 class LeadNew extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = this.defaultProps();
+  }
+
+  componentDidMount() {
+    console.log(this.props.actions)
+  }
+
+  defaultProps() {
+    return { lead: {
+      name: '',
+      phone: '',
+      email: ''
+    }};
+  }
+
+  updateLeadState(event) {
+    const field = event.target.name;
+    const lead = this.state.lead;
+    lead[field] = event.target.value;
+    return this.setState({lead: lead});
+  }
+
+  handleSubmit(e) {
+    (e).preventDefault();
+    this.props.actions.createLead(this.state.lead).then(response => {
+      this.props.history.push(response.data.lead.id.toString());
+    });
+  }
 
   render() {
     return (
       <Row>
         <LeadHeader isNew={true} title="Новый лид" description=""/>
-        <LeadForm/>
+        <LeadForm lead={this.state.lead} onChange={this.updateLeadState.bind(this)} handleSubmit={this.handleSubmit.bind(this)}/>
       </Row>
     );
   }
 }
 
-export default LeadNew
+function mapStateToProps(state, ownProps) {
+  return {
+    lead: state.lead
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(leadActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeadNew);

@@ -1,13 +1,9 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
-import {bindActionCreators} from 'redux';
 import {createNotification} from '../actions/notificationActions'
 import {store} from '../application'
 axios.defaults.baseURL = 'http://localhost:5000';
 
-// let boundActionCreators = bindActionCreators(notificationActions, dispatch)
-// console.log('boundActionCreators: ',notificationActions);
-// console.log(notificationActions);
 class BaseApi {
   static apiPath(){
     return 'api/v1/';
@@ -24,7 +20,7 @@ class BaseApi {
   static create(model){
     var data = {};
     data[this.modelName()] = model;
-    return axios.post(this.path(), data).catch(this.catchError);
+    return axios.post(this.path(), data)
   }
   static getOne(id){
     return axios.get(this.path('/' + id))
@@ -52,7 +48,17 @@ class BaseApi {
         }))
         // throw error;
     } else if (error.response && error.response.data.errors) {
-        // make list from errors array and create notification from it
+      let errors = error.response.data.errors;
+      let message = [];
+      for (let error in errors) {
+        if (errors.hasOwnProperty(error)) {
+          message.push(error + ': ' + errors[error])
+        }
+      }
+      return store.dispatch(createNotification({
+        type: 'error',
+        message: message || 'Something went wrong.'
+      }))
     } else {
        throw error
     }

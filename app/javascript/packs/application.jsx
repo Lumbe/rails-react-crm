@@ -5,7 +5,6 @@ import {persistStore} from 'redux-persist'
 import localForage from 'localforage'
 import configureStore from './store/configureStore'
 import Routes from './routes'
-import {createNotification} from "./actions/notificationActions";
 
 
 export const store = configureStore();
