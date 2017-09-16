@@ -5,20 +5,20 @@ import {Link} from 'react-router-dom';
 import * as leadActions from '../../actions/leadActions'
 import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
-import LeadsIndex from './leadsIndex'
+import LeadsList from './leadsList'
 
 class Leads extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.defaultProps();
-  }
-
-  defaultProps() {
-    return {leads: [],
-            isEditing: false,
-            isNew: false,
-            };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = this.defaultProps();
+  // }
+  //
+  // defaultProps() {
+  //   return {leads: [],
+  //           isEditing: false,
+  //           isNew: false,
+  //           };
+  // }
 
   componentDidMount() {
     this.props.actions.loadLeads();
@@ -30,7 +30,7 @@ class Leads extends React.Component {
           <LeadHeader isIndex={true}/>
         <Col md={12} xs={12}>
           <Panel>
-            <LeadsIndex leads={this.props.leads}/>
+            <LeadsList leads={this.props.leads}/>
           </Panel>
         </Col>
       </Row>

@@ -16,7 +16,7 @@ class LeadHeader extends React.Component {
     const title = this.props.title || 'Лиды'
     const description = this.props.description || 'Холодные контакты'
     const isIndex = this.props.isIndex || false
-    const isShowing = this.props.isShowing || false
+    const isShow = this.props.isShow || false
 
     return (
         <PageHeader className="page-header-default">
@@ -29,10 +29,15 @@ class LeadHeader extends React.Component {
               </Button>
             </Link>
           }
-          {isShowing &&
-              <Button bsStyle="default" onClick={this.toggleEdit.bind(this)} className="pull-right" id="new-lead-button">
-                Редактировать
-              </Button>
+          {isShow &&
+              <div>
+		<Button bsStyle="danger" onClick={this.toggleEdit.bind(this)} className="pull-right" id="destroy-lead-button">
+                  Удалить
+                </Button>
+	        <Button bsStyle="default" onClick={this.toggleEdit.bind(this)} className="pull-right" id="edit-lead-button">
+                  Редактировать
+                </Button>
+	      </div>
           }
           {/* {(this.props.isNew || this.props.isEditing) &&
               <Button bsStyle="default" onClick={this.handleClick.bind(this)} className="pull-right" id="new-lead-button">

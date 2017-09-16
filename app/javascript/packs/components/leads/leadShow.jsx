@@ -2,8 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as leadActions from '../../actions/leadActions'
-import leadApi from '../../api/leadApi'
-import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
+import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadForm from './leadForm'
 import LeadDetail from './leadDetail'
@@ -18,8 +17,6 @@ class LeadShow extends React.Component {
   componentDidMount() {
     var lead_id = this.props.match.params.id;
     this.props.actions.loadLead(lead_id);
-    console.log('did mount props: ', this.props);
-    console.log('did mount state: ', this.state);
   }
 
   componentWillUnmount() {
@@ -27,7 +24,7 @@ class LeadShow extends React.Component {
   }
 
   handleEditChange() {
-    this.setState({isEditing: true});
+    this.setState({isEditing: !this.state.isEditing});
   }
 
   updateLeadState(event) {
@@ -47,7 +44,7 @@ class LeadShow extends React.Component {
   render() {
     return (
       <Row>
-        <LeadHeader isShowing={true} onEditClick={this.handleEditChange.bind(this)} title={this.props.lead.name} description='Лид'/>
+        <LeadHeader isShow={true} onEditClick={this.handleEditChange.bind(this)} title={this.props.lead.name} description='Лид'/>
         {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
       </Row>
     );

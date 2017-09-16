@@ -2,18 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {Table, Button, ButtonToolbar} from 'react-bootstrap'
 
-class LeadsIndex extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.defaultProps();
-  }
-
-  defaultProps() {
-    return {};
-  }
-
-  componentDidMount() {
-  }
+class LeadsList extends React.Component {
 
   render() {
     const leads = this.props.leads
@@ -53,4 +42,4 @@ class LeadsIndex extends React.Component {
   }
 }
 
-export default LeadsIndex;
+export default LeadsList;
