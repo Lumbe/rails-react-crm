@@ -108,6 +108,22 @@ export function createLead(lead) {
   };
 }
 
+export function updateLead(lead) {
+  // make async call to api, handle promise, dispatch action when promise is resolved
+  return function(dispatch) {
+    return leadApi.update(lead).then(
+      response => {
+        dispatch(updateLeadSuccess(response.data.lead));
+        return response;
+      },
+      error => {
+        leadApi.catchError(error);
+        // dispatch(createLeadFailure());
+      }
+    )
+  };
+}
+
 export function resetLead() {
   return function(dispatch) {
     dispatch(resetLeadSuccess());

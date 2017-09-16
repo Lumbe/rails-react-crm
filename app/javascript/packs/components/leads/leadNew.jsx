@@ -12,10 +12,6 @@ class LeadNew extends React.Component {
     this.state = this.defaultProps();
   }
 
-  componentDidMount() {
-    console.log(this.props.actions)
-  }
-
   defaultProps() {
     return { lead: {
       name: '',
@@ -31,7 +27,7 @@ class LeadNew extends React.Component {
     return this.setState({lead: lead});
   }
 
-  handleSubmit(e) {
+  saveLead(e) {
     (e).preventDefault();
     this.props.actions.createLead(this.state.lead).then(response => {
       this.props.history.push(response.data.lead.id.toString());
@@ -42,7 +38,7 @@ class LeadNew extends React.Component {
     return (
       <Row>
         <LeadHeader isNew={true} title="Новый лид" description=""/>
-        <LeadForm lead={this.state.lead} onChange={this.updateLeadState.bind(this)} handleSubmit={this.handleSubmit.bind(this)}/>
+        <LeadForm lead={this.state.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/>
       </Row>
     );
   }

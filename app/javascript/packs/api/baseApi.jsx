@@ -28,7 +28,7 @@ class BaseApi {
   static update(model){
     var data = {};
     data[this.modelName()] = model;
-    return axios.put(this.path('/' + model.id), data).catch(this.catchError);
+    return axios.put(this.path('/' + model.id), data)
   }
   static destroy(model){
     return axios.delete(this.path('/' + model.id)).catch(this.catchError);

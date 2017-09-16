@@ -113,7 +113,7 @@ class LeadForm extends React.Component {
                 </Row>
               </Tab>
             </Tabs>
-            <Button bsStyle="success" id="new-lead-button" onClick={this.props.handleSubmit}>
+            <Button bsStyle="success" id="new-lead-button" onClick={this.props.onSave}>
               Сохранить
             </Button>
           </form>

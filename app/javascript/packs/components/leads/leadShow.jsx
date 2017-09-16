@@ -18,6 +18,8 @@ class LeadShow extends React.Component {
   componentDidMount() {
     var lead_id = this.props.match.params.id;
     this.props.actions.loadLead(lead_id);
+    console.log('did mount props: ', this.props);
+    console.log('did mount state: ', this.state);
   }
 
   componentWillUnmount() {
@@ -28,11 +30,25 @@ class LeadShow extends React.Component {
     this.setState({isEditing: true});
   }
 
+  updateLeadState(event) {
+    const field = event.target.name;
+    const lead = this.state.lead;
+    lead[field] = event.target.value;
+    return this.setState({lead: lead});
+  }
+
+  saveLead(event) {
+    event.preventDefault();
+    this.props.actions.updateLead(this.state.lead).then(response => {
+      this.props.history.push(response.data.lead.id.toString());
+    });
+  }
+
   render() {
     return (
       <Row>
         <LeadHeader isShowing={true} onEditClick={this.handleEditChange.bind(this)} title={this.props.lead.name} description='Лид'/>
-        {this.state.isEditing ? <LeadForm lead={this.props.lead}/> : <LeadDetail  lead={this.props.lead}/>}
+        {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
       </Row>
     );
   }
