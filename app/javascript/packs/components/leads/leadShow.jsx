@@ -32,7 +32,7 @@ class LeadShow extends React.Component {
 
   updateLeadState(event) {
     const field = event.target.name;
-    const lead = this.state.lead;
+    const lead = this.props.lead;
     lead[field] = event.target.value;
     return this.setState({lead: lead});
   }
@@ -40,7 +40,7 @@ class LeadShow extends React.Component {
   saveLead(event) {
     event.preventDefault();
     this.props.actions.updateLead(this.state.lead).then(response => {
-      this.props.history.push(response.data.lead.id.toString());
+      this.setState({isEditing: false});
     });
   }
 

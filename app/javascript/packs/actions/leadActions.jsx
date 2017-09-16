@@ -14,6 +14,9 @@ export const CREATE_LEAD = 'CREATE_LEAD';
 export const CREATE_LEAD_SUCCESS = 'CREATE_LEAD_SUCCESS';
 export const CREATE_LEAD_FAILURE = 'CREATE_LEAD_FAILURE';
 
+// Update lead
+export const UPDATE_LEAD_SUCCESS = 'UPDATE_LEAD_SUCCESS';
+
 //Validate lead fields like Name, Phone on the server
 export const VALIDATE_LEAD_FIELDS = 'VALIDATE_LEAD_FIELDS';
 export const VALIDATE_LEAD_FIELDS_SUCCESS = 'VALIDATE_LEAD_FIELDS_SUCCESS';
