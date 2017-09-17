@@ -23,7 +23,7 @@ class LeadShow extends React.Component {
     this.props.actions.resetLead();
   }
 
-  handleEditChange() {
+  toggleEdit() {
     this.setState({isEditing: !this.state.isEditing});
   }
 
@@ -44,8 +44,8 @@ class LeadShow extends React.Component {
   render() {
     return (
       <Row>
-        <LeadHeader isShow={true} onEditClick={this.handleEditChange.bind(this)} title={this.props.lead.name} description='Лид'/>
-        {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
+        <LeadHeader isShow={true} onEditClick={this.toggleEdit.bind(this)} title={this.props.lead.name} description='Лид'/>
+        {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
       </Row>
     );
   }

@@ -8,18 +8,6 @@ import LeadHeader from './leadHeader'
 import LeadsList from './leadsList'
 
 class Leads extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = this.defaultProps();
-  // }
-  //
-  // defaultProps() {
-  //   return {leads: [],
-  //           isEditing: false,
-  //           isNew: false,
-  //           };
-  // }
-
   componentDidMount() {
     this.props.actions.loadLeads();
   }

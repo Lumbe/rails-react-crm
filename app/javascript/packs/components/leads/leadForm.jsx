@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, FormGroup, FormControl, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
+import {Row, Col, FormGroup, FormControl, Button, Panel, Tabs, Tab, Table,ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 
 
 class LeadForm extends React.Component {
@@ -113,9 +113,18 @@ class LeadForm extends React.Component {
                 </Row>
               </Tab>
             </Tabs>
-            <Button bsStyle="success" id="new-lead-button" onClick={this.props.onSave}>
-              Сохранить
-            </Button>
+            <ButtonToolbar>
+              <ButtonGroup>
+                <Button bsStyle="success" id="new-lead-button" onClick={this.props.onSave}>
+                  Сохранить
+                </Button>
+              </ButtonGroup>
+              <ButtonGroup>
+                <Button onClick={this.props.onCancel}>
+                  Отмена
+                </Button>
+              </ButtonGroup>
+            </ButtonToolbar>
           </form>
         </Panel>
       </Col>
