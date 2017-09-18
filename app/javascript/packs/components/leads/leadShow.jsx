@@ -41,10 +41,26 @@ class LeadShow extends React.Component {
     });
   }
 
+  destroyLead(event) {
+    event.preventDefault();
+    if (confirm('Удалить лид ' + this.props.lead.name + '?')) {
+      this.props.actions.destroyLead(this.props.lead).then(response => {
+        console.log('destoroy response', response);
+        this.props.history.push('/leads');
+      });
+    }
+  }
+
   render() {
     return (
       <Row>
-        <LeadHeader isShow={true} onEditClick={this.toggleEdit.bind(this)} title={this.props.lead.name} description='Лид'/>
+        <LeadHeader
+          isShow={true}
+          onEditClick={this.toggleEdit.bind(this)}
+          handleDestroy={this.destroyLead.bind(this)}
+          isEditing={this.state.isEditing}
+          title={this.props.lead.name}
+          description='Лид'/>
         {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
       </Row>
     );

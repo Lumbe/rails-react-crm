@@ -32,15 +32,15 @@ class LeadHeader extends React.Component {
         {isShow &&
         <ButtonToolbar className="pull-right">
           <ButtonGroup>
-            <Button bsStyle="danger" onClick={this.toggleEdit.bind(this)} id="destroy-lead-button">
-              Удалить
-            </Button>
-          </ButtonGroup>>
-          <ButtonGroup>
             <Button bsStyle="default" onClick={this.toggleEdit.bind(this)} id="edit-lead-button">
               {isEditing ? 'Отмена' : 'Редактировать'}
             </Button>
-          </ButtonGroup>>
+          </ButtonGroup>
+          <ButtonGroup>
+            <Button bsStyle="danger" onClick={this.props.handleDestroy} id="destroy-lead-button">
+              Удалить
+            </Button>
+          </ButtonGroup>
         </ButtonToolbar>
         }
       </PageHeader>

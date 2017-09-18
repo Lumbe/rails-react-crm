@@ -31,7 +31,7 @@ class BaseApi {
     return axios.put(this.path('/' + model.id), data)
   }
   static destroy(model){
-    return axios.delete(this.path('/' + model.id)).catch(this.catchError);
+    return axios.delete(this.path('/' + model.id))
   }
   static catchError(error){
     if (error.response && error.response.status >= 500) {
