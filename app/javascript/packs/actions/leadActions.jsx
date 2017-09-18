@@ -38,8 +38,8 @@ export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 
 // Actions
 //Lead list
-export function loadLeadsSuccess(leads) {
-  return {type: LOAD_LEADS_SUCCESS, leads};
+export function loadLeadsSuccess(data) {
+  return {type: LOAD_LEADS_SUCCESS, data};
 }
 export function loadLeadsFailure() {
   return {type: LOAD_LEADS_FAILURE, leads: []}
@@ -66,12 +66,12 @@ export function resetLeadSuccess() {
 
 
 // Dispatch actions and send to reducers with redux-thunk
-export function loadLeads() {
+export function loadLeads(params = null) {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
-    return leadApi.getAll().then(
+    return leadApi.getAll(params).then(
       response => {
-        dispatch(loadLeadsSuccess(response.data.leads));
+        dispatch(loadLeadsSuccess(response.data));
         },
       error => {
         leadApi.catchError(error);

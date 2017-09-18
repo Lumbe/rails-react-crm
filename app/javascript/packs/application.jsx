@@ -15,8 +15,8 @@ import axios from 'axios';
 window.axios = axios;
 window.react = React;
 window.reactDOM = ReactDOM;
-// import leadApi from './api/leadApi'
-// window.leadApi = leadApi
+import leadApi from './api/leadApi'
+window.leadApi = leadApi;
 
 
 class Application extends React.Component {

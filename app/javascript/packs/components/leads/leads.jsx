@@ -18,7 +18,7 @@ class Leads extends React.Component {
           <LeadHeader isIndex={true}/>
         <Col md={12} xs={12}>
           <Panel>
-            <LeadsList leads={this.props.leads}/>
+            <LeadsList meta={this.props.meta} leads={this.props.leads} load={this.props.actions.loadLeads}/>
           </Panel>
         </Col>
       </Row>
@@ -28,7 +28,8 @@ class Leads extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    leads: state.leads
+    leads: state.leads.leads,
+    meta: state.leads.meta
   };
 }
 

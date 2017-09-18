@@ -5,7 +5,7 @@ import {browserHistory} from 'react-router';
 export function leads(state = initialState.leads, action) {
   switch(action.type) {
     case LOAD_LEADS_SUCCESS:
-      return action.leads;
+      return {...state, leads: action.data.leads, meta: action.data.meta};
     case LOAD_LEADS_FAILURE:
       return action.leads;
     default:

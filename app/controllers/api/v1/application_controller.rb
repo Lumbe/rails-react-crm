@@ -53,4 +53,14 @@ class Api::V1::ApplicationController < ApplicationController
   def render_not_found_response(exception)
     render json: { error: exception.message }, status: :not_found
   end
+
+  def pagination_meta(resource)
+    {
+      current_page: resource.current_page,
+      per_page: resource.limit_value,
+      total_pages: resource.total_pages,
+      next_page: resource.next_page,
+      prev_page: resource.prev_page
+    }
+  end
 end

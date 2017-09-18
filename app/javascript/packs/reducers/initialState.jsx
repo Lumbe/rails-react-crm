@@ -9,7 +9,7 @@
 //     )
 
 export default {
-    leads: [],
+    leads: {leads: [], meta: {}},
     lead: {},
     houseProjects: [],
     houseProject: {},
