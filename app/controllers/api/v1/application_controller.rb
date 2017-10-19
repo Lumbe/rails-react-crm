@@ -5,6 +5,8 @@ class Api::V1::ApplicationController < ApplicationController
   before_action :authenticate_user_from_header_token
   before_action :authenticate_user_with_jwt!
   prepend_before_action :skip_devise_tracking
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
   def authenticate_user_from_header_token
     authenticate_with_http_token do |token|
@@ -42,5 +44,23 @@ class Api::V1::ApplicationController < ApplicationController
 
   def default_serializer_options
     {}
+  end
+
+  def render_unprocessable_entity_response(exception)
+    render json: exception.record.errors, status: :unprocessable_entity
+  end
+
+  def render_not_found_response(exception)
+    render json: { error: exception.message }, status: :not_found
+  end
+
+  def pagination_meta(resource)
+    {
+      current_page: resource.current_page,
+      per_page: resource.limit_value,
+      total_pages: resource.total_pages,
+      next_page: resource.next_page,
+      prev_page: resource.prev_page
+    }
   end
 end

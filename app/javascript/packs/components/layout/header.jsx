@@ -8,7 +8,7 @@ import Menu from './menu'
 class Header extends React.Component {
   render() {
     return (
-      <header>
+      <header id="header">
         <Navbar fluid={true} inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>

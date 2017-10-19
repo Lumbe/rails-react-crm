@@ -6,7 +6,8 @@ import localForage from 'localforage'
 import configureStore from './store/configureStore'
 import Routes from './routes'
 
-const store = configureStore();
+
+export const store = configureStore();
 
 // for tests
 window.store = store;
@@ -14,9 +15,9 @@ import axios from 'axios';
 window.axios = axios;
 window.react = React;
 window.reactDOM = ReactDOM;
-// import leadApi from './api/leadApi'
-// window.leadApi = leadApi
-window.localForage = localForage;
+import leadApi from './api/leadApi'
+window.leadApi = leadApi;
+
 
 class Application extends React.Component {
   render() {

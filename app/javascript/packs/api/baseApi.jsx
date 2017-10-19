@@ -1,6 +1,8 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
-axios.defaults.baseURL = 'http://localhost:5000'
+import {createNotification} from '../actions/notificationActions'
+import {store} from '../application'
+axios.defaults.baseURL = 'http://localhost:5000';
 
 class BaseApi {
   static apiPath(){
@@ -12,27 +14,54 @@ class BaseApi {
   static path(path = ''){
     return this.apiPath() + pluralize(this.modelName()) + path;
   }
-  static getAll(){
-    return axios.get(this.path()).catch(this.catchError);
+  static getAll(params = null){
+    return axios.get(this.path(), {params: params})
   }
   static create(model){
     var data = {};
     data[this.modelName()] = model;
-    return axios.post(this.path(), data).catch(this.catchError);
+    return axios.post(this.path(), data)
   }
   static getOne(id){
-    return axios.get(this.path('/' + id)).catch(this.catchError);
+    return axios.get(this.path('/' + id))
   }
   static update(model){
     var data = {};
     data[this.modelName()] = model;
-    return axios.put(this.path('/' + model.id), data).catch(this.catchError);
+    return axios.put(this.path('/' + model.id), data)
   }
   static destroy(model){
-    return axios.delete(this.path('/' + model.id)).catch(this.catchError);
+    return axios.delete(this.path('/' + model.id))
   }
   static catchError(error){
-    throw error;
+    if (error.response && error.response.status >= 500) {
+      console.log('error catched: ', error.response);
+      return store.dispatch(createNotification({
+        type: 'error',
+        message: ("Server Error: " + error.response.status.toString()) || 'Something went wrong.'
+      }))
+      // throw error;
+    } else if (error.response && error.response.data.error) {
+        return store.dispatch(createNotification({
+            type: 'error',
+            message: error.response.data.error || 'Something went wrong.'
+        }))
+        // throw error;
+    } else if (error.response && error.response.data.errors) {
+      let errors = error.response.data.errors;
+      let message = [];
+      for (let error in errors) {
+        if (errors.hasOwnProperty(error)) {
+          message.push(error + ': ' + errors[error])
+        }
+      }
+      return store.dispatch(createNotification({
+        type: 'error',
+        message: message || 'Something went wrong.'
+      }))
+    } else {
+       throw error
+    }
   }
 }
 

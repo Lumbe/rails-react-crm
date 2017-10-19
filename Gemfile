@@ -24,6 +24,8 @@ gem 'devise'
 gem 'responders'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'jwt'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

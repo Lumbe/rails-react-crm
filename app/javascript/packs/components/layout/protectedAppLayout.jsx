@@ -26,9 +26,9 @@ class ProtectedAppLayout extends React.Component {
     return <Route {...rest} render={matchProps => (
       <div>
         <Header isAuthenticated={this.props.currentUser.isAuthenticated}/>
-        <Main/>
+        <Main>
           <Component {...matchProps} />
-        <Main/>
+        </Main>
         <Footer/>
       </div>
     )} />

@@ -12,7 +12,7 @@ class Footer extends React.Component {
   }
 
   render() {
-  return <footer className="footer">
+  return <footer id="footer">
     <Grid fluid>
       <p className="text-center footer-text">Some footer text here</p>
     </Grid>

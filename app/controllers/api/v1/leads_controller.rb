@@ -2,7 +2,9 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   before_action :load_lead, only: [:show, :update]
 
   def index
-    respond_with Lead.all
+    leads = Lead.all.page(params[:page] || 1)
+    respond_with leads, meta: pagination_meta(leads)
+
   end
 
   def show

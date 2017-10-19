@@ -11,7 +11,7 @@ body {
 }
 
 // sticky Footer
-.footer {
+#footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -20,7 +20,7 @@ body {
   background-color: #222222;
 }
 
-.footer .footer-text {
+#footer .footer-text {
   margin: 20px 0;
   color: #f2f2f2;
 }
