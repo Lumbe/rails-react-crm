@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     end
   end
   root 'home#index'
-  get 'robots.rxt', to: 'home#robots'
+  get '/robots.txt', to: 'home#robots'
   get '*path', to: 'home#index'
 end
