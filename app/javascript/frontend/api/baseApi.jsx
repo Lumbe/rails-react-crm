@@ -1,7 +1,7 @@
 import axios from 'axios';
 import pluralize from 'pluralize';
 import {createNotification} from '../actions/notificationActions'
-import {store} from '../application'
+import {store} from '../../packs/application'
 axios.defaults.baseURL = 'http://localhost:5000';
 
 class BaseApi {

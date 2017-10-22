@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist'
 import localForage from 'localforage'
-import configureStore from './store/configureStore'
-import Routes from './routes'
+import configureStore from '../frontend/store/configureStore'
+import Routes from '../frontend/routes'
 
 
 export const store = configureStore();
@@ -15,7 +15,7 @@ import axios from 'axios';
 window.axios = axios;
 window.react = React;
 window.reactDOM = ReactDOM;
-import leadApi from './api/leadApi'
+import leadApi from '../frontend/api/leadApi'
 window.leadApi = leadApi;
 
 
