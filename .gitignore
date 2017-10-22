@@ -28,6 +28,6 @@ rails-react-crm.iml
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-# /public/packs
-# /public/packs-test
+/public/packs
+/public/packs-test
 /node_modules
