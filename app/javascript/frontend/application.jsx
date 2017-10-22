@@ -37,3 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   );
 });
+
+export default Application
