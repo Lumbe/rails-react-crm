@@ -2,7 +2,7 @@ import axios from 'axios';
 import pluralize from 'pluralize';
 import {createNotification} from '../actions/notificationActions'
 import {store} from '../application'
-axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'http://localhost' : 'http://localhost:5000';
+axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'http://crm-prod.ztrr4s9yri.eu-west-1.elasticbeanstalk.com' : 'http://localhost:5000';
 
 class BaseApi {
   static apiPath(){
