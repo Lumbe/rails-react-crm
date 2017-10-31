@@ -16,6 +16,9 @@ class ProtectedLinks extends React.Component {
         <LinkContainer to="/house-projects">
           <NavItem eventKey={4}>Проекты домов</NavItem>
         </LinkContainer>
+        <LinkContainer to="/projects">
+          <NavItem eventKey={5}>Проекты</NavItem>
+        </LinkContainer>
         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>

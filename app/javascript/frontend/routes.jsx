@@ -1,6 +1,5 @@
 import React from 'react'
-import { Switch, BrowserRouter, Route } from 'react-router-dom'
-import Main from './components/layout/main'
+import { Switch, BrowserRouter} from 'react-router-dom'
 import Home from './components/pages/home'
 import Leads from './components/leads/leads'
 import LeadShow from './components/leads/leadShow'
@@ -12,6 +11,9 @@ import NotFound from './components/errors/notFound'
 import About from './components/pages/about'
 import ProtectedAppRoute from './components/layout/protectedAppLayout'
 import PublicAppRoute from './components/layout/publicAppLayout'
+import ProjectNew from './components/projects/projectNew'
+import ProjectShow from './components/projects/projectShow'
+import Projects from './components/projects/projects'
 
 class Routes extends React.Component {
   render() {
@@ -24,6 +26,9 @@ class Routes extends React.Component {
           <ProtectedAppRoute exact path="/leads/new" component={LeadNew}/>
           <ProtectedAppRoute exact path="/leads/:id" component={LeadShow}/>
           <ProtectedAppRoute exact path="/leads" component={Leads}/>
+          <ProtectedAppRoute exact path="/projects/new" component={ProjectNew}/>
+          <ProtectedAppRoute exact path="/projects/:id" component={ProjectShow}/>
+          <ProtectedAppRoute exact path="/projects" component={Projects}/>
           <ProtectedAppRoute exact path="/users/current" component={User}/>
           <ProtectedAppRoute exact path="/house-projects" component={HouseProjects}/>
           <ProtectedAppRoute component={NotFound}/>

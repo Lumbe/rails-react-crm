@@ -11,6 +11,8 @@
 export default {
     leads: {leads: [], meta: {}},
     lead: {},
+    projects: {projects: [], meta: {}},
+    project: {},
     houseProjects: [],
     houseProject: {},
     user: {},

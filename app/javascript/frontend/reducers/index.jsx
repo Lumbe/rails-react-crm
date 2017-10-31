@@ -4,6 +4,7 @@ import currentUser from './authUserReducer';
 import {user} from './userReducer';
 import {houseProjects, houseProject} from './houseProjectReducer';
 import {notifications} from './notificationReducer'
+import {projects, project} from './projectReducer'
 
 const appReducer = combineReducers({
   // short hand property names
@@ -13,7 +14,9 @@ const appReducer = combineReducers({
   houseProjects,
   houseProject,
   user,
-  notifications
+  notifications,
+  projects,
+  project
 });
 
 const rootReducer = (state, action) => {

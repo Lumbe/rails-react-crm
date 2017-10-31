@@ -13,4 +13,8 @@
   HouseProject.create title: Faker::Book.title,
                       square: Faker::Number.decimal(2),
                       project_description: Faker::Lorem.sentence
+
+  Project.create title: Faker::Book.title,
+                      area: Faker::Number.decimal(2),
+                      description: Faker::Lorem.sentence
 end
