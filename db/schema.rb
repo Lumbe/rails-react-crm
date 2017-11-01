@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171031140612) do
+ActiveRecord::Schema.define(version: 20171101094810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,16 @@ ActiveRecord::Schema.define(version: 20171031140612) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "title"
+    t.string "title", default: ""
     t.decimal "area"
-    t.text "description"
-    t.boolean "mansard"
-    t.boolean "terrace"
-    t.boolean "garage"
+    t.text "description", default: ""
+    t.boolean "mansard", default: false
+    t.boolean "terrace", default: false
+    t.boolean "garage", default: false
     t.integer "floors"
     t.integer "rooms"
-    t.text "first_floor_desc"
-    t.text "second_floor_desc"
+    t.text "first_floor_desc", default: ""
+    t.text "second_floor_desc", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

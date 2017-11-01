@@ -28,9 +28,10 @@ class ProjectShow extends React.Component {
   }
 
   updateProjectState(event) {
+    const target = event.target;
     const field = event.target.name;
     const project = this.props.project;
-    project[field] = event.target.value;
+    project[field] = target.type === 'checkbox' ? target.checked : target.value;
     return this.setState({project: project});
   }
 
