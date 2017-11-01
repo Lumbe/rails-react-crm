@@ -35,6 +35,15 @@ class ProjectShow extends React.Component {
     return this.setState({project: project});
   }
 
+  uploadFile(event) {
+    const target = event.target;
+    const field = event.target.name;
+    const project = this.props.project;
+    project[field] = target.files[0];
+    console.log(project);
+    return this.setState({project: project});
+  }
+
   saveProject(event) {
     event.preventDefault();
     this.props.actions.updateProject(this.state.project).then(response => {
@@ -61,7 +70,7 @@ class ProjectShow extends React.Component {
           isEditing={this.state.isEditing}
           title={this.props.project.title}
           description='Проект дома'/>
-        {this.state.isEditing ? <ProjectForm project={this.props.project} onChange={this.updateProjectState.bind(this)} onSave={this.saveProject.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <ProjectDetail  project={this.props.project}/>}
+        {this.state.isEditing ? <ProjectForm project={this.props.project} uploadFile={this.uploadFile.bind(this)} onChange={this.updateProjectState.bind(this)} onSave={this.saveProject.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <ProjectDetail  project={this.props.project}/>}
       </Row>
     );
   }

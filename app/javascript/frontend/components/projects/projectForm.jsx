@@ -7,7 +7,7 @@ class ProjectForm extends React.Component {
     return (
       <Col md={12} xs={12}>
         <Panel>
-          <form>
+          <form encType="multipart/form-data">
                 <Row>
                   <Col md={4} xs={12}>
                     <Table responsive>
@@ -117,6 +117,18 @@ class ProjectForm extends React.Component {
                                   placeholder="Каждый пункт с новой строки"
                                   value={this.props.project.second_floor_desc}
                                   onChange={this.props.onChange}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>3D-модель</th>
+                            <td>
+                              <FormGroup>
+                                <FormControl
+                                  name="model"
+                                  type="file"
+                                  onChange={this.props.uploadFile}
                                 />
                               </FormGroup>
                             </td>
