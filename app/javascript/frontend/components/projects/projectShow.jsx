@@ -59,8 +59,8 @@ class ProjectShow extends React.Component {
           onEditClick={this.toggleEdit.bind(this)}
           handleDestroy={this.destroyProject.bind(this)}
           isEditing={this.state.isEditing}
-          title={this.props.project.name}
-          description='s'/>
+          title={this.props.project.title}
+          description='Проект дома'/>
         {this.state.isEditing ? <ProjectForm project={this.props.project} onChange={this.updateProjectState.bind(this)} onSave={this.saveProject.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <ProjectDetail  project={this.props.project}/>}
       </Row>
     );
