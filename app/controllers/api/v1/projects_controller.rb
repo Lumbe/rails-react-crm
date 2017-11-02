@@ -15,6 +15,9 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def update
+    puts '#'*90
+    puts JSON.parse(params.inspect)
+    puts '#'*90
     @project.update_attributes(project_params)
     respond_with @project, json: @project
   end
@@ -30,6 +33,6 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :area, :description, :mansard, :terrace, :garage, :first_floor_desc, :second_floor_desc, )
+    params.require(:project).permit(:title, :area, :description, :mansard, :terrace, :garage, :first_floor_desc, :second_floor_desc, :model)
   end
 end

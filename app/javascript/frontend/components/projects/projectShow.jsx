@@ -43,10 +43,28 @@ class ProjectShow extends React.Component {
     console.log(project);
     return this.setState({project: project});
   }
+  buildFormData() {
+    let formData = new FormData();
+    // formData.append('project[]')
+    let project = this.state.project;
+    for (var prop in project) {
+      if (prop === 'model') {
+        formData.append(`project[${prop}]`, project[prop], project[prop].name )
+      } else {
+        formData.append(`project[${prop}]`, project[prop])
+      }
+      // console.log("obj." + `${prop}`  + " = " + project[prop]);
+    }
+    return formData;
+    // for(var pair of formData.entries()) {
+    //   console.log(pair[0]+ ', '+ pair[1]);
+    // }
+    // console.log(formData.get('title'))
+  }
 
   saveProject(event) {
     event.preventDefault();
-    this.props.actions.updateProject(this.state.project).then(response => {
+    this.props.actions.updateProject(this.buildFormData()).then(response => {
       this.setState({isEditing: false});
     });
   }
