@@ -19,7 +19,7 @@ export function project(state = initialState.project, action) {
     case LOAD_PROJECT_FAILURE:
       return action.project;
     case RESET_PROJECT:
-      return action.project;
+      return initialState.project;
     default:
       return state;
   }

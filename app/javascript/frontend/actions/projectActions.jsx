@@ -60,7 +60,7 @@ export function deleteProjectSuccess(project) {
 }
 
 export function resetProjectSuccess() {
-  return {type: RESET_PROJECT, project: {}}
+  return {type: RESET_PROJECT}
 }
 
 
@@ -110,10 +110,10 @@ export function createProject(project) {
   };
 }
 
-export function updateProject(project) {
+export function updateProject(id, data) {
   // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
-    return projectApi.update(project).then(
+    return projectApi.update(id, data).then(
       response => {
         dispatch(updateProjectSuccess(response.data.project));
         return response;

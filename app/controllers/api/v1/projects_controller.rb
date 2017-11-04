@@ -15,9 +15,6 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def update
-    puts '#'*90
-    puts JSON.parse(params.inspect)
-    puts '#'*90
     @project.update_attributes(project_params)
     respond_with @project, json: @project
   end

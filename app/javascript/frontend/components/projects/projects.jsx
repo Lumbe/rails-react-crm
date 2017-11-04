@@ -7,7 +7,7 @@ import ProjectHeader from './projectHeader'
 import ProjectsList from './projectsList'
 
 class Projects extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.actions.loadProjects();
   }
 

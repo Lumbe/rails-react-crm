@@ -5,11 +5,18 @@ class HouseProjectApi extends BaseApi {
   static modelName() {
     return 'project';
   }
-  // static update(model){
-  //   var data = {};
-  //   data[this.modelName()] = model;
-  //   return axios.put(this.path('/' + model.id), data)
-  // }
+
+  static create(data){
+    // var data = {};
+    // data[this.modelName()] = model;
+    return axios.post(this.path(), data, {headers: {'Content-Type': 'multipart/form-data'}})
+  }
+
+  static update(id, data){
+    // var data = {};
+    // data[this.modelName()] = model;
+    return axios.put(this.path('/' + id), data, {headers: {'Content-Type': 'multipart/form-data'}})
+  }
 }
 
 export default HouseProjectApi;

@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'rails', '~> 5.1.1'
 gem 'pg'
 gem 'puma', '~> 3.7'
@@ -22,11 +23,11 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'hamlit'
 gem 'devise'
 gem 'responders'
-gem 'active_model_serializers', '~> 0.10.0'
-gem 'jwt'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'jwt'
 gem 'kaminari'
 gem 'paperclip'
+gem 'aws-sdk'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

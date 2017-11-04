@@ -12,7 +12,13 @@ export default {
     leads: {leads: [], meta: {}},
     lead: {},
     projects: {projects: [], meta: {}},
-    project: {},
+    project: {
+      model: {
+        medium: '',
+        thumb: '',
+        original: ''
+      }
+    },
     houseProjects: [],
     houseProject: {},
     user: {},
