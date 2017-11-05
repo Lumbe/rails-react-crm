@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       # resources :users, only: [:index, :create, :destroy, :update]
       resources :leads
       resources :house_projects
+      get 'projects/public', to: 'projects#public'
       resources :projects
     end
   end

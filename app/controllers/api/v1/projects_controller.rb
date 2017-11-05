@@ -1,4 +1,6 @@
 class Api::V1::ProjectsController < Api::V1::ApplicationController
+  skip_before_action :authenticate_user_with_jwt!, only: :public
+  skip_before_action :authenticate_user_from_header_token, only: :public
   before_action :load_project, only: [:show, :update]
 
   def index
@@ -21,6 +23,11 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
 
   def destroy
     respond_with Project.destroy(params[:id])
+  end
+
+  def public
+    projects = Project.all.page(params[:page] || 1)
+    respond_with projects, meta: pagination_meta(projects)
   end
 
   private
