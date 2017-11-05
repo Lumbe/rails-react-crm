@@ -32,4 +32,3 @@ rails-react-crm.iml
 /public/packs-test
 /node_modules
 .env
-/config/aws.yml
