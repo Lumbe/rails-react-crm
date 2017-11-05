@@ -30,6 +30,8 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :area, :description, :mansard, :terrace, :garage, :first_floor_desc, :second_floor_desc, :model)
+    params.require(:project).permit(:title, :area, :description, :mansard, :terrace, :garage,
+                                    :first_floor_desc, :second_floor_desc, :model,
+                                    facades_attributes: [:image])
   end
 end

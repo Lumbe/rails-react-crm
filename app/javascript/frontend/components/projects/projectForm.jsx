@@ -13,7 +13,9 @@ class ProjectForm extends React.Component {
 
   defaultProps() {
     return {
-      project: {},
+      project: {
+        facades_attributes: []
+      },
       isSubmittingForm: false
     }
   }
@@ -33,12 +35,33 @@ class ProjectForm extends React.Component {
     project[field] = target.files[0];
     return this.setState({project: project});
   }
+
+  uploadMultipleFiles(event) {
+    const target = event.target;
+    const field = event.target.name;
+    const project = this.state.project;
+
+    let selectedFiles = target.files;
+    project[field] = this.state.project.facades_attributes;
+    for (let i = 0; i < selectedFiles.length; i++) {
+      project[field].push(selectedFiles.item(i));
+    }
+    this.setState({project: project});
+  }
+
   buildFormData() {
     let formData = new FormData();
     let project = this.state.project;
     for (let prop in project) {
       if (project.hasOwnProperty(prop)) {
-        formData.append(`project[${prop}]`, project[prop])
+        if (Array.isArray(project[prop])) {
+          for (let i = 0; i < project[prop].length; i++) {
+            let file = project[prop][i];
+            formData.append(`project[${prop}][${i}][image]`, file);
+          }
+        } else {
+          formData.append(`project[${prop}]`, project[prop])
+        }
       }
     }
     return formData;
@@ -68,7 +91,7 @@ class ProjectForm extends React.Component {
         <Panel>
           <form>
                 <Row>
-                  <Col md={4} xs={12}>
+                  <Col md={12} xs={12}>
                     <Table responsive>
                       <tbody>
                           <tr>
@@ -187,7 +210,7 @@ class ProjectForm extends React.Component {
                                 {this.props.project.model &&
                                   <div>
                                     <Image src={this.props.project.model.medium} responsive/>
-                                    Файл: <b>{this.props.project.model.title}</b>
+                                    Имя файла: <b>{this.props.project.model.title}</b>
                                     <br/>
                                   </div>
                                 }
@@ -195,6 +218,27 @@ class ProjectForm extends React.Component {
                                   name="model"
                                   type="file"
                                   onChange={this.uploadFile.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Фасады</th>
+                            <td>
+                              <FormGroup>
+                                {this.props.project.facades &&
+                                  this.props.project.facades.map((facade, index) => {
+                                    return <div key={index} className="facade-img">
+                                      <Image src={facade.medium}/>
+                                      <div>Имя файла: <b>{facade.title}</b></div>
+                                    </div>
+                                  })
+                                }
+                                <FormControl
+                                  name="facades_attributes"
+                                  type="file"
+                                  multiple={true}
+                                  onChange={this.uploadMultipleFiles.bind(this)}
                                 />
                               </FormGroup>
                             </td>

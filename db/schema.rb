@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101121331) do
+ActiveRecord::Schema.define(version: 20171104225919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "facades", force: :cascade do |t|
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["project_id"], name: "index_facades_on_project_id"
+  end
 
   create_table "house_projects", force: :cascade do |t|
     t.string "title"
@@ -74,4 +85,5 @@ ActiveRecord::Schema.define(version: 20171101121331) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "facades", "projects"
 end

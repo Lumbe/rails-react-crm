@@ -10,7 +10,7 @@ class ProjectDetail extends React.Component {
       <Col md={12} xs={12}>
         <Panel>
           <Row>
-            <Col md={4} xs={12}>
+            <Col md={12} xs={12}>
               <Table responsive>
                 <tbody>
                 <tr>
@@ -50,8 +50,21 @@ class ProjectDetail extends React.Component {
                 <tr>
                   <th>3D-модель</th>
                   <td>
-                    <Image src={project.model.medium} responsive/>
-                    Файл: <b>{project.model.title}</b>
+                    {project.model && 
+                      <div><Image src={project.model.medium} responsive/>
+                      Имя файла: <b>{project.model.title}</b></div>
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <th>Фасады</th>
+                  <td>
+                    {project.facades && project.facades.map((facade, index) => {
+                      return <div key={index} className="facade-img">
+                        <Image src={facade.medium}/>
+                        <div>Имя файла: {facade.title}</div>
+                      </div>
+                    })}
                   </td>
                 </tr>
                 </tbody>
