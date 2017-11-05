@@ -1,6 +1,6 @@
 class ProjectSerializer < ActiveModel::Serializer
   attributes :id, :title, :area, :description, :mansard, :terrace,
-             :garage, :first_floor_desc, :second_floor_desc, :model, :facades
+             :garage, :first_floor_desc, :second_floor_desc, :model, :photo, :facades
 
   def model
     @model = object.model
@@ -9,6 +9,15 @@ class ProjectSerializer < ActiveModel::Serializer
       original: object.model.url,
       medium:  object.model.url(:medium),
       thumb: object.model.url(:thumb)
+    }
+  end
+
+  def photo
+    {
+      title: object.photo_file_name,
+      original: object.photo.url,
+      medium:  object.photo.url(:medium),
+      thumb: object.photo.url(:thumb)
     }
   end
 

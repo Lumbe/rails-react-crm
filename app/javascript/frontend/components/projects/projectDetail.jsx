@@ -67,6 +67,17 @@ class ProjectDetail extends React.Component {
                     })}
                   </td>
                 </tr>
+                <tr>
+                  <th>Фото построенного дома</th>
+                  <td>
+                    {project.photo &&
+                      <div>
+                        <Image src={project.photo.medium} responsive/>
+                        {project.photo.title && <span>Имя файла: <b>{project.photo.title}</b></span>}
+                      </div>
+                    }
+                  </td>
+                </tr>
                 </tbody>
               </Table>
             </Col>

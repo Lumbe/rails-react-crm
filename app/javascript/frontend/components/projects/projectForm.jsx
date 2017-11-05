@@ -243,6 +243,25 @@ class ProjectForm extends React.Component {
                               </FormGroup>
                             </td>
                           </tr>
+                          <tr>
+                            <th>Фото построенного дома</th>
+                            <td>
+                              <FormGroup>
+                                {this.props.project.photo &&
+                                  <div>
+                                    <Image src={this.props.project.photo.medium} responsive/>
+                                    Имя файла: <b>{this.props.project.photo.title}</b>
+                                    <br/>
+                                  </div>
+                                }
+                                <FormControl
+                                  name="photo"
+                                  type="file"
+                                  onChange={this.uploadFile.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
                       </tbody>
                     </Table>
                   </Col>
