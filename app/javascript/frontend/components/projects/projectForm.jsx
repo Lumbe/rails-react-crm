@@ -140,7 +140,7 @@ class ProjectForm extends React.Component {
                             </td>
                           </tr>
                           <tr>
-                            <th>Мансарда</th>
+                            <th>Опции</th>
                             <td>
                               <FormGroup>
                                 <Checkbox
@@ -177,6 +177,25 @@ class ProjectForm extends React.Component {
                             <th>План 1-го этажа</th>
                             <td>
                               <FormGroup>
+                                {this.props.project.first_floor_plan &&
+                                <div>
+                                  <Image src={this.props.project.first_floor_plan.medium} responsive/>
+                                  Имя файла: <b>{this.props.project.first_floor_plan.title}</b>
+                                  <br/>
+                                </div>
+                                }
+                                <FormControl
+                                  name="first_floor_plan"
+                                  type="file"
+                                  onChange={this.uploadFile.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>План 1-го этажа</th>
+                            <td>
+                              <FormGroup>
                                 <FormControl
                                   name="first_floor_desc"
                                   bsSize="sm"
@@ -184,6 +203,25 @@ class ProjectForm extends React.Component {
                                   placeholder="Несколько предложений о проекте"
                                   value={this.state.project.first_floor_desc || this.props.project.first_floor_desc}
                                   onChange={this.updateProjectState.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>План 2-го этажа</th>
+                            <td>
+                              <FormGroup>
+                                {this.props.project.second_floor_plan &&
+                                <div>
+                                  <Image src={this.props.project.second_floor_plan.medium} responsive/>
+                                  Имя файла: <b>{this.props.project.second_floor_plan.title}</b>
+                                  <br/>
+                                </div>
+                                }
+                                <FormControl
+                                  name="second_floor_plan"
+                                  type="file"
+                                  onChange={this.uploadFile.bind(this)}
                                 />
                               </FormGroup>
                             </td>

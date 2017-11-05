@@ -41,7 +41,29 @@ class ProjectDetail extends React.Component {
                 </tr>
                 <tr>
                   <th>План 1-го этажа</th>
+                  <td>
+                    {project.first_floor_plan &&
+                      <div>
+                        <Image src={project.first_floor_plan.medium} responsive/>
+                        {project.first_floor_plan.title && <span>Имя файла: <b>{project.first_floor_plan.title}</b></span>}
+                      </div>
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <th>План 1-го этажа</th>
                   <td>{project.first_floor_desc}</td>
+                </tr>
+                <tr>
+                  <th>План 2-го этажа</th>
+                  <td>
+                    {project.second_floor_plan &&
+                      <div>
+                        <Image src={project.second_floor_plan.medium} responsive/>
+                        {project.second_floor_plan.title && <span>Имя файла: <b>{project.second_floor_plan.title}</b></span>}
+                      </div>
+                    }
+                  </td>
                 </tr>
                 <tr>
                   <th>План 2-го этажа</th>

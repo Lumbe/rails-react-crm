@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105194355) do
+ActiveRecord::Schema.define(version: 20171105212308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20171105194355) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title", default: ""
-    t.decimal "area"
+    t.decimal "area", precision: 10, scale: 2
     t.text "description", default: ""
     t.boolean "mansard", default: false
     t.boolean "terrace", default: false
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20171105194355) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string "first_floor_plan_file_name"
+    t.string "first_floor_plan_content_type"
+    t.integer "first_floor_plan_file_size"
+    t.datetime "first_floor_plan_updated_at"
+    t.string "second_floor_plan_file_name"
+    t.string "second_floor_plan_content_type"
+    t.integer "second_floor_plan_file_size"
+    t.datetime "second_floor_plan_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
