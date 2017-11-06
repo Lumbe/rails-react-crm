@@ -94,10 +94,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.paperclip_defaults = {
       :preserve_files => true,
-      :storage => :s3,
-      :s3_protocol => ENV['S3_PROTOCOL'],
-      :s3_region => ENV['S3_REGION'],
-      :s3_host_name => ENV['S3_HOST_NAME'],
-      :bucket => ENV['S3_BUCKET']
+      storage: :s3,
+      s3_protocol: ENV['S3_PROTOCOL'],
+      s3_credentials: {
+          s3_region: ENV['S3_REGION'],
+          s3_host_name: ENV['S3_HOST_NAME'],
+          bucket: ENV['S3_BUCKET'],
+          access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+          secret_access_key: ENV['AWS_SECRET_KEY_ID']
+      }
   }
 end

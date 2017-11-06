@@ -60,10 +60,15 @@ Rails.application.configure do
   # config.assets.prefix = "/dev-assets"
   Paperclip.options[:command_path] = "/usr/bin/"
   config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_protocol => ENV['S3_PROTOCOL'],
-      :s3_region => ENV['S3_REGION'],
-      :s3_host_name => ENV['S3_HOST_NAME'],
-      :bucket => ENV['S3_BUCKET']
+      storage: :s3,
+      s3_protocol: ENV['S3_PROTOCOL'],
+      s3_credentials: {
+          s3_region: ENV['S3_REGION'],
+          s3_host_name: ENV['S3_HOST_NAME'],
+          bucket: ENV['S3_BUCKET'],
+          access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+          secret_access_key: ENV['AWS_SECRET_KEY_ID']
+      }
   }
+  puts config.paperclip_defaults
 end
