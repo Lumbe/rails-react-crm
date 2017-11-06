@@ -70,5 +70,4 @@ Rails.application.configure do
           secret_access_key: ENV['AWS_SECRET_KEY_ID']
       }
   }
-  puts config.paperclip_defaults
 end
