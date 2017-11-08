@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108154939) do
+ActiveRecord::Schema.define(version: 20171108161548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,10 +75,6 @@ ActiveRecord::Schema.define(version: 20171108154939) do
     t.string "model_content_type"
     t.integer "model_file_size"
     t.datetime "model_updated_at"
-    t.string "photo_file_name"
-    t.string "photo_content_type"
-    t.integer "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string "first_floor_plan_file_name"
     t.string "first_floor_plan_content_type"
     t.integer "first_floor_plan_file_size"
@@ -87,6 +83,10 @@ ActiveRecord::Schema.define(version: 20171108154939) do
     t.string "second_floor_plan_content_type"
     t.integer "second_floor_plan_file_size"
     t.datetime "second_floor_plan_updated_at"
+    t.string "third_floor_plan_file_name"
+    t.string "third_floor_plan_content_type"
+    t.integer "third_floor_plan_file_size"
+    t.datetime "third_floor_plan_updated_at"
   end
 
   create_table "users", force: :cascade do |t|

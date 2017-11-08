@@ -240,6 +240,25 @@ class ProjectForm extends React.Component {
                             </td>
                           </tr>
                           <tr>
+                            <th>План 3-го этажа</th>
+                            <td>
+                              <FormGroup>
+                                {this.props.project.third_floor_plan &&
+                                <div>
+                                  <Image src={this.props.project.third_floor_plan.medium} responsive/>
+                                  Имя файла: <b>{this.props.project.third_floor_plan.title}</b>
+                                  <br/>
+                                </div>
+                                }
+                                <FormControl
+                                  name="third_floor_plan"
+                                  type="file"
+                                  onChange={this.uploadFile.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
                             <th>3D-модель</th>
                             <td>
                               <FormGroup>

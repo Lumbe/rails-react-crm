@@ -1,7 +1,7 @@
 class ProjectSerializer < ActiveModel::Serializer
   attributes :id, :title, :area, :description, :mansard, :terrace,
              :garage, :first_floor_plan, :first_floor_desc, :second_floor_plan,
-             :second_floor_desc, :model, :photo, :facades, :photos
+             :second_floor_desc, :third_floor_plan, :model, :facades, :photos
 
   def model
     {
@@ -9,15 +9,6 @@ class ProjectSerializer < ActiveModel::Serializer
       original: object.model.url,
       medium:  object.model.url(:medium),
       thumb: object.model.url(:thumb)
-    }
-  end
-
-  def photo
-    {
-      title: object.photo_file_name,
-      original: object.photo.url,
-      medium:  object.photo.url(:medium),
-      thumb: object.photo.url(:thumb)
     }
   end
 
@@ -36,6 +27,15 @@ class ProjectSerializer < ActiveModel::Serializer
         original: object.second_floor_plan.url,
         medium:  object.second_floor_plan.url(:medium),
         thumb: object.second_floor_plan.url(:thumb)
+    }
+    end
+  
+  def third_floor_plan
+    {
+        title: object.third_floor_plan_file_name,
+        original: object.third_floor_plan.url,
+        medium:  object.third_floor_plan.url(:medium),
+        thumb: object.third_floor_plan.url(:thumb)
     }
   end
 
