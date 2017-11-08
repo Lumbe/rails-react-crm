@@ -1,6 +1,7 @@
 class ProjectSerializer < ActiveModel::Serializer
   attributes :id, :title, :area, :description, :mansard, :terrace,
-             :garage, :first_floor_plan, :first_floor_desc, :second_floor_plan, :second_floor_desc, :model, :photo, :facades
+             :garage, :first_floor_plan, :first_floor_desc, :second_floor_plan,
+             :second_floor_desc, :model, :photo, :facades, :photos
 
   def model
     {
@@ -40,6 +41,17 @@ class ProjectSerializer < ActiveModel::Serializer
 
   def facades
     object.facades.map do |x|
+      {
+        title: x.image_file_name,
+        original: x.image.url,
+        medium:  x.image.url(:medium),
+        thumb: x.image.url(:thumb)
+      }
+    end
+    end
+
+  def photos
+    object.photos.map do |x|
       {
         title: x.image_file_name,
         original: x.image.url,

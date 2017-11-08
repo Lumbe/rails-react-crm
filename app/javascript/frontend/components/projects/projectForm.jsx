@@ -13,9 +13,7 @@ class ProjectForm extends React.Component {
 
   defaultProps() {
     return {
-      project: {
-        facades_attributes: []
-      },
+      project: {},
       isSubmittingForm: false
     }
   }
@@ -42,7 +40,7 @@ class ProjectForm extends React.Component {
     const project = this.state.project;
 
     let selectedFiles = target.files;
-    project[field] = this.state.project.facades_attributes;
+    project[field] = [];
     for (let i = 0; i < selectedFiles.length; i++) {
       project[field].push(selectedFiles.item(i));
     }
@@ -266,7 +264,7 @@ class ProjectForm extends React.Component {
                               <FormGroup>
                                 {this.props.project.facades &&
                                   this.props.project.facades.map((facade, index) => {
-                                    return <div key={index} className="facade-img">
+                                    return <div key={index} className="inline-img">
                                       <Image src={facade.medium}/>
                                       <div>Имя файла: <b>{facade.title}</b></div>
                                     </div>
@@ -282,20 +280,22 @@ class ProjectForm extends React.Component {
                             </td>
                           </tr>
                           <tr>
-                            <th>Фото построенного дома</th>
+                            <th>Фото построенных домов</th>
                             <td>
                               <FormGroup>
-                                {this.props.project.photo &&
-                                  <div>
-                                    <Image src={this.props.project.photo.medium} responsive/>
-                                    Имя файла: <b>{this.props.project.photo.title}</b>
-                                    <br/>
-                                  </div>
+                                {this.props.project.photos &&
+                                  this.props.project.photos.map((photo, index) => {
+                                    return <div key={index} className="inline-img">
+                                      <Image src={photo.medium}/>
+                                      <div>Имя файла: <b>{photo.title}</b></div>
+                                    </div>
+                                  })
                                 }
                                 <FormControl
-                                  name="photo"
+                                  name="photos_attributes"
                                   type="file"
-                                  onChange={this.uploadFile.bind(this)}
+                                  multiple={true}
+                                  onChange={this.uploadMultipleFiles.bind(this)}
                                 />
                               </FormGroup>
                             </td>

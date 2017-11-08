@@ -7,4 +7,6 @@ class Project < ApplicationRecord
   validates_attachment :photo, :first_floor_plan, :second_floor_plan, content_type: { content_type: /\Aimage\/.*\Z/ }
   has_many :facades, dependent: :destroy
   accepts_nested_attributes_for :facades, allow_destroy: true
+  has_many :photos, dependent: :destroy
+  accepts_nested_attributes_for :photos, allow_destroy: true
 end

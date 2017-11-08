@@ -90,14 +90,14 @@ class ProjectDetail extends React.Component {
                   </td>
                 </tr>
                 <tr>
-                  <th>Фото построенного дома</th>
+                  <th>Фото постренных домов</th>
                   <td>
-                    {project.photo &&
-                      <div>
-                        <Image src={project.photo.medium} responsive/>
-                        {project.photo.title && <span>Имя файла: <b>{project.photo.title}</b></span>}
+                    {project.photos && project.photos.map((photo, index) => {
+                      return <div key={index} className="inline-img">
+                        <Image src={photo.medium}/>
+                        <div>Имя файла: {photo.title}</div>
                       </div>
-                    }
+                    })}
                   </td>
                 </tr>
                 </tbody>

@@ -52,7 +52,7 @@ namespace :import do
         end
 
         # photo
-        photo =
+        # photo =
       end
 
 
