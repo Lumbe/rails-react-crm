@@ -65,29 +65,35 @@ namespace :import do
         if  node.content == '1'
           @project.floors = 1
         end
-        end
+      end
 
       post.search('TwoFloors').each do |node|
         if  node.content == '1'
           @project.floors = 2
         end
-        end
+      end
 
       post.search('Mansard').each do |node|
         if  node.content == '1'
           @project.mansard = true
         end
-        end
+      end
 
       post.search('Terrace').each do |node|
         if  node.content == '1'
           @project.terrace = true
         end
-        end
+      end
 
       post.search('Garage').each do |node|
         if  node.content == '1'
           @project.garage = true
+        end
+      end
+
+      post.search('HiTech').each do |node|
+        if  node.content == '1'
+          @project.hitech = true
         end
       end
 
