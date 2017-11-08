@@ -165,6 +165,15 @@ class ProjectForm extends React.Component {
                                   checked={this.state.project.garage || this.props.project.garage}
                                   onChange={this.updateProjectState.bind(this)}
                                 >
+                                  Hi-Tech
+                                </Checkbox>
+                                {' '}
+                                <Checkbox
+                                  inline
+                                  name="hitech"
+                                  checked={this.state.project.hitech || this.props.project.hitech}
+                                  onChange={this.updateProjectState.bind(this)}
+                                >
                                   Гараж
                                 </Checkbox>
                               </FormGroup>

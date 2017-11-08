@@ -40,6 +40,10 @@ class ProjectDetail extends React.Component {
                   <td>{project.garage ? "Есть" : 'Нету'}</td>
                 </tr>
                 <tr>
+                  <th>Hi-Tech</th>
+                  <td>{project.hitech ? "Да" : 'Нет'}</td>
+                </tr>
+                <tr>
                   <th>План 1-го этажа</th>
                   <td>
                     {project.first_floor_plan &&

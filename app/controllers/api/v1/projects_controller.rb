@@ -40,6 +40,6 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     params.require(:project).permit(:title, :area, :description, :mansard, :terrace, :garage,
                                     :first_floor_desc, :second_floor_desc, :model,
                                     :first_floor_plan, :second_floor_plan, :third_floor_plan,
-                                    facades_attributes: [:image], photos_attributes: [:image])
+                                    facades_attributes: [:image], photos_attributes: [:image], :hitech)
   end
 end
