@@ -93,7 +93,7 @@ class ProjectDetail extends React.Component {
                   <th>Фасады</th>
                   <td>
                     {project.facades && project.facades.map((facade, index) => {
-                      return <div key={index} className="facade-img">
+                      return <div key={index} className="inline-img">
                         <Image src={facade.medium}/>
                         <div>Имя файла: {facade.title}</div>
                       </div>

@@ -51,9 +51,47 @@ namespace :import do
           end
         end
 
-        # photo
-        # photo =
+        # photos
+        photos = node.content.match(/(?:Фото готового дома).*?(?=\[\/et_pb_tab\])/m)
+        unless photos.blank?
+          photo_urls = photos[0].scan(/src="([^"]*)"/).map(&:first)
+          photo_urls.map do |photo_url|
+            @project.photos.build(image: URI.parse(photo_url))
+          end
+        end
       end
+
+      post.search('OneFloor').each do |node|
+        if  node.content == '1'
+          @project.floors = 1
+        end
+        end
+
+      post.search('TwoFloors').each do |node|
+        if  node.content == '1'
+          @project.floors = 2
+        end
+        end
+
+      post.search('Mansard').each do |node|
+        if  node.content == '1'
+          @project.mansard = true
+        end
+        end
+
+      post.search('Terrace').each do |node|
+        if  node.content == '1'
+          @project.terrace = true
+        end
+        end
+
+      post.search('Garage').each do |node|
+        if  node.content == '1'
+          @project.garage = true
+        end
+      end
+
+
 
 
       @project.save
