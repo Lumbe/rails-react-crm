@@ -17,5 +17,13 @@ module Crm
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.eager_load_paths << Rails.root.join('lib')
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost:3000', 'servus.vn.ua'
+        resource '/api/v1/projects/*',
+                 headers: :any,
+                 methods: %I[get options]
+      end
+    end
   end
 end
