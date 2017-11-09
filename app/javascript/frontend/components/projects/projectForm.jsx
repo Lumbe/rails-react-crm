@@ -95,7 +95,7 @@ class ProjectForm extends React.Component {
                           <tr>
                             <th>Проект</th>
                             <td>
-                              <FormGroup controlId="formHorizontalName">
+                              <FormGroup>
                                 <FormControl
                                   name="title"
                                   bsSize="sm"
@@ -110,7 +110,7 @@ class ProjectForm extends React.Component {
                           <tr>
                             <th>Площадь</th>
                             <td>
-                              <FormGroup controlId="formHorizontalPhone">
+                              <FormGroup>
                                 <FormControl
                                   name="area"
                                   bsSize="sm"
@@ -123,9 +123,24 @@ class ProjectForm extends React.Component {
                             </td>
                           </tr>
                           <tr>
+                            <th>Категория</th>
+                            <td>
+                              <FormGroup>
+                                <FormControl
+                                  name="category"
+                                  bsSize="sm"
+                                  type="text"
+                                  placeholder="Жилые дома"
+                                  value={this.state.project.category || this.props.project.category}
+                                  onChange={this.updateProjectState.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
                             <th>Описание</th>
                             <td>
-                              <FormGroup controlId="formHorizontalEmail">
+                              <FormGroup>
                                 <FormControl
                                   name="description"
                                   bsSize="sm"

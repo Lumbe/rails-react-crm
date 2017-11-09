@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108164319) do
+ActiveRecord::Schema.define(version: 20171109101908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20171108164319) do
     t.integer "third_floor_plan_file_size"
     t.datetime "third_floor_plan_updated_at"
     t.boolean "hitech", default: false
+    t.string "category", default: ""
   end
 
   create_table "users", force: :cascade do |t|

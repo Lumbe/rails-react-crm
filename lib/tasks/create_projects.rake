@@ -97,8 +97,29 @@ namespace :import do
         end
       end
 
-
-
+      post.search('FilterCategory').each do |node|
+        @project.category =
+          case node.content
+          when 'zhilye-doma'
+            'Жилые дома'
+          when 'dachnye-doma'
+            'Дачные дома'
+          when 'bani-i-sauny-doma'
+            'Бани и сауны'
+          when 'doma-na-dve-semi'
+            'Дома на две семьи'
+          when 'oteli-i-gostinitsy'
+            'Отели и гостиницы'
+          when 'ofis-tsentry'
+            'Офис-центры'
+          when 'restorany'
+            'Рестораны'
+          when 'taunhausy'
+            'Таунхаусы'
+          else
+            ''
+          end
+      end
 
       @project.save
     end

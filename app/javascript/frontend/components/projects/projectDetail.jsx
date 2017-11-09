@@ -24,6 +24,10 @@ class ProjectDetail extends React.Component {
                   <td>{project.area}</td>
                 </tr>
                 <tr>
+                  <th>Категория</th>
+                  <td>{project.category}</td>
+                </tr>
+                <tr>
                   <th>Описание</th>
                   <td>{project.description}</td>
                 </tr>
