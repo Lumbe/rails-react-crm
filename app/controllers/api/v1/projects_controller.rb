@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < Api::V1::ApplicationController
   skip_before_action :authenticate_user_with_jwt!, only: [:index, :show]
-  skip_before_action :authenticate_user_from_header_token, [:index, :show]
+  skip_before_action :authenticate_user_from_header_token, only: [:index, :show]
   before_action :load_project, only: [:show, :update]
 
   def index

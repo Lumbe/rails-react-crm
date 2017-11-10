@@ -4,60 +4,84 @@ class ProjectSerializer < ActiveModel::Serializer
              :second_floor_desc, :third_floor_plan, :model, :facades, :photos, :hitech, :category
 
   def model
-    {
-      title: object.model_file_name,
-      original: object.model.url,
-      medium:  object.model.url(:medium),
-      thumb: object.model.url(:thumb)
-    }
+    if object.model.present?
+      {
+        title: object.model_file_name,
+        original: object.model.url,
+        medium:  object.model.url(:medium),
+        thumb: object.model.url(:thumb)
+      }
+    else
+      nil
+    end
   end
 
   def first_floor_plan
-    {
-        title: object.first_floor_plan_file_name,
-        original: object.first_floor_plan.url,
-        medium:  object.first_floor_plan.url(:medium),
-        thumb: object.first_floor_plan.url(:thumb)
-    }
+    if object.first_floor_plan.present?
+      {
+          title: object.first_floor_plan_file_name,
+          original: object.first_floor_plan.url,
+          medium:  object.first_floor_plan.url(:medium),
+          thumb: object.first_floor_plan.url(:thumb)
+      }
+    else
+      nil
+    end
   end
 
   def second_floor_plan
-    {
-        title: object.second_floor_plan_file_name,
-        original: object.second_floor_plan.url,
-        medium:  object.second_floor_plan.url(:medium),
-        thumb: object.second_floor_plan.url(:thumb)
-    }
+    if object.second_floor_plan.present?
+      {
+          title: object.second_floor_plan_file_name,
+          original: object.second_floor_plan.url,
+          medium:  object.second_floor_plan.url(:medium),
+          thumb: object.second_floor_plan.url(:thumb)
+      }
+    else
+      nil
+    end
   end
 
   def third_floor_plan
-    {
-        title: object.third_floor_plan_file_name,
-        original: object.third_floor_plan.url,
-        medium:  object.third_floor_plan.url(:medium),
-        thumb: object.third_floor_plan.url(:thumb)
-    }
+    if object.third_floor_plan.present?
+      {
+          title: object.third_floor_plan_file_name,
+          original: object.third_floor_plan.url,
+          medium:  object.third_floor_plan.url(:medium),
+          thumb: object.third_floor_plan.url(:thumb)
+      }
+    else
+      nil
+    end
   end
 
   def facades
-    object.facades.map do |x|
-      {
-        title: x.image_file_name,
-        original: x.image.url,
-        medium:  x.image.url(:medium),
-        thumb: x.image.url(:thumb)
-      }
+    if object.facades.present?
+      object.facades.map do |x|
+        {
+          title: x.image_file_name,
+          original: x.image.url,
+          medium:  x.image.url(:medium),
+          thumb: x.image.url(:thumb)
+        }
+      end
+    else
+      []
     end
   end
 
   def photos
-    object.photos.map do |x|
-      {
-        title: x.image_file_name,
-        original: x.image.url,
-        medium:  x.image.url(:medium),
-        thumb: x.image.url(:thumb)
-      }
+    if object.photos.present?
+      object.photos.map do |x|
+        {
+          title: x.image_file_name,
+          original: x.image.url,
+          medium:  x.image.url(:medium),
+          thumb: x.image.url(:thumb)
+        }
+      end
+    else
+      []
     end
   end
 end
