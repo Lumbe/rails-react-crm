@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom'
 class ProjectDetail extends React.Component {
 
   render() {
-    const project = this.props.project || {medium: null};
+    const project = this.props.project;
     return (
       <Col md={12} xs={12}>
         <Panel>
