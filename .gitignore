@@ -32,3 +32,4 @@ rails-react-crm.iml
 /public/packs-test
 /node_modules
 .env
+/public/system

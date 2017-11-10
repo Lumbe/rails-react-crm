@@ -479,6 +479,7 @@ GEM
       aws-sigv4 (~> 1.0)
     aws-sigv2 (1.0.1)
     aws-sigv4 (1.0.2)
+    babosa (1.0.2)
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -543,6 +544,8 @@ GEM
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
+    friendly_id (5.2.3)
+      activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hamlit (2.8.1)
@@ -738,6 +741,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   aws-sdk
+  babosa
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3, >= 3.3.7)
@@ -750,6 +754,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
+  friendly_id
   hamlit
   hirb
   hirb-unicode

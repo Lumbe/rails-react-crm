@@ -26,7 +26,7 @@ class ProjectsList extends React.Component {
             {projects.map((project) => {
               return <tr key={project.id}>
                 <td>
-                  <Link to={'/projects/' + project.id}>
+                  <Link to={'/projects/' + project.slug}>
                     {project.title}
                   </Link>
                 </td>

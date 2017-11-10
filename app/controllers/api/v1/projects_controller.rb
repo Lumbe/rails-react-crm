@@ -33,7 +33,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   private
 
   def load_project
-    @project = Project.find(params[:id])
+    @project = Project.friendly.find(params[:id])
   end
 
   def project_params

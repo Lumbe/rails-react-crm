@@ -1,5 +1,5 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :title, :area, :description, :mansard, :terrace,
+  attributes :id, :slug, :title, :area, :description, :mansard, :terrace,
              :garage, :first_floor_plan, :first_floor_desc, :second_floor_plan,
              :second_floor_desc, :third_floor_plan, :model, :facades, :photos, :hitech, :category
 
