@@ -20,7 +20,7 @@ module Crm
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'localhost:3000', 'servus.vn.ua'
-        resource '/api/v1/projects/*',
+        resource '/api/v1/projects*',
                  headers: :any,
                  methods: %I[get options]
       end
