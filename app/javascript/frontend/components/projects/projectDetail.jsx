@@ -32,6 +32,15 @@ class ProjectDetail extends React.Component {
                   <td>{project.description}</td>
                 </tr>
                 <tr>
+                  <th>3D-модель</th>
+                  <td>
+                    {project.model &&
+                      <div><Image src={project.model.medium} responsive/>
+                      Имя файла: <b>{project.model.title}</b></div>
+                    }
+                  </td>
+                </tr>
+                <tr>
                   <th>Мансарда</th>
                   <td>{project.mansard ? "Есть" : 'Нету'}</td>
                 </tr>
@@ -52,7 +61,7 @@ class ProjectDetail extends React.Component {
                   <td>
                     {project.first_floor_plan &&
                       <div>
-                        <Image src={project.first_floor_plan.medium} responsive/>
+                        <Image src={project.first_floor_plan.original} responsive/>
                         {project.first_floor_plan.title && <span>Имя файла: <b>{project.first_floor_plan.title}</b></span>}
                       </div>
                     }
@@ -67,7 +76,7 @@ class ProjectDetail extends React.Component {
                   <td>
                     {project.second_floor_plan &&
                       <div>
-                        <Image src={project.second_floor_plan.medium} responsive/>
+                        <Image src={project.second_floor_plan.original} responsive/>
                         {project.second_floor_plan.title && <span>Имя файла: <b>{project.second_floor_plan.title}</b></span>}
                       </div>
                     }
@@ -82,18 +91,9 @@ class ProjectDetail extends React.Component {
                   <td>
                     {project.third_floor_plan &&
                     <div>
-                      <Image src={project.third_floor_plan.medium} responsive/>
+                      <Image src={project.third_floor_plan.original} responsive/>
                       {project.third_floor_plan.title && <span>Имя файла: <b>{project.third_floor_plan.title}</b></span>}
                     </div>
-                    }
-                  </td>
-                </tr>
-                <tr>
-                  <th>3D-модель</th>
-                  <td>
-                    {project.model && 
-                      <div><Image src={project.model.medium} responsive/>
-                      Имя файла: <b>{project.model.title}</b></div>
                     }
                   </td>
                 </tr>
@@ -102,7 +102,7 @@ class ProjectDetail extends React.Component {
                   <td>
                     {project.facades && project.facades.map((facade, index) => {
                       return <div key={index} className="inline-img">
-                        <Image src={facade.medium}/>
+                        <Image src={facade.original}/>
                         <div>Имя файла: {facade.title}</div>
                       </div>
                     })}
@@ -113,7 +113,7 @@ class ProjectDetail extends React.Component {
                   <td>
                     {project.photos && project.photos.map((photo, index) => {
                       return <div key={index} className="inline-img">
-                        <Image src={photo.medium}/>
+                        <Image src={photo.original}/>
                         <div>Имя файла: {photo.title}</div>
                       </div>
                     })}

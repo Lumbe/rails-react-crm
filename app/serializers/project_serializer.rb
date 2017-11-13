@@ -21,8 +21,6 @@ class ProjectSerializer < ActiveModel::Serializer
       {
           title: object.first_floor_plan_file_name,
           original: object.first_floor_plan.url,
-          medium:  object.first_floor_plan.url(:medium),
-          thumb: object.first_floor_plan.url(:thumb)
       }
     else
       nil
@@ -34,8 +32,6 @@ class ProjectSerializer < ActiveModel::Serializer
       {
           title: object.second_floor_plan_file_name,
           original: object.second_floor_plan.url,
-          medium:  object.second_floor_plan.url(:medium),
-          thumb: object.second_floor_plan.url(:thumb)
       }
     else
       nil
@@ -47,8 +43,6 @@ class ProjectSerializer < ActiveModel::Serializer
       {
           title: object.third_floor_plan_file_name,
           original: object.third_floor_plan.url,
-          medium:  object.third_floor_plan.url(:medium),
-          thumb: object.third_floor_plan.url(:thumb)
       }
     else
       nil
@@ -61,7 +55,6 @@ class ProjectSerializer < ActiveModel::Serializer
         {
           title: x.image_file_name,
           original: x.image.url,
-          medium:  x.image.url(:medium),
           thumb: x.image.url(:thumb)
         }
       end
@@ -76,7 +69,6 @@ class ProjectSerializer < ActiveModel::Serializer
         {
           title: x.image_file_name,
           original: x.image.url,
-          medium:  x.image.url(:medium),
           thumb: x.image.url(:thumb)
         }
       end

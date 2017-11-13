@@ -201,7 +201,7 @@ class ProjectForm extends React.Component {
                               <FormGroup>
                                 {this.props.project.first_floor_plan &&
                                 <div>
-                                  <Image src={this.props.project.first_floor_plan.medium} responsive/>
+                                  <Image src={this.props.project.first_floor_plan.original} responsive/>
                                   Имя файла: <b>{this.props.project.first_floor_plan.title}</b>
                                   <br/>
                                 </div>
@@ -235,7 +235,7 @@ class ProjectForm extends React.Component {
                               <FormGroup>
                                 {this.props.project.second_floor_plan &&
                                 <div>
-                                  <Image src={this.props.project.second_floor_plan.medium} responsive/>
+                                  <Image src={this.props.project.second_floor_plan.original} responsive/>
                                   Имя файла: <b>{this.props.project.second_floor_plan.title}</b>
                                   <br/>
                                 </div>
@@ -269,7 +269,7 @@ class ProjectForm extends React.Component {
                               <FormGroup>
                                 {this.props.project.third_floor_plan &&
                                 <div>
-                                  <Image src={this.props.project.third_floor_plan.medium} responsive/>
+                                  <Image src={this.props.project.third_floor_plan.original} responsive/>
                                   Имя файла: <b>{this.props.project.third_floor_plan.title}</b>
                                   <br/>
                                 </div>
@@ -308,7 +308,7 @@ class ProjectForm extends React.Component {
                                 {this.props.project.facades &&
                                   this.props.project.facades.map((facade, index) => {
                                     return <div key={index} className="inline-img">
-                                      <Image src={facade.medium}/>
+                                      <Image src={facade.original}/>
                                       <div>Имя файла: <b>{facade.title}</b></div>
                                     </div>
                                   })
@@ -329,7 +329,7 @@ class ProjectForm extends React.Component {
                                 {this.props.project.photos &&
                                   this.props.project.photos.map((photo, index) => {
                                     return <div key={index} className="inline-img">
-                                      <Image src={photo.medium}/>
+                                      <Image src={photo.original}/>
                                       <div>Имя файла: <b>{photo.title}</b></div>
                                     </div>
                                   })

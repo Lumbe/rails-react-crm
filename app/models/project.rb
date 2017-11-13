@@ -9,9 +9,9 @@ class Project < ApplicationRecord
                             thumb: " -gravity center -crop '150x113+0+0'"
                           },
                           default_url: "/images/:style/missing.png"
-  has_attached_file :first_floor_plan, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  has_attached_file :second_floor_plan, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  has_attached_file :third_floor_plan, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :first_floor_plan, default_url: "/images/:style/missing.png"
+  has_attached_file :second_floor_plan, default_url: "/images/:style/missing.png"
+  has_attached_file :third_floor_plan, default_url: "/images/:style/missing.png"
   validates_attachment :model, content_type: { content_type: /\Aimage\/.*\Z/ }
   has_many :facades, dependent: :destroy
   accepts_nested_attributes_for :facades, allow_destroy: true
