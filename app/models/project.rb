@@ -2,7 +2,13 @@ class Project < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  has_attached_file :model, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :model,
+                   styles: { medium: "400x300^", thumb: "150x113^" },
+                          convert_options: {
+                            medium: " -gravity center -crop '400x300+0+0'",
+                            thumb: " -gravity center -crop '150x113+0+0'"
+                          },
+                          default_url: "/images/:style/missing.png"
   has_attached_file :first_floor_plan, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   has_attached_file :second_floor_plan, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   has_attached_file :third_floor_plan, styles: { medium: "400x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
