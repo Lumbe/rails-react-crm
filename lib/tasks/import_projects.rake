@@ -1,4 +1,4 @@
-namespace :import do
+  namespace :import do
   desc "Parse Projects from XML"
   task projects: :environment do
     doc = File.open(Rails.root.join('lib', 'tasks', 'projects_test.xml')) do |f|
@@ -24,7 +24,7 @@ namespace :import do
         @project.model = URI.parse(project_model[:model]) if project_model && !project_model[:model].blank?
 
         # description
-        description = node.content.match(/(?:Характеристики"\]\n*)(?<match_group>[^\[]*)/)
+        description = node.content.match(/(?:Характеристики"\]\n*)(?<match_group>[^\[]*)[\n\s]/)
         @project.description = description[:match_group] if description && !description[:match_group].blank?
 
         # floor plan images
@@ -43,7 +43,7 @@ namespace :import do
           first_floor_desc = first_floor[:description].gsub(/^\d\.\s/m, '')
           @project.first_floor_desc = first_floor_desc
         elsif inline_first_floor && !inline_first_floor[:description].blank?
-          new_lines = inline_first_floor[:description].gsub(/м2\s/m, "м2\n")
+          new_lines = inline_first_floor[:description].gsub(/м2\s/m, "м2\n").chop
           inline_first_floor_desc = new_lines.gsub(/^\d\.\s/m, '')
           @project.first_floor_desc = inline_first_floor_desc
         end
@@ -54,7 +54,7 @@ namespace :import do
           second_floor_desc = second_floor[:description].gsub(/^\d\.\s/m, '')
           @project.second_floor_desc = second_floor_desc
         elsif inline_second_floor && !inline_second_floor[:description].blank?
-          new_lines = inline_second_floor[:description].gsub(/м2\s/m, "м2\n")
+          new_lines = inline_second_floor[:description].gsub(/м2\s/m, "м2\n").chop
           inline_second_floor_desc = new_lines.gsub(/^\d\.\s/m, '')
           @project.second_floor_desc = inline_second_floor_desc
         end
