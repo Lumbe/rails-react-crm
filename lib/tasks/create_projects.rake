@@ -39,9 +39,12 @@ namespace :import do
         # floor plan description
         first_floor = node.content.match(/(?:ПЛАН\sПЕРВОГО\sЭТАЖА\*?\n)(?<description>.*?)(?:\r*\n){2}/m)
         second_floor = node.content.match(/(?:ПЛАН\sВТОРОГО\sЭТАЖА\*?\n)(?<description>.*?)(?:\r*\n){2}/m)
-        @project.first_floor_desc = first_floor[:description]
-        @project.second_floor_desc = second_floor[:description] if second_floor && !second_floor[:description].blank?
-
+        first_floor_desc = first_floor[:description].gsub(/^\d\.\s/m, '')
+        @project.first_floor_desc = first_floor_desc
+        if second_floor && !second_floor[:description].blank?
+          second_floor_desc = second_floor[:description].gsub(/^\d\.\s/m, '')
+          @project.second_floor_desc = second_floor_desc
+        end
         # facades
         facades = node.content.match(/(?:Фасады).*?(?=\[\/et_pb_tab\])/m)
         unless facades.blank?
