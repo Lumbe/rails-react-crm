@@ -123,6 +123,25 @@ class ProjectForm extends React.Component {
                             </td>
                           </tr>
                           <tr>
+                            <th>3D-модель</th>
+                            <td>
+                              <FormGroup>
+                                {this.props.project.model &&
+                                  <div>
+                                    <Image src={this.props.project.model.medium} responsive/>
+                                    Имя файла: <b>{this.props.project.model.title}</b>
+                                    <br/>
+                                  </div>
+                                }
+                                <FormControl
+                                  name="model"
+                                  type="file"
+                                  onChange={this.uploadFile.bind(this)}
+                                />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
                             <th>Категория</th>
                             <td>
                               <FormGroup>
@@ -276,25 +295,6 @@ class ProjectForm extends React.Component {
                                 }
                                 <FormControl
                                   name="third_floor_plan"
-                                  type="file"
-                                  onChange={this.uploadFile.bind(this)}
-                                />
-                              </FormGroup>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th>3D-модель</th>
-                            <td>
-                              <FormGroup>
-                                {this.props.project.model &&
-                                  <div>
-                                    <Image src={this.props.project.model.medium} responsive/>
-                                    Имя файла: <b>{this.props.project.model.title}</b>
-                                    <br/>
-                                  </div>
-                                }
-                                <FormControl
-                                  name="model"
                                   type="file"
                                   onChange={this.uploadFile.bind(this)}
                                 />
