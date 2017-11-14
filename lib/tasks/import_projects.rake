@@ -1,7 +1,7 @@
   namespace :import do
   desc "Parse Projects from XML"
   task projects: :environment do
-    doc = File.open(Rails.root.join('lib', 'tasks', 'projects_test.xml')) do |f|
+    doc = File.open(Rails.root.join('lib', 'tasks', 'projects_rev4.xml')) do |f|
       Nokogiri::XML(f)
     end
     @counter = 0
