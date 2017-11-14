@@ -19,7 +19,7 @@ module Crm
     config.eager_load_paths << Rails.root.join('lib')
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3000', 'servus.vn.ua'
+        origins 'localhost:3000', 'https://servus.vn.ua'
         resource '/api/v1/projects*',
                  headers: :any,
                  methods: %I[get options]
