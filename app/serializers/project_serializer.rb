@@ -8,6 +8,7 @@ class ProjectSerializer < ActiveModel::Serializer
       {
         title: object.model_file_name,
         original: object.model.url,
+        big: object.model.url(:big),
         medium:  object.model.url(:medium),
         thumb: object.model.url(:thumb)
       }

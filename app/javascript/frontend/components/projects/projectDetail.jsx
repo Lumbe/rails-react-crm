@@ -27,7 +27,7 @@ class ProjectDetail extends React.Component {
                   <th>3D-модель</th>
                   <td>
                     {project.model &&
-                      <div><Image src={project.model.medium} responsive/>
+                      <div><Image src={project.model.big} responsive/>
                       Имя файла: <b>{project.model.title}</b></div>
                     }
                   </td>

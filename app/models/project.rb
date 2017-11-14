@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   has_attached_file :model,
-                   styles: { medium: "400x300^", thumb: "150x113^" },
+                   styles: { big: "810x608>" ,medium: "400x300^", thumb: "150x113^" },
                           convert_options: {
                             medium: " -gravity center -crop '400x300+0+0'",
                             thumb: " -gravity center -crop '150x113+0+0'"
