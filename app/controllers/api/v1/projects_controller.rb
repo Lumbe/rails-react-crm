@@ -4,7 +4,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   before_action :load_project, only: [:show, :update]
 
   def index
-    projects = Project.all.page(params[:page] || 1)
+    projects = Project.all.order(created_at: :desc).page(params[:page] || 1)
     respond_with projects, meta: pagination_meta(projects)
   end
 
@@ -26,7 +26,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def public
-    projects = Project.all.page(params[:page] || 1).per(6)
+    projects = Project.all.order(created_at: :desc).page(params[:page] || 1).per(9)
     respond_with projects, meta: pagination_meta(projects)
   end
 
