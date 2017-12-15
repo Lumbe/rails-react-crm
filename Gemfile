@@ -31,6 +31,8 @@ gem 'aws-sdk'
 gem 'rack-cors'
 gem 'friendly_id'
 gem 'babosa'
+gem 'has_scope'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

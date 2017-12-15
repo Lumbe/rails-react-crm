@@ -2,6 +2,15 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   skip_before_action :authenticate_user_with_jwt!, only: [:public, :show]
   skip_before_action :authenticate_user_from_header_token, only: [:public, :show]
   before_action :load_project, only: [:show, :update]
+  has_scope :title_search, as: :search
+  has_scope :by_category, as: :category
+  has_scope :by_min_area, as: :minArea
+  has_scope :by_max_area, as: :maxArea
+  has_scope :by_floors, as: :floors
+  has_scope :with_mansard, as: :mansard, type: :boolean
+  has_scope :with_terrace, as: :terrace, type: :boolean
+  has_scope :with_garage, as: :garage, type: :boolean
+  has_scope :is_hitech, as: :hitech, type: :boolean
 
   def index
     projects = Project.all.order(created_at: :desc).page(params[:page] || 1)
@@ -26,7 +35,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def public
-    projects = Project.all.order(created_at: :desc).page(params[:page] || 1).per(9)
+    projects = apply_scopes(Project).all.order(created_at: :desc).page(params[:page] || 1).per(9)
     respond_with projects, meta: pagination_meta(projects)
   end
 
