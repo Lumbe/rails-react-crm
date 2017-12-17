@@ -35,7 +35,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def public
-    projects = apply_scopes(Project).all.order(created_at: :desc).page(params[:page] || 1).per(9)
+    projects = apply_scopes(Project).all.order(created_at: :desc).page(params[:page] || 1).per(10)
     respond_with projects, meta: pagination_meta(projects)
   end
 
