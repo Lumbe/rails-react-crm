@@ -1,7 +1,7 @@
 class Api::V1::ProjectsController < Api::V1::ApplicationController
-  skip_before_action :authenticate_user_with_jwt!, only: [:public, :show]
-  skip_before_action :authenticate_user_from_header_token, only: [:public, :show]
-  before_action :load_project, only: [:show, :update]
+  skip_before_action :authenticate_user_with_jwt!, only: [:public, :show, :public_show]
+  skip_before_action :authenticate_user_from_header_token, only: [:public, :show, :public_show]
+  before_action :load_project, only: [:show, :update, :public_show]
   has_scope :title_search, as: :search
   has_scope :by_category, as: :category
   has_scope :by_min_area, as: :minArea
@@ -37,6 +37,16 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   def public
     projects = apply_scopes(Project).all.order(created_at: :desc).page(params[:page] || 1).per(10)
     respond_with projects, meta: pagination_meta(projects)
+  end
+
+  def public_show
+    Project.increment_counter(:views_count, @project.id)
+    respond_with @project
+  end
+
+  def popular
+    projects = Project.popular
+    respond_with projects
   end
 
   private

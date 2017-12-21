@@ -27,6 +27,17 @@ class Project < ApplicationRecord
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
 
+  class << self
+    def popular
+      projects = where('views_count > ?', 0)
+      if projects.count > 2
+        projects.order(views_count: :desc).limit(5)
+      else
+        all.order(created_at: :desc).limit(5)
+      end
+    end
+  end
+
   def normalize_friendly_id(text)
     text.to_slug.normalize! :transliterations => [:russian, :latin]
   end
@@ -41,4 +52,6 @@ class Project < ApplicationRecord
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?
   end
+
+
 end
