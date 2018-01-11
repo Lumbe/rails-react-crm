@@ -6,7 +6,6 @@ import localForage from 'localforage'
 import configureStore from './store/configureStore'
 import Routes from './routes'
 
-
 export const store = configureStore();
 
 // for tests

@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as leadActions from '../../actions/leadActions'
+import * as leadActions from '../../actions/reduxApiMiddlware'
+// import * as leadActions from '../../actions/leadActions'
 import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadForm from './leadForm'
@@ -36,15 +37,21 @@ class LeadShow extends React.Component {
 
   saveLead(event) {
     event.preventDefault();
-    this.props.actions.updateLead(this.state.lead).then(response => {
-      this.setState({isEditing: false});
-    });
+    this.props.actions.updateLead(this.state.lead).then(
+      response => {
+        console.log('update response', response);
+        this.setState({isEditing: false});
+      },
+      error => {
+        console.log('error response', error)
+      }
+    )
   }
 
   destroyLead(event) {
     event.preventDefault();
     if (confirm('Удалить лид ' + this.props.lead.name + '?')) {
-      this.props.actions.destroyLead(this.props.lead).then(response => {
+      this.props.actions.destroyLead(this.props.lead.id).then(response => {
         console.log('destoroy response', response);
         this.props.history.push('/leads');
       });

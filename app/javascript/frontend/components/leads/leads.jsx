@@ -1,15 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Link} from 'react-router-dom';
-import * as leadActions from '../../actions/leadActions'
-import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
+import * as leadActions from '../../actions/reduxApiMiddlware'
+// import * as leadActions from '../../actions/leadActions'
+import { Row, Col, Panel} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadsList from './leadsList'
 
 class Leads extends React.Component {
   componentDidMount() {
     this.props.actions.loadLeads();
+    console.log('props', this.props);
+    console.log('state', this.state);
+    console.log('actions', this.props.actions);
   }
 
   render() {

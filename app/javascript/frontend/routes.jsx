@@ -31,6 +31,7 @@ class Routes extends React.Component {
           <ProtectedAppRoute exact path="/projects" component={Projects}/>
           <ProtectedAppRoute exact path="/users/current" component={User}/>
           <ProtectedAppRoute exact path="/house-projects" component={HouseProjects}/>
+          <ProtectedAppRoute path="/404" component={NotFound}/>
           <ProtectedAppRoute component={NotFound}/>
         </Switch>
       </BrowserRouter>

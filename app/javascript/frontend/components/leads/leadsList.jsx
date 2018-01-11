@@ -6,6 +6,7 @@ class LeadsList extends React.Component {
 
   handleSelect(event) {
     this.props.load({page: event});
+    console.log('event', event)
   }
 
   render() {

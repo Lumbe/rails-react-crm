@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as leadActions from '../../actions/leadActions';
+import * as leadActions from '../../actions/reduxApiMiddlware';
+// import * as leadActions from '../../actions/leadActions';
 import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader';
 import LeadForm from './leadForm';
@@ -30,7 +31,8 @@ class LeadNew extends React.Component {
   saveLead(e) {
     (e).preventDefault();
     this.props.actions.createLead(this.state.lead).then(response => {
-      this.props.history.push(response.data.lead.id.toString());
+      console.log('response', response)
+      this.props.history.push(response.payload.lead.id.toString());
     });
   }
 

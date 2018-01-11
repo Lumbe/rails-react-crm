@@ -7,7 +7,6 @@
 //         isAuthenticated: false,
 //       }
 //     )
-
 export default {
     leads: {leads: [], meta: {}},
     lead: {},

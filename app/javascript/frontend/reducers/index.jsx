@@ -6,8 +6,12 @@ import {houseProjects, houseProject} from './houseProjectReducer';
 import {notifications} from './notificationReducer'
 import {projects, project} from './projectReducer'
 
+const apiPath = '/api/v1/';
+const baseURL = () => {return process.env.NODE_ENV === 'production' ? 'https://api.servus.vn.ua' + apiPath : 'http://localhost:5000' + apiPath};
+
 const appReducer = combineReducers({
   // short hand property names
+  baseURL,
   currentUser,
   leads,
   lead,

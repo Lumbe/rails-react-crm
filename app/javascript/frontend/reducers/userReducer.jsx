@@ -14,7 +14,7 @@ import {browserHistory} from 'react-router';
 export function user(state = initialState.user, action) {
   switch(action.type) {
     case LOAD_CURRENT_USER_SUCCESS:
-      return action.user
+      return action.user;
     default:
       return state;
   }
