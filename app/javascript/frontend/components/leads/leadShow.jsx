@@ -35,9 +35,8 @@ class LeadShow extends React.Component {
     return this.setState({lead: lead});
   }
 
-  saveLead(event) {
-    event.preventDefault();
-    this.props.actions.updateLead(this.state.lead).then(
+  submitForm(values) {
+    return this.props.actions.updateLead(values).then(
       response => {
         console.log('update response', response);
         this.setState({isEditing: false});
@@ -68,7 +67,7 @@ class LeadShow extends React.Component {
           isEditing={this.state.isEditing}
           title={this.props.lead.name}
           description='Лид'/>
-        {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
+        {this.state.isEditing ? <LeadForm lead={this.props.lead} submitForm={this.submitForm.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
       </Row>
     );
   }

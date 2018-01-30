@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import {leads, lead} from './leadReducer';
 import currentUser from './authUserReducer';
 import {user} from './userReducer';
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   // short hand property names
   baseURL,
   currentUser,
+  form: formReducer,
   leads,
   lead,
   houseProjects,

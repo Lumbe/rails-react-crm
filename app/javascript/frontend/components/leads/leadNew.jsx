@@ -6,6 +6,7 @@ import * as leadActions from '../../actions/reduxApiMiddlware';
 import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader';
 import LeadForm from './leadForm';
+import { SubmissionError } from 'redux-form';
 
 class LeadNew extends React.Component {
   constructor(props) {
@@ -21,17 +22,13 @@ class LeadNew extends React.Component {
     }};
   }
 
-  updateLeadState(event) {
-    const field = event.target.name;
-    const lead = this.state.lead;
-    lead[field] = event.target.value;
-    return this.setState({lead: lead});
+  handleCancel() {
+    this.props.history.push('/leads')
   }
 
-  saveLead(e) {
-    (e).preventDefault();
-    this.props.actions.createLead(this.state.lead).then(response => {
-      console.log('response', response)
+  submitForm(values) {
+    console.log('handleSubmit values', values);
+    this.props.actions.createLead(values).then(response => {
       this.props.history.push(response.payload.lead.id.toString());
     });
   }
@@ -40,7 +37,7 @@ class LeadNew extends React.Component {
     return (
       <Row>
         <LeadHeader isNew={true} title="Новый лид" description=""/>
-        <LeadForm lead={this.state.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/>
+        <LeadForm error={this.state.error} lead={this.state.lead} submitForm={this.submitForm.bind(this)} onCancel={this.handleCancel.bind(this)}/>
       </Row>
     );
   }

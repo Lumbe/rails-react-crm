@@ -5227,9 +5227,9 @@ reduce-function-call@^1.0.1, reduce-function-call@^1.0.2:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-api-middleware@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/redux-api-middleware/-/redux-api-middleware-2.0.1.tgz#945777d04aafc8ddb7a5997fee7eba26128d9b57"
+redux-api-middleware@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/redux-api-middleware/-/redux-api-middleware-2.2.0.tgz#3aa6f29dee0842aecab773867bafff98af1d45ee"
   dependencies:
     babel-plugin-transform-runtime "^6.23.0"
     babel-runtime "^6.25.0"

@@ -1,4 +1,5 @@
-import {LOAD_LEAD, LOAD_LEADS_SUCCESS,LOAD_LEADS_FAILURE, LOAD_LEAD_SUCCESS, LOAD_LEAD_FAILURE, RESET_LEAD} from '../actions/reduxApiMiddlware';
+import {LOAD_LEAD, LOAD_LEADS_SUCCESS,LOAD_LEADS_FAILURE, LOAD_LEAD_SUCCESS, LOAD_LEAD_FAILURE, RESET_LEAD,
+        CREATE_LEAD_REQUEST, CREATE_LEAD_SUCCESS, CREATE_LEAD_FAILURE} from '../actions/reduxApiMiddlware';
 // import {LOAD_LEADS_SUCCESS,LOAD_LEADS_FAILURE, LOAD_LEAD_SUCCESS, LOAD_LEAD_FAILURE, RESET_LEAD} from '../actions/leadActions';
 import initialState from './initialState';
 
@@ -13,6 +14,8 @@ export function leads(state = initialState.leads, action) {
   }
 }
 
+
+// TODO: add actions for UPDATE and CREATE lead(return updated and created lead)
 export function lead(state = initialState.lead, action) {
   switch(action.type) {
     case LOAD_LEAD:
@@ -24,6 +27,15 @@ export function lead(state = initialState.lead, action) {
       return action.payload.lead;
     case RESET_LEAD:
       return action.lead;
+    case CREATE_LEAD_REQUEST:
+      console.log('create_lead_request: ', action);
+      return {...state, lead: {}};
+    case CREATE_LEAD_SUCCESS:
+      console.log('create_lead_success: ', action);
+      return action.payload;
+    case CREATE_LEAD_FAILURE:
+      console.log('create_lead_failure: ', action);
+      return action.payload.lead;
     default:
       return state;
   }

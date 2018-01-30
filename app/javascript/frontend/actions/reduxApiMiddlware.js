@@ -10,7 +10,7 @@ export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_SUCCESS';
 
 export const RESET_LEAD = 'RESET_LEAD';
 
-export const CREATE_LEAD = 'CREATE_LEAD';
+export const CREATE_LEAD_REQUEST = 'CREATE_LEAD_REQUEST';
 export const CREATE_LEAD_SUCCESS = 'CREATE_LEAD_SUCCESS';
 export const CREATE_LEAD_FAILURE = 'CREATE_LEAD_SUCCESS';
 
@@ -53,7 +53,7 @@ export const loadLead = (leadId) => ({
 
 export const createLead = (data) => ({
   [CALL_API]: {
-    types: [CREATE_LEAD, CREATE_LEAD_SUCCESS, CREATE_LEAD_FAILURE],
+    types: [CREATE_LEAD_REQUEST, CREATE_LEAD_SUCCESS, CREATE_LEAD_FAILURE],
     endpoint: (state) => {return state.baseURL + 'leads'},
     method: 'POST',
     headers: (state) => {return {
