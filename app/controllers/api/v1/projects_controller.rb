@@ -45,7 +45,8 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def popular
-    projects = Project.popular
+    # projects = Project.popular
+    projects = Project.where(slug: ['gnap', 'gelios', 'emiliya', 'memfis', 'kili'])
     respond_with projects
   end
 
