@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import {IndexLinkContainer, LinkContainer} from "react-router-bootstrap";
 
 class ProtectedLinks extends React.Component {
@@ -12,9 +11,6 @@ class ProtectedLinks extends React.Component {
         </IndexLinkContainer>
         <LinkContainer to="/leads">
           <NavItem eventKey={2}>Лиды</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/house-projects">
-          <NavItem eventKey={4}>Проекты домов</NavItem>
         </LinkContainer>
         <LinkContainer to="/projects">
           <NavItem eventKey={5}>Проекты</NavItem>

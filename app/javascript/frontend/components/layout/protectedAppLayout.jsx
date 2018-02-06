@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Route, Redirect, withRouter} from 'react-router-dom'
+import {Route, withRouter} from 'react-router-dom'
 import Header from './header'
 import Main from './main'
 import Footer from './footer'
