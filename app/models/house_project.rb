@@ -1,2 +1,0 @@
-class HouseProject < ApplicationRecord
-end

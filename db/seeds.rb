@@ -10,10 +10,6 @@
               phone: Faker::PhoneNumber.cell_phone,
               email: Faker::Internet.email
 
-  HouseProject.create title: Faker::Book.title,
-                      square: Faker::Number.decimal(2),
-                      project_description: Faker::Lorem.sentence
-
   Project.create title: Faker::Book.title,
                       area: Faker::Number.decimal(2),
                       description: Faker::Lorem.sentence

@@ -6,7 +6,6 @@ import LeadShow from './components/leads/leadShow'
 import LeadNew from './components/leads/leadNew'
 import User from './components/users/user'
 import SignIn from './components/users/signIn'
-import HouseProjects from './components/house_projects/houseProjects'
 import NotFound from './components/errors/notFound'
 import About from './components/pages/about'
 import ProtectedAppRoute from './components/layout/protectedAppLayout'
@@ -30,7 +29,6 @@ class Routes extends React.Component {
           <ProtectedAppRoute exact path="/projects/:id" component={ProjectShow}/>
           <ProtectedAppRoute exact path="/projects" component={Projects}/>
           <ProtectedAppRoute exact path="/users/current" component={User}/>
-          <ProtectedAppRoute exact path="/house-projects" component={HouseProjects}/>
           <ProtectedAppRoute component={NotFound}/>
         </Switch>
       </BrowserRouter>
