@@ -101,7 +101,7 @@ class ProjectDetail extends React.Component {
                   <th>Фасады</th>
                   <td>
                     {project.facades && project.facades.map((facade, index) => {
-                      return <div key={index} className="inline-img">
+                      return <div key={index} className="inline-block">
                         <Image src={facade.original}/>
                         <div>Имя файла: {facade.title}</div>
                       </div>
@@ -112,7 +112,7 @@ class ProjectDetail extends React.Component {
                   <th>Фото постренных домов</th>
                   <td>
                     {project.photos && project.photos.map((photo, index) => {
-                      return <div key={index} className="inline-img">
+                      return <div key={index} className="inline-block">
                         <Image src={photo.original}/>
                         <div>Имя файла: {photo.title}</div>
                       </div>

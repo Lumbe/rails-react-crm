@@ -1,13 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import axios from 'axios'
 import * as authActions from '../../actions/authActions'
-import AuthApi from '../../api/authApi'
-import {Panel, Form, FormGroup, FormControl, ControlLabel, Col, Checkbox, Button, InputGroup, Addon} from 'react-bootstrap'
+import {Panel, Form, FormGroup, FormControl, Col, Checkbox, Button, InputGroup, Addon} from 'react-bootstrap'
 import FontAwesome from 'react-fontawesome'
 import NotificationItem from '../common/notificationItem'
+import './signIn.css'
 
 class SignIn extends React.Component {
   constructor(props) {
