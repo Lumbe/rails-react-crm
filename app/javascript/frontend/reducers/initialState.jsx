@@ -13,8 +13,6 @@ export default {
     lead: {},
     projects: {projects: [], meta: {}},
     project: {},
-    houseProjects: [],
-    houseProject: {},
     user: {},
     currentUser: {
                   email: '',

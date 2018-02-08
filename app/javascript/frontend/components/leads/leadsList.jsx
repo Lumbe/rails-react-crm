@@ -13,8 +13,9 @@ class LeadsList extends React.Component {
     const meta = this.props.meta;
     return (
       <div>
-        <Table responsive>
-          <thead>
+        {(leads.length > 1) ?
+          <Table responsive>
+            <thead>
             <tr>
               <th>Статус</th>
               <th>Имя</th>
@@ -22,8 +23,8 @@ class LeadsList extends React.Component {
               <th>E-mail</th>
               <th>Действия</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             {leads.map((lead) => {
               return <tr key={lead.id}>
                 <td>статус</td>
@@ -42,13 +43,16 @@ class LeadsList extends React.Component {
                 </td>
               </tr>
             })}
-          </tbody>
-        </Table>
-        <Pagination
+            </tbody>
+          </Table>
+          :
+          <div className="text-center">Ничего не найдено</div>
+        }
+        {(meta.total_pages > 1) && <Pagination
           bsSize="medium"
           items={meta.total_pages}
           activePage={meta.current_page}
-          onSelect={this.handleSelect.bind(this)} />
+          onSelect={this.handleSelect.bind(this)}/>}
       </div>
     );
   }

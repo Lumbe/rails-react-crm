@@ -41,9 +41,7 @@ export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 export function loadLeadsSuccess(data) {
   return {type: LOAD_LEADS_SUCCESS, data};
 }
-export function loadLeadsFailure() {
-  return {type: LOAD_LEADS_FAILURE, leads: []}
-}
+
 export function createLeadSuccess(lead) {
   return {type: CREATE_LEAD_SUCCESS, lead}
 }
@@ -51,7 +49,7 @@ export function loadLeadSuccess(lead) {
   return {type: LOAD_LEAD_SUCCESS, lead};
 }
 export function loadLeadFailure() {
-  return {type: LOAD_LEAD_SUCCESS, lead: {}};
+  return {type: LOAD_LEAD_FAILURE, lead: {}};
 }
 export function updateLeadSuccess(lead) {
   return {type: UPDATE_LEAD_SUCCESS, lead}
@@ -60,28 +58,21 @@ export function deleteLeadSuccess(lead) {
   return {type: DELETE_LEAD_SUCCESS, lead}
 }
 
-export function resetLeadSuccess() {
-  return {type: RESET_LEAD, lead: {}}
-}
 
-
-// Dispatch actions and send to reducers with redux-thunk
 export function loadLeads(params = null) {
-  // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.getAll(params).then(
       response => {
         dispatch(loadLeadsSuccess(response.data));
         },
       error => {
+        dispatch({type: LOAD_LEADS_FAILURE});
         leadApi.catchError(error);
-        dispatch(loadLeadsFailure());
     })
   }
 }
 
 export function loadLead(lead_id) {
-  // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.getOne(lead_id).then(
       response => {
@@ -96,7 +87,6 @@ export function loadLead(lead_id) {
 }
 
 export function createLead(lead) {
-  // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.create(lead).then(
       response => {
@@ -145,6 +135,6 @@ export function destroyLead(lead) {
 
 export function resetLead() {
   return function(dispatch) {
-    dispatch(resetLeadSuccess());
+    dispatch({type: RESET_LEAD});
   };
 }

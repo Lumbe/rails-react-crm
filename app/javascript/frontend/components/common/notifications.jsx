@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as notificationActions from '../../actions/notificationActions'
 import NotificationItem from './notificationItem'
-
+import './notifications.css'
+import {Grid, Row, Col} from 'react-bootstrap'
 
 class Notifications extends React.Component {
     handleDismiss(index) {
@@ -12,17 +13,21 @@ class Notifications extends React.Component {
 
     componentWillReceiveProps(props) {
         if (props.notifications.length > 0) {
-            setTimeout(() => {this.handleDismiss(0)}, 3000);
+            setTimeout(() => {this.handleDismiss(0)}, 5000);
         }
     }
 
     render() {
         return (
-            <div className="notifications-container">
+          <div className="notifications-container">
+            <Grid fluid><Row>
+              <Col md={3} mdPush={9}  xs={12}>
                 {this.props.notifications.map((notification, index) => {
                     return <NotificationItem key={index} {...notification} onDismiss={() => this.handleDismiss(index)}/>
                 })}
-            </div>
+              </Col>
+            </Row></Grid>
+          </div>
         )
     }
 

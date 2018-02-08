@@ -4,6 +4,7 @@ import {Route, withRouter} from 'react-router-dom'
 import Header from './header'
 import Main from './main'
 import Footer from './footer'
+import Notifications from '../common/notifications'
 
 class ProtectedAppLayout extends React.Component {
   componentWillMount() {
@@ -22,10 +23,11 @@ class ProtectedAppLayout extends React.Component {
 
 
   render() {
-    const { component: Component, ...rest } = this.props;
+    const { component: Component, notifications, ...rest } = this.props;
     return <Route {...rest} render={matchProps => (
       <div>
         <Header isAuthenticated={this.props.currentUser.isAuthenticated}/>
+        {notifications && <Notifications/>}
         <Main>
           <Component {...matchProps} />
         </Main>
@@ -36,7 +38,10 @@ class ProtectedAppLayout extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return { currentUser: state.currentUser}
+  return {
+    currentUser: state.currentUser,
+    notifications: state.notifications
+  }
 }
 
 

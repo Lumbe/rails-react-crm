@@ -2,7 +2,6 @@ import {combineReducers} from 'redux';
 import {leads, lead} from './leadReducer';
 import currentUser from './authUserReducer';
 import {user} from './userReducer';
-import {houseProjects, houseProject} from './houseProjectReducer';
 import {notifications} from './notificationReducer'
 import {projects, project} from './projectReducer'
 
@@ -11,8 +10,6 @@ const appReducer = combineReducers({
   currentUser,
   leads,
   lead,
-  houseProjects,
-  houseProject,
   user,
   notifications,
   projects,

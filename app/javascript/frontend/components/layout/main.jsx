@@ -1,7 +1,5 @@
 import React from 'react'
-import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
-import {connect} from 'react-redux'
-import Notifications from '../common/notifications'
+import {Grid} from 'react-bootstrap'
 
 class Main extends React.Component {
   constructor(props) {
@@ -29,17 +27,9 @@ class Main extends React.Component {
 
   render() {
     return <Grid id="main-container" fluid>
-        {this.props.notifications && <Notifications/>}
       {this.props.children}
     </Grid>
   }
 }
 
-function mapStateToProps(state) {
-    return {
-        notifications: state.notifications
-    };
-}
-
-
-export default connect(mapStateToProps)(Main);
+export default Main

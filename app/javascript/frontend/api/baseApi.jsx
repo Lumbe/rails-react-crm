@@ -35,7 +35,7 @@ class BaseApi {
   }
   static catchError(error){
     if (error.response && error.response.status >= 500) {
-      console.log('error catched: ', error.response);
+      console.log('server error catched: ', error.response);
       return store.dispatch(createNotification({
         type: 'error',
         message: ("Server Error: " + error.response.status.toString()) || 'Something went wrong.'
@@ -59,8 +59,14 @@ class BaseApi {
         type: 'error',
         message: message || 'Something went wrong.'
       }))
+    } else if (!error.response) {
+      return store.dispatch(createNotification({
+        type: 'error',
+        message: ("Проверьте подключение к интернету")
+      }));
     } else {
-       throw error
+        console.log('throwed error', error);
+        throw error
     }
   }
 }

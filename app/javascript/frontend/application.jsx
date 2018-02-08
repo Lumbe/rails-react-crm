@@ -5,7 +5,7 @@ import {persistStore} from 'redux-persist'
 import localForage from 'localforage'
 import configureStore from './store/configureStore'
 import Routes from './routes'
-
+import {createNotification} from './actions/notificationActions'
 
 export const store = configureStore();
 
@@ -17,6 +17,7 @@ window.react = React;
 window.reactDOM = ReactDOM;
 import leadApi from './api/leadApi'
 window.leadApi = leadApi;
+window.createNotification = createNotification;
 
 
 class Application extends React.Component {

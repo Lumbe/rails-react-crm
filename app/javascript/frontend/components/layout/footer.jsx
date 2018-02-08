@@ -1,5 +1,6 @@
 import React from 'react'
-import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
+import {Grid} from 'react-bootstrap'
+import './footer.css'
 
 class Footer extends React.Component {
   constructor(props) {

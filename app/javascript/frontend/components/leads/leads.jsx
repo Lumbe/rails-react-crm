@@ -1,24 +1,42 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Link} from 'react-router-dom';
 import * as leadActions from '../../actions/leadActions'
-import {Grid, Row, Col, Clearfix, PageHeader, Table, Button, ButtonToolbar, Panel} from 'react-bootstrap'
+import {Row, Col, Panel} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadsList from './leadsList'
+import Loader from '../common/loader'
 
 class Leads extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isLoading: false}
+  }
+
+  load(params) {
+    this.setState({isLoading: true});
+    this.props.actions.loadLeads(params).then(() => {this.setState({isLoading: false})})
+  }
+
   componentDidMount() {
-    this.props.actions.loadLeads();
+    this.load();
   }
 
   render() {
     return (
       <Row>
-          <LeadHeader isIndex={true}/>
+        <LeadHeader isIndex={true}/>
         <Col md={12} xs={12}>
           <Panel>
-            <LeadsList meta={this.props.meta} leads={this.props.leads} load={this.props.actions.loadLeads}/>
+            {this.state.isLoading ?
+                <Loader/>
+              :
+                <LeadsList
+                  leads={this.props.leads}
+                  meta={this.props.meta}
+                  load={this.load.bind(this)}
+                />
+            }
           </Panel>
         </Col>
       </Row>
@@ -26,7 +44,7 @@ class Leads extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     leads: state.leads.leads,
     meta: state.leads.meta
