@@ -1,12 +1,17 @@
 .notifications-container {
-    position: absolute;
-    z-index: 1000;
-    width: 100vw;
+    position: fixed;
+    width: 22.5%;
     top: 60px;
+    right: 20px;
     padding-right: 20px;
-    max-height: 80%;
-    overflow-y: scroll;
+    max-height: 85vh;
+    overflow-y: auto;
+    z-index: 9999;
+}
 
+.notifications-container .alert {
+    position: relative;
+    z-index: 1000;
 }
 
 .notifications-container .alert:last-child {

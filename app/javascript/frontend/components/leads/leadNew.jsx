@@ -30,7 +30,7 @@ class LeadNew extends React.Component {
   saveLead(e) {
     (e).preventDefault();
     this.props.actions.createLead(this.state.lead).then(response => {
-      this.props.history.push(response.data.lead.id.toString());
+      response && this.props.history.push(response.data.lead.id.toString());
     });
   }
 

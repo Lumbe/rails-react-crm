@@ -38,15 +38,13 @@ class BaseApi {
       console.log('server error catched: ', error.response);
       return store.dispatch(createNotification({
         type: 'error',
-        message: ("Server Error: " + error.response.status.toString()) || 'Something went wrong.'
+        message: ("Server Error: " + error.response.status.toString())
       }))
-      // throw error;
     } else if (error.response && error.response.data.error) {
         return store.dispatch(createNotification({
             type: 'error',
-            message: error.response.data.error || 'Something went wrong.'
+            message: error.response.data.error
         }))
-        // throw error;
     } else if (error.response && error.response.data.errors) {
       let errors = error.response.data.errors;
       let message = [];
@@ -57,7 +55,7 @@ class BaseApi {
       }
       return store.dispatch(createNotification({
         type: 'error',
-        message: message || 'Something went wrong.'
+        message: message
       }))
     } else if (!error.response) {
       return store.dispatch(createNotification({
@@ -65,7 +63,7 @@ class BaseApi {
         message: ("Проверьте подключение к интернету")
       }));
     } else {
-        console.log('throwed error', error);
+        console.log('unhandled error', error);
         throw error
     }
   }

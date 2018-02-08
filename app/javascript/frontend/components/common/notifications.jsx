@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux';
 import * as notificationActions from '../../actions/notificationActions'
 import NotificationItem from './notificationItem'
 import './notifications.css'
-import {Grid, Row, Col} from 'react-bootstrap'
 
 class Notifications extends React.Component {
     handleDismiss(index) {
@@ -20,20 +19,16 @@ class Notifications extends React.Component {
     render() {
         return (
           <div className="notifications-container">
-            <Grid fluid><Row>
-              <Col md={3} mdPush={9}  xs={12}>
                 {this.props.notifications.map((notification, index) => {
                     return <NotificationItem key={index} {...notification} onDismiss={() => this.handleDismiss(index)}/>
                 })}
-              </Col>
-            </Row></Grid>
           </div>
         )
     }
 
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
         notifications: state.notifications
     };
