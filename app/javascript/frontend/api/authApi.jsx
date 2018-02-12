@@ -17,7 +17,7 @@ class AuthApi extends BaseApi {
   static createSession(user_credentials) {
     var data = {};
     data[this.modelName()] = user_credentials;
-    return axios.post(this.path('/sign_in'), data).catch(this.catchError);
+    return axios.post(this.path('/sign_in'), data)
   }
 }
 

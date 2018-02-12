@@ -1,11 +1,7 @@
 import leadApi from '../api/leadApi';
-import * as notificationActions from './notificationActions'
-// Action types
-// export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
-// export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
+import {createNotification} from "./notificationActions";
 
-//Lead list
-export const LOAD_LEADS = 'LOAD_LEADS';
+
 export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
 export const LOAD_LEADS_FAILURE = 'LOAD_LEADS_FAILURE';
 
@@ -16,20 +12,14 @@ export const CREATE_LEAD_FAILURE = 'CREATE_LEAD_FAILURE';
 
 // Update lead
 export const UPDATE_LEAD_SUCCESS = 'UPDATE_LEAD_SUCCESS';
-
-//Validate lead fields like Name, Phone on the server
-export const VALIDATE_LEAD_FIELDS = 'VALIDATE_LEAD_FIELDS';
-export const VALIDATE_LEAD_FIELDS_SUCCESS = 'VALIDATE_LEAD_FIELDS_SUCCESS';
-export const VALIDATE_LEAD_FIELDS_FAILURE = 'VALIDATE_LEAD_FIELDS_FAILURE';
+export const UPDATE_LEAD_FAILURE = 'UPDATE_LEAD_FAILURE';
 
 //Load lead
-export const LOAD_LEAD = 'LOAD_LEAD';
 export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
 export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_FAILURE';
 export const RESET_LEAD = 'RESET_LEAD';
 
 //Delete lead
-export const DELETE_LEAD = 'DELETE_LEAD';
 export const DELETE_LEAD_SUCCESS = 'DELETE_LEAD_SUCCESS';
 export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 
@@ -45,19 +35,43 @@ export function loadLeadsSuccess(data) {
 export function createLeadSuccess(lead) {
   return {type: CREATE_LEAD_SUCCESS, lead}
 }
+export function createLeadFailure() {
+  return {type: CREATE_LEAD_FAILURE}
+}
 export function loadLeadSuccess(lead) {
   return {type: LOAD_LEAD_SUCCESS, lead};
 }
 export function loadLeadFailure() {
-  return {type: LOAD_LEAD_FAILURE, lead: {}};
+  return {type: LOAD_LEAD_FAILURE};
 }
 export function updateLeadSuccess(lead) {
   return {type: UPDATE_LEAD_SUCCESS, lead}
 }
-export function deleteLeadSuccess(lead) {
-  return {type: DELETE_LEAD_SUCCESS, lead}
+export function updateLeadFailure(message) {
+  return dispatch => {
+    dispatch(createNotification({
+      type: 'error',
+      message: message
+    }));
+  }
+}
+export function destroyLeadSuccess(message) {
+  return dispatch => {
+    dispatch(createNotification({
+      type: 'info',
+      message: message
+    }));
+  }
 }
 
+export function destroyLeadFailure(message) {
+  return dispatch => {
+    dispatch(createNotification({
+      type: 'error',
+      message: message
+    }));
+  }
+}
 
 export function loadLeads(params = null) {
   return function(dispatch) {
@@ -67,7 +81,6 @@ export function loadLeads(params = null) {
         },
       error => {
         dispatch({type: LOAD_LEADS_FAILURE});
-        leadApi.catchError(error);
     })
   }
 }
@@ -79,7 +92,6 @@ export function loadLead(lead_id) {
         dispatch(loadLeadSuccess(response.data.lead));
       },
       error => {
-        leadApi.catchError(error);
         dispatch(loadLeadFailure());
       }
     )
@@ -94,15 +106,13 @@ export function createLead(lead) {
         return response;
       },
       error => {
-        leadApi.catchError(error);
-        // dispatch(createLeadFailure());
+        dispatch(createLeadFailure());
       }
     )
   };
 }
 
 export function updateLead(lead) {
-  // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.update(lead).then(
       response => {
@@ -110,24 +120,20 @@ export function updateLead(lead) {
         return response;
       },
       error => {
-        leadApi.catchError(error);
-        // dispatch(createLeadFailure());
+        dispatch(updateLeadFailure('Не удалось изменить лид'));
       }
     )
   };
 }
 
 export function destroyLead(lead) {
-  // make async call to api, handle promise, dispatch action when promise is resolved
   return function(dispatch) {
     return leadApi.destroy(lead).then(
       response => {
-        dispatch(updateLeadSuccess(response.data.lead));
-        return response;
+        dispatch(destroyLeadSuccess(`Лид ${lead.name} был удален`));
       },
       error => {
-        leadApi.catchError(error);
-        // dispatch(createLeadFailure());
+        dispatch(destroyLeadFailure(`Не удалось удалить лид ${lead.name}`));
       }
     )
   };

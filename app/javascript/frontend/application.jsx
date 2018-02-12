@@ -6,7 +6,11 @@ import localForage from 'localforage'
 import configureStore from './store/configureStore'
 import Routes from './routes'
 import './application.css'
-import {createNotification} from './actions/notificationActions'
+import fontawesome from '@fortawesome/fontawesome'
+import icons from '@fortawesome/fontawesome-free-solid/'
+
+fontawesome.library.add(icons);
+
 
 export const store = configureStore();
 
@@ -18,7 +22,6 @@ window.react = React;
 window.reactDOM = ReactDOM;
 import leadApi from './api/leadApi'
 window.leadApi = leadApi;
-window.createNotification = createNotification;
 
 
 class Application extends React.Component {

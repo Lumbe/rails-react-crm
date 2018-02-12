@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as authActions from '../../actions/authActions'
 import {Panel, Form, FormGroup, FormControl, Col, Checkbox, Button, InputGroup, Addon} from 'react-bootstrap'
-import FontAwesome from 'react-fontawesome'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import NotificationItem from '../common/notificationItem'
 import './signIn.css'
 
@@ -52,7 +52,7 @@ class SignIn extends React.Component {
               <FormGroup controlId="formHorizontalEmail">
                 <InputGroup>
                   <InputGroup.Addon>
-                    <FontAwesome name="envelope" fixedWidth={true}/>
+                    <FontAwesomeIcon icon="envelope" fixedWidth/>
                   </InputGroup.Addon>
                   <FormControl name="email" type="email" placeholder="Email" value={this.state.email} onChange={this.handleChange.bind(this)} />
                 </InputGroup>
@@ -63,7 +63,7 @@ class SignIn extends React.Component {
               <FormGroup controlId="formHorizontalPassword">
                 <InputGroup>
                   <InputGroup.Addon>
-                    <FontAwesome name="lock" fixedWidth={true}/>
+                    <FontAwesomeIcon icon="lock" fixedWidth/>
                   </InputGroup.Addon>
                   <FormControl name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange.bind(this)}/>
                 </InputGroup>

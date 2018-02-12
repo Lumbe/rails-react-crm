@@ -11,7 +11,7 @@ import LeadDetail from './leadDetail'
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isEditing: false}
+    this.state = {isEditing: false, isSubmitting: false}
   }
 
   componentDidMount() {
@@ -36,16 +36,19 @@ class LeadShow extends React.Component {
 
   saveLead(event) {
     event.preventDefault();
+    this.setState({isSubmitting: true});
     this.props.actions.updateLead(this.state.lead).then(response => {
-      this.setState({isEditing: false});
+      this.setState({isSubmitting: false});
+      response && this.setState({isEditing: false});
     });
   }
 
   destroyLead(event) {
     event.preventDefault();
+    this.setState({isSubmitting: true});
     if (confirm('Удалить лид ' + this.props.lead.name + '?')) {
-      this.props.actions.destroyLead(this.props.lead).then(response => {
-        console.log('destoroy response', response);
+      this.props.actions.destroyLead(this.props.lead).then(() => {
+        this.setState({isSubmitting: false});
         this.props.history.push('/leads');
       });
     }
@@ -61,7 +64,7 @@ class LeadShow extends React.Component {
           isEditing={this.state.isEditing}
           title={this.props.lead.name}
           description='Лид'/>
-        {this.state.isEditing ? <LeadForm lead={this.props.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
+        {this.state.isEditing ? <LeadForm lead={this.props.lead} isSubmitting={this.state.isSubmitting} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
       </Row>
     );
   }

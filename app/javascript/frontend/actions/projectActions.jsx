@@ -73,7 +73,6 @@ export function loadProjects(params = null) {
         dispatch(loadProjectsSuccess(response.data));
         },
       error => {
-        projectApi.catchError(error);
         dispatch(loadProjectsFailure());
     })
   }
@@ -87,7 +86,6 @@ export function loadProject(project_id) {
         dispatch(loadProjectSuccess(response.data.project));
       },
       error => {
-        projectApi.catchError(error);
         dispatch(loadProjectFailure());
       }
     )
@@ -103,7 +101,6 @@ export function createProject(project) {
         return response;
       },
       error => {
-        projectApi.catchError(error);
         // dispatch(createProjectFailure());
       }
     )
@@ -119,7 +116,6 @@ export function updateProject(id, data) {
         return response;
       },
       error => {
-        projectApi.catchError(error);
         // dispatch(createProjectFailure());
       }
     )
@@ -135,7 +131,6 @@ export function destroyProject(project) {
         return response;
       },
       error => {
-        projectApi.catchError(error);
         // dispatch(createProjectFailure());
       }
     )

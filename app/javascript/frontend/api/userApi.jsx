@@ -7,7 +7,7 @@ class UserApi extends BaseApi {
   }
 
   static loadCurrentUser() {
-    return axios.get(this.path('/current')).catch(this.catchError);
+    return axios.get(this.path('/current'))
   }
 }
 

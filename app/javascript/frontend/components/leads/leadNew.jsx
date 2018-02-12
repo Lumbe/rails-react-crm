@@ -13,11 +13,14 @@ class LeadNew extends React.Component {
   }
 
   defaultProps() {
-    return { lead: {
-      name: '',
-      phone: '',
-      email: ''
-    }};
+    return {
+      isSubmitting: false,
+      lead: {
+        name: '',
+        phone: '',
+        email: ''
+      }
+    };
   }
 
   updateLeadState(event) {
@@ -29,7 +32,9 @@ class LeadNew extends React.Component {
 
   saveLead(e) {
     (e).preventDefault();
+    this.setState({isSubmitting: true});
     this.props.actions.createLead(this.state.lead).then(response => {
+      this.setState({isSubmitting: false});
       response && this.props.history.push(response.data.lead.id.toString());
     });
   }
@@ -38,7 +43,7 @@ class LeadNew extends React.Component {
     return (
       <Row>
         <LeadHeader isNew={true} title="Новый лид" description=""/>
-        <LeadForm lead={this.state.lead} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/>
+        <LeadForm lead={this.state.lead} isSubmitting={this.state.isSubmitting} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/>
       </Row>
     );
   }
