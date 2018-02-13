@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221104709) do
+ActiveRecord::Schema.define(version: 20180213110411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,21 @@ ActiveRecord::Schema.define(version: 20171221104709) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.string "project"
+    t.string "square"
+    t.string "floor"
+    t.text "question"
+    t.string "region"
+    t.string "source"
+    t.boolean "online_request", default: false
+    t.boolean "come_in_office", default: false
+    t.boolean "phone_call", default: false
+    t.integer "status", default: 0
+    t.integer "user_id"
+    t.integer "assigned_to"
+    t.integer "department_id"
+    t.integer "contact_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -120,6 +135,9 @@ ActiveRecord::Schema.define(version: 20171221104709) do
     t.datetime "updated_at", null: false
     t.string "access_token"
     t.date "access_token_expired_at"
+    t.string "first_name", default: ""
+    t.string "last_name", default: ""
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
