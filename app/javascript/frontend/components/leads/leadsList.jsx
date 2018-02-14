@@ -21,6 +21,7 @@ class LeadsList extends React.Component {
               <th>Имя</th>
               <th>Телефон</th>
               <th>E-mail</th>
+              <th>Представительство</th>
               <th>Действия</th>
             </tr>
             </thead>
@@ -35,6 +36,7 @@ class LeadsList extends React.Component {
                 </td>
                 <td>{lead.phone}</td>
                 <td>{lead.email}</td>
+                <td>{lead.departmentName}</td>
                 <td>
                   <ButtonToolbar>
                     <Button>edit</Button>

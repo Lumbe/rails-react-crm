@@ -1,7 +1,7 @@
 class Lead < ApplicationRecord
   enum status: [:newly, :closed, :converted, :sended, :repeated, :claimed]
 
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to, optional: true
   belongs_to :department
   # belongs_to :contact, optional: true
