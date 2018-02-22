@@ -1,22 +1,32 @@
 class LeadSerializer < ActiveModel::Serializer
   attributes :id, :name, :phone, :email, :location, :project,
              :square, :floor, :question, :region, :source, :online_request,
-             :come_in_office, :phone_call, :status, :whoAdded, :assignedTo,
-             :departmentName
+             :come_in_office, :phone_call, :status, :user, :assigned_to,
+             :department
 
   def departmentName
-    if object.department.present?
-      object.department.name
-    else
-      nil
+    object.department.name if object.department.present?
+  end
+
+  def user
+    if object.user.present?
+      {
+        id: object.user.id,
+        email: object.user.email,
+        first_name: object.user.first_name,
+        last_name: object.user.last_name
+      } if object.user.present?
     end
   end
 
-  def whoAdded
-    object.user.first_name + ' ' + object.user.last_name if object.user.present?
-  end
-
-  def assignedTo
-    object.assignee.first_name + ' ' + object.assignee.last_name if object.assignee.present?
+  def assigned_to
+    if object.assignee.present?
+      {
+          id: object.assignee.id,
+          email: object.assignee.email,
+          first_name: object.assignee.first_name,
+          last_name: object.assignee.last_name
+      }
+    end
   end
 end

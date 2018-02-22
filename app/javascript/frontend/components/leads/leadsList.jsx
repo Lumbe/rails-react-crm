@@ -13,7 +13,7 @@ class LeadsList extends React.Component {
     const meta = this.props.meta;
     return (
       <div>
-        {(leads.length > 1) ?
+        {leads ?
           <Table responsive>
             <thead>
             <tr>

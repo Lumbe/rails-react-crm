@@ -6,7 +6,8 @@ import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadForm from './leadForm'
 import LeadDetail from './leadDetail'
-
+import {getLead} from '../../reducers/leadReducer'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 class LeadShow extends React.Component {
   constructor(props) {
@@ -15,12 +16,10 @@ class LeadShow extends React.Component {
   }
 
   componentDidMount() {
-    var lead_id = this.props.match.params.id;
-    this.props.actions.loadLead(lead_id);
-  }
-
-  componentWillUnmount() {
-    this.props.actions.resetLead();
+    if (!this.props.lead) {
+      let lead_id = this.props.match.params.id;
+      this.props.actions.loadLead(lead_id);
+    }
   }
 
   toggleEdit() {
@@ -55,23 +54,34 @@ class LeadShow extends React.Component {
   }
 
   render() {
+    const {lead} = this.props;
     return (
       <Row>
-        <LeadHeader
-          isShow={true}
-          onEditClick={this.toggleEdit.bind(this)}
-          handleDestroy={this.destroyLead.bind(this)}
-          isEditing={this.state.isEditing}
-          title={this.props.lead.name}
-          description='Лид'/>
-        {this.state.isEditing ? <LeadForm lead={this.props.lead} isSubmitting={this.state.isSubmitting} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/> : <LeadDetail  lead={this.props.lead}/>}
+        {!lead ?
+          <FontAwesomeIcon icon="spinner" spin/>
+        :
+          <div><LeadHeader
+            isShow={true}
+            onEditClick={this.toggleEdit.bind(this)}
+            handleDestroy={this.destroyLead.bind(this)}
+            isEditing={this.state.isEditing}
+            title={lead.name}
+            description='Лид'/>
+          {this.state.isEditing ?
+            <LeadForm lead={lead} isSubmitting={this.state.isSubmitting} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/>
+            :
+            <LeadDetail  lead={lead}/>
+          }</div>
+        }
       </Row>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
-  return { lead: state.lead };
+  let itemId = ownProps.match.params.id;
+  console.log('getLead', getLead(state, itemId));
+  return getLead(state, itemId);
 }
 
 function mapDispatchToProps(dispatch) {

@@ -4,16 +4,19 @@ import currentUser from './authUserReducer';
 import {user} from './userReducer';
 import {notifications} from './notificationReducer'
 import {projects, project} from './projectReducer'
+import {entities} from './entitiesReducer'
 
 const appReducer = combineReducers({
-  // short hand property names
+  // short hand property names:
+  // 'user' translates to 'user: user'
+  // so 'user' will contain value returned from function user (userReducer)
   currentUser,
   leads,
-  lead,
   user,
   notifications,
   projects,
-  project
+  project,
+  entities
 });
 
 const rootReducer = (state, action) => {

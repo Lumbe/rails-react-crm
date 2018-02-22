@@ -7,41 +7,49 @@ import {
   CREATE_LEAD_FAILURE,
   UPDATE_LEAD_SUCCESS,
   UPDATE_LEAD_FAILURE,
-  RESET_LEAD
+  DELETE_LEAD_SUCCESS
 } from '../actions/leadActions';
 import initialState from './initialState';
+import {denormalize} from 'normalizr'
+import {leadSchema, leadListSchema} from "../api/schema";
+
 
 export function leads(state = initialState.leads, action) {
+  let newState = null;
   switch(action.type) {
     case LOAD_LEADS_SUCCESS:
-      return {...state, leads: action.data.leads, meta: action.data.meta};
-    case LOAD_LEADS_FAILURE:
-      console.log('action', action);
-      return {leads: [], meta: {}};
-    default:
-      return state;
-  }
-}
-
-export function lead(state = initialState.lead, action) {
-  switch(action.type) {
-    case LOAD_LEAD_SUCCESS:
-      return action.lead;
-    case LOAD_LEAD_FAILURE:
-      return {};
+      newState = state;
+      newState.data = [...action.result];
+      newState.meta = action.meta;
+      return newState;
     case CREATE_LEAD_SUCCESS:
-      return action.lead;
-    case CREATE_LEAD_FAILURE:
-      return {};
-    case UPDATE_LEAD_SUCCESS:
-      return action.lead;
-    case UPDATE_LEAD_FAILURE:
-      return state;
-    case RESET_LEAD:
-      return {};
+      newState = state;
+      newState.data = [action.result, ...newState.data];
+      return newState;
+    // case UPDATE_LEAD_SUCCESS:
+    //   newState = state;
+    //   console.log('update action', action);
+    //   return newState;
+    case DELETE_LEAD_SUCCESS:
+      newState = state;
+      newState.data = newState.data.filter((id) => {return id !== action.id});
+      return newState;
     default:
       return state;
   }
 }
 
+export function getLeads(state) {
+  let leads = denormalize(state.leads.data || [], leadListSchema, state.entities);
+  return {
+    leads: leads,
+    meta: state.leads.meta
+  }
+}
 
+export function getLead(state, id) {
+  let lead = denormalize(state.entities.leads[id], leadSchema, state.entities);
+  return {
+    lead: lead || null
+  }
+}

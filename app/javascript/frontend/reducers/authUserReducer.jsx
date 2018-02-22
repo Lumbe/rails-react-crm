@@ -9,10 +9,10 @@ export default function authUserReducer(state = initialState.currentUser, action
       if (action.payload.currentUser && action.payload.currentUser.token) {
         setAuthHeaderToken(action.payload.currentUser.token);
       }
-      return state
+      return state;
     case CREATE_USER_SESSION_SUCCESS:
       setAuthHeaderToken(action.user.token);
-      return {email: action.user.email, token: action.user.token, isAuthenticated: true}
+      return {email: action.user.email, token: action.user.token, isAuthenticated: true, firstName: action.user.first_name, lastName: action.user.last_name}
     case DESTROY_USER_SESSION_SUCCESS:
       removeAuthHeaderToken();
       return {email: null, token: null, isAuthenticated: false}

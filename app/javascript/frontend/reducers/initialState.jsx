@@ -9,8 +9,8 @@
 //     )
 
 export default {
-    leads: {leads: [], meta: {}},
-    lead: {},
+    entities: {},
+    leads: {data: [], meta: {}},
     projects: {projects: [], meta: {}},
     project: {},
     user: {},
@@ -19,6 +19,5 @@ export default {
                   token: null,
                   isAuthenticated: false,
                 },
-    notifications: [],
-    notification: null
+    notifications: []
 }

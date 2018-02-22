@@ -1,5 +1,5 @@
 class SessionSerializer < ActiveModel::Serializer
-  attributes :token, :email
+  attributes :token, :email, :first_name, :last_name
 
   def user_id
     object.id

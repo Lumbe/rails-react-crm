@@ -61,6 +61,21 @@ class LeadForm extends React.Component {
                                 </FormGroup>
                               </td>
                             </tr>
+                            <tr>
+                              <th>Представительство</th>
+                              <td>
+                                <FormGroup>
+                                  <FormControl
+                                    name="department_id"
+                                    bsSize="sm"
+                                    type="text"
+                                    placeholder="22"
+                                    value={this.props.lead.department}
+                                    onChange={this.props.onChange}
+                                  />
+                                </FormGroup>
+                              </td>
+                            </tr>
                         </tbody>
                       </Table>
                     </Col>

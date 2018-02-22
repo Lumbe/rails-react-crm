@@ -12,9 +12,10 @@ class UserLinks extends React.Component {
   }
 
   render() {
+    const user = this.props.currentUser;
     if (this.props.isAuthenticated) {
       return <Nav pullRight>
-        <NavDropdown eventKey={3} title={"Привет, " + this.props.currentUser.email} id="basic-nav-dropdown">
+        <NavDropdown eventKey={3} title={`${user.firstName} ${user.lastName}`} id="basic-nav-dropdown">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>
           <MenuItem eventKey={3.3}>Something else here</MenuItem>

@@ -1,6 +1,7 @@
 import leadApi from '../api/leadApi';
 import {createNotification} from "./notificationActions";
-
+import {leadSchema, leadListSchema} from "../api/schema";
+import {normalize} from 'normalizr'
 
 export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
 export const LOAD_LEADS_FAILURE = 'LOAD_LEADS_FAILURE';
@@ -17,35 +18,32 @@ export const UPDATE_LEAD_FAILURE = 'UPDATE_LEAD_FAILURE';
 //Load lead
 export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
 export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_FAILURE';
-export const RESET_LEAD = 'RESET_LEAD';
 
 //Delete lead
 export const DELETE_LEAD_SUCCESS = 'DELETE_LEAD_SUCCESS';
 export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 
 
-
-
 // Actions
 //Lead list
-export function loadLeadsSuccess(data) {
-  return {type: LOAD_LEADS_SUCCESS, data};
+export function loadLeadsSuccess(leads, meta) {
+  return {type: LOAD_LEADS_SUCCESS, ...normalize(leads, leadListSchema), meta};
 }
 
-export function createLeadSuccess(lead) {
-  return {type: CREATE_LEAD_SUCCESS, lead}
+export function createLeadSuccess(data) {
+  return {type: CREATE_LEAD_SUCCESS, ...normalize(data, leadSchema)}
 }
 export function createLeadFailure() {
   return {type: CREATE_LEAD_FAILURE}
 }
-export function loadLeadSuccess(lead) {
-  return {type: LOAD_LEAD_SUCCESS, lead};
+export function loadLeadSuccess(data) {
+  return {type: LOAD_LEAD_SUCCESS, ...normalize(data, leadSchema)};
 }
 export function loadLeadFailure() {
   return {type: LOAD_LEAD_FAILURE};
 }
-export function updateLeadSuccess(lead) {
-  return {type: UPDATE_LEAD_SUCCESS, lead}
+export function updateLeadSuccess(data) {
+  return {type: UPDATE_LEAD_SUCCESS, ...normalize(data, leadSchema)}
 }
 export function updateLeadFailure(message) {
   return dispatch => {
@@ -55,13 +53,8 @@ export function updateLeadFailure(message) {
     }));
   }
 }
-export function destroyLeadSuccess(message) {
-  return dispatch => {
-    dispatch(createNotification({
-      type: 'info',
-      message: message
-    }));
-  }
+export function destroyLeadSuccess(id) {
+  return {type: DELETE_LEAD_SUCCESS, id}
 }
 
 export function destroyLeadFailure(message) {
@@ -77,11 +70,10 @@ export function loadLeads(params = null) {
   return function(dispatch) {
     return leadApi.getAll(params).then(
       response => {
-        dispatch(loadLeadsSuccess(response.data));
+        dispatch(loadLeadsSuccess(response.data.leads, response.data.meta));
         },
-      error => {
-        dispatch({type: LOAD_LEADS_FAILURE});
-    })
+      () => dispatch({type: LOAD_LEADS_FAILURE})
+    )
   }
 }
 
@@ -91,11 +83,9 @@ export function loadLead(lead_id) {
       response => {
         dispatch(loadLeadSuccess(response.data.lead));
       },
-      error => {
-        dispatch(loadLeadFailure());
-      }
+      () => dispatch(loadLeadFailure())
     )
-  };
+  }
 }
 
 export function createLead(lead) {
@@ -105,9 +95,7 @@ export function createLead(lead) {
         dispatch(createLeadSuccess(response.data.lead));
         return response;
       },
-      error => {
-        dispatch(createLeadFailure());
-      }
+      () => dispatch(createLeadFailure())
     )
   };
 }
@@ -116,12 +104,11 @@ export function updateLead(lead) {
   return function(dispatch) {
     return leadApi.update(lead).then(
       response => {
+        console.log('updateLead', response.data.lead);
         dispatch(updateLeadSuccess(response.data.lead));
         return response;
       },
-      error => {
-        dispatch(updateLeadFailure('Не удалось изменить лид'));
-      }
+      () => dispatch(updateLeadFailure('Не удалось изменить лид'))
     )
   };
 }
@@ -129,18 +116,14 @@ export function updateLead(lead) {
 export function destroyLead(lead) {
   return function(dispatch) {
     return leadApi.destroy(lead).then(
-      response => {
-        dispatch(destroyLeadSuccess(`Лид ${lead.name} был удален`));
+      () => {
+        dispatch(destroyLeadSuccess(lead.id));
+        dispatch(createNotification({
+          type: 'info',
+          message: `Лид ${lead.name} был удален`
+        }));
       },
-      error => {
-        dispatch(destroyLeadFailure(`Не удалось удалить лид ${lead.name}`));
-      }
+      () => dispatch(destroyLeadFailure(`Не удалось удалить лид ${lead.name}`))
     )
-  };
-}
-
-export function resetLead() {
-  return function(dispatch) {
-    dispatch({type: RESET_LEAD});
   };
 }

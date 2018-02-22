@@ -2,7 +2,8 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   before_action :load_lead, only: [:show, :update]
 
   def index
-    leads = Lead.all.order(created_at: :desc).page(params[:page] || 1)
+    # leads = Lead.all.order(created_at: :desc).page(params[:page] || 1)
+    leads = Lead.where(department: current_user.departments).order(created_at: :desc).page(params[:page] || 1)
     respond_with leads, meta: pagination_meta(leads)
 
   end
@@ -31,6 +32,6 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   end
 
   def lead_params
-    params.require(:lead).permit(:name, :email, :phone)
+    params.require(:lead).permit(:name, :email, :phone, :department_id)
   end
 end

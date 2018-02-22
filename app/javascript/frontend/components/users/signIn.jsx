@@ -35,7 +35,7 @@ class SignIn extends React.Component {
     e.preventDefault();
     this.props.actions.createUserSession(this.state).then(() => {
       this.props.history.push('/');
-    }).catch((error) => {this.setState({error: error.response.data.error})});
+    })
   }
 
   render() {

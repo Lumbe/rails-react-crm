@@ -6,6 +6,7 @@ import {Row, Col, Panel} from 'react-bootstrap'
 import LeadHeader from './leadHeader'
 import LeadsList from './leadsList'
 import Loader from '../common/loader'
+import {getLeads} from '../../reducers/leadReducer'
 
 class Leads extends React.Component {
   constructor(props) {
@@ -45,10 +46,8 @@ class Leads extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    leads: state.leads.leads,
-    meta: state.leads.meta
-  };
+  console.log('getLeads', getLeads(state));
+  return getLeads(state)
 }
 
 function mapDispatchToProps(dispatch) {

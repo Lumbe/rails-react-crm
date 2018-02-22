@@ -6,10 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# create departments
 departments = Array.new(3) {Department.create!(name: Faker::Company.name)}
+
+# add each user to one of departments
+User.find_each { |user| user.departments << departments.sample }
+
+# add leads to created departments
 Array.new(25) do
   Lead.create!(
     name: Faker::Name.name,
+    status: Lead.statuses.keys.sample,
     phone: Faker::PhoneNumber.cell_phone,
     email: Faker::Internet.email,
     department: departments.sample,

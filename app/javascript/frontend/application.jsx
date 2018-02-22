@@ -10,8 +10,6 @@ import fontawesome from '@fortawesome/fontawesome'
 import icons from '@fortawesome/fontawesome-free-solid/'
 
 fontawesome.library.add(icons);
-
-
 export const store = configureStore();
 
 // for tests
@@ -22,7 +20,8 @@ window.react = React;
 window.reactDOM = ReactDOM;
 import leadApi from './api/leadApi'
 window.leadApi = leadApi;
-
+import * as leadActions from './actions/leadActions'
+window.leadActions = leadActions;
 
 class Application extends React.Component {
   render() {
