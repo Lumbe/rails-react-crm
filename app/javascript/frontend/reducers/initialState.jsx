@@ -9,7 +9,11 @@
 //     )
 
 export default {
-    entities: {},
+    entities: {
+      users: {},
+      leads: {},
+      departments: {}
+    },
     leads: {data: [], meta: {}},
     projects: {projects: [], meta: {}},
     project: {},
