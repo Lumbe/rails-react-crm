@@ -7,13 +7,11 @@ export const LOAD_LEADS_SUCCESS = 'LOAD_LEADS_SUCCESS';
 export const LOAD_LEADS_FAILURE = 'LOAD_LEADS_FAILURE';
 
 //Create new lead
-export const CREATE_LEAD = 'CREATE_LEAD';
 export const CREATE_LEAD_SUCCESS = 'CREATE_LEAD_SUCCESS';
 export const CREATE_LEAD_FAILURE = 'CREATE_LEAD_FAILURE';
 
 // Update lead
 export const UPDATE_LEAD_SUCCESS = 'UPDATE_LEAD_SUCCESS';
-export const UPDATE_LEAD_FAILURE = 'UPDATE_LEAD_FAILURE';
 
 //Load lead
 export const LOAD_LEAD_SUCCESS = 'LOAD_LEAD_SUCCESS';
@@ -21,7 +19,6 @@ export const LOAD_LEAD_FAILURE = 'LOAD_LEAD_FAILURE';
 
 //Delete lead
 export const DELETE_LEAD_SUCCESS = 'DELETE_LEAD_SUCCESS';
-export const DELETE_LEAD_FAILURE = 'DELETE_LEAD_FAILURE';
 
 
 // Actions
