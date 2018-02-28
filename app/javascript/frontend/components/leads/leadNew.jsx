@@ -35,6 +35,7 @@ class LeadNew extends React.Component {
   }
 
   updateLeadState(event) {
+    console.log('event.target', event.target);
     const field = event.target.name;
     const lead = this.state.lead;
     lead[field] = event.target.value;
@@ -55,11 +56,13 @@ class LeadNew extends React.Component {
   }
 
   render() {
+    const {availableDepartments} = this.props;
     return (
       <Row>
         <LeadHeader isNew={true} title="Новый лид" description=""/>
         <LeadForm
           lead={this.state.lead}
+          availableDepartments={availableDepartments}
           isSubmitting={this.state.isSubmitting}
           onChange={this.updateLeadState.bind(this)}
           onSave={this.saveLead.bind(this)}
@@ -70,9 +73,9 @@ class LeadNew extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
-    lead: state.lead
+    availableDepartments: state.currentUser.departments
   };
 }
 

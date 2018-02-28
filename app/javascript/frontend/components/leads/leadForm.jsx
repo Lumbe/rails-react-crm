@@ -4,7 +4,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 class LeadForm extends React.Component {
   render() {
-    const {isSubmitting, lead} = this.props;
+    const {isSubmitting, lead, availableDepartments} = this.props;
     console.log('lead', lead);
     return (
       <Col md={12} xs={12}>
@@ -63,17 +63,25 @@ class LeadForm extends React.Component {
                               </td>
                             </tr>
                             <tr>
-                              <th>Представительство</th>
+                              <th>Добавить в</th>
                               <td>
                                 <FormGroup>
-                                  <FormControl
-                                    name="department_id"
-                                    bsSize="sm"
-                                    type="text"
-                                    placeholder="22"
-                                    value={lead.department}
-                                    onChange={this.props.onChange}
-                                  />
+                                  {availableDepartments.length > 1 ?
+                                    <FormControl
+                                      name="department_id"
+                                      bsSize="sm"
+                                      componentClass="select"
+                                      onChange={this.props.onChange}
+                                      value={lead.department_id}
+                                    >
+                                      <option value="Выберите из списка" disabled>Выберите из списка</option>
+                                      {availableDepartments.map((department, index) => {
+                                        return <option key={index} value={department.id}>{department.name}</option>
+                                      })}
+                                    </FormControl>
+                                  :
+                                    <FormControl.Static>{availableDepartments[0].name}</FormControl.Static>
+                                  }
                                 </FormGroup>
                               </td>
                             </tr>
