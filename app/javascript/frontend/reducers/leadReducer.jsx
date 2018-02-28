@@ -41,7 +41,5 @@ export function getLeads(state) {
 
 export function getLead(state, id) {
   let lead = denormalize(id, leadSchema, state.entities);
-  return {
-    lead
-  }
+  return lead
 }

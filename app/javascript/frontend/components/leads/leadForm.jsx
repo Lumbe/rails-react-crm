@@ -72,7 +72,7 @@ class LeadForm extends React.Component {
                                       bsSize="sm"
                                       componentClass="select"
                                       onChange={this.props.onChange}
-                                      value={lead.department_id}
+                                      value={lead.department ? lead.department.id : lead.department_id}
                                     >
                                       <option value="Выберите из списка" disabled>Выберите из списка</option>
                                       {availableDepartments.map((department, index) => {

@@ -54,7 +54,7 @@ class LeadShow extends React.Component {
   }
 
   render() {
-    const {lead} = this.props;
+    const {lead, availableDepartments} = this.props;
     return (
       <Row>
         {!lead ?
@@ -68,7 +68,14 @@ class LeadShow extends React.Component {
             title={lead.name}
             description='Лид'/>
           {this.state.isEditing ?
-            <LeadForm lead={lead} isSubmitting={this.state.isSubmitting} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)} onCancel={this.toggleEdit.bind(this)}/>
+            <LeadForm
+              lead={lead}
+              availableDepartments={availableDepartments}
+              isSubmitting={this.state.isSubmitting}
+              onChange={this.updateLeadState.bind(this)}
+              onSave={this.saveLead.bind(this)}
+              onCancel={this.toggleEdit.bind(this)}
+            />
             :
             <LeadDetail  lead={lead}/>
           }</div>
@@ -81,7 +88,10 @@ class LeadShow extends React.Component {
 function mapStateToProps(state, ownProps) {
   let itemId = ownProps.match.params.id;
   console.log('getLead', getLead(state, itemId));
-  return getLead(state, itemId);
+  return {
+    lead: getLead(state, itemId),
+    availableDepartments: state.currentUser.departments
+  }
 }
 
 function mapDispatchToProps(dispatch) {
