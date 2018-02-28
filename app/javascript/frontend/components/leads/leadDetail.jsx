@@ -1,15 +1,15 @@
 import React from 'react';
-import {Grid, Row, Col, Clearfix, PageHeader, Button, Panel, Tabs, Tab, Table} from 'react-bootstrap'
+import {Row, Col,Panel, Tabs, Tab, Table} from 'react-bootstrap'
 
 
 export default function LeadDetail(props) {
-  const lead = props.lead
+  const lead = props.lead;
   return (
     <Col md={12} xs={12}>
       <Panel>
         {/* <Button bsStyle="link" className="pull-right">Редактировать</Button> */}
         <Tabs defaultActiveKey={1} id="lead-tabs">
-        <Tab eventKey={1} title="Контакты">
+        <Tab eventKey={1} title="Контактная информация">
           <Row>
             <Col md={4} xs={12}>
               <Table responsive>

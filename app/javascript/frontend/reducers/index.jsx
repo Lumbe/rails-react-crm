@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {leads, lead} from './leadReducer';
+import {leads} from './leadReducer';
 import currentUser from './authUserReducer';
 import {user} from './userReducer';
 import {notifications} from './notificationReducer'

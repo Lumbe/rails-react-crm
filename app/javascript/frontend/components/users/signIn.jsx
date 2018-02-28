@@ -10,23 +10,11 @@ import './signIn.css'
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.defaultProps();
-  }
-
-  defaultProps() {
-    return {email: '', password: ''};
-  }
-
-  componentDidMount() {
-    // executes when component is mounted
-  }
-
-  componentWillUnmount() {
-    // executes when component is unmounted
+    this.state = {email: '', password: ''};
   }
 
   handleChange(e) {
-    var state = {};
+    let state = {};
     state[e.target.name] = e.target.value;
     this.setState(state);
   }
@@ -39,8 +27,6 @@ class SignIn extends React.Component {
   }
 
   render() {
-    console.log("props: ", this.props);
-    console.log('state: ', this.state);
     return (
       <div className="login-container">
         <Panel className='login-form center-block text-center'>
@@ -90,7 +76,7 @@ class SignIn extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     email: state.email,
     password: state.password

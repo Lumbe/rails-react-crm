@@ -1,7 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
-import axios from 'axios'
-import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
 import {Navbar} from 'react-bootstrap';
 import Menu from './menu'
 
@@ -12,7 +9,7 @@ class Header extends React.Component {
         <Navbar fluid={true} inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">JA CRM</a>
+              CRM
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

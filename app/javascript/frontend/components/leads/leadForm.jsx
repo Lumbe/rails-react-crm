@@ -4,7 +4,8 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 class LeadForm extends React.Component {
   render() {
-    const {isSubmitting: isSubmitting} = this.props;
+    const {isSubmitting, lead} = this.props;
+    console.log('lead', lead);
     return (
       <Col md={12} xs={12}>
         <Panel>
@@ -25,7 +26,7 @@ class LeadForm extends React.Component {
                                     bsSize="sm"
                                     type="text"
                                     placeholder="Имя или Имя и Отчество"
-                                    value={this.props.lead.name}
+                                    value={lead.name}
                                     onChange={this.props.onChange}
                                   />
                                 </FormGroup>
@@ -40,7 +41,7 @@ class LeadForm extends React.Component {
                                     bsSize="sm"
                                     type="text"
                                     placeholder="+38(097)123-45-67"
-                                    value={this.props.lead.phone}
+                                    value={lead.phone}
                                     onChange={this.props.onChange}
                                   />
                                 </FormGroup>
@@ -55,7 +56,7 @@ class LeadForm extends React.Component {
                                     bsSize="sm"
                                     type="email"
                                     placeholder="example@example.com"
-                                    value={this.props.lead.email}
+                                    value={lead.email}
                                     onChange={this.props.onChange}
                                   />
                                 </FormGroup>
@@ -70,7 +71,7 @@ class LeadForm extends React.Component {
                                     bsSize="sm"
                                     type="text"
                                     placeholder="22"
-                                    value={this.props.lead.department}
+                                    value={lead.department}
                                     onChange={this.props.onChange}
                                   />
                                 </FormGroup>

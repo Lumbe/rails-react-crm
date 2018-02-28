@@ -2,37 +2,38 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as userActions from '../../actions/userActions'
-import {Grid, Row, Col, Clearfix} from 'react-bootstrap'
 
 class User extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {user: {}}
-  }
-
-  componentDidMount() {
-    // console.log(this.props.actions)
-    this.props.actions.loadCurrentUser();
-  }
-
-  componentWillUnmount() {
-    // this.props.actions.resetUser();
-  }
-
   render() {
+    const user = this.props.currentUser;
+    console.log(this.props);
     return (
       <div>
-          Юзер:<br/>
-          id: {this.props.user.id}
-          <br/>
-          email: {this.props.user.email}
+        Юзер:<br/>
+        id: {user.id}
+        <br/>
+        email: {user.email}
+        <br/>
+        token: {user.token}
+        <br/>
+        first_name: {user.first_name}
+        <br/>
+        last_name: {user.last_name}
+        <br/>
+        departments: <ul>
+          {user.departments.map((department, index) => {
+            return <li key={index}>name: {department.name}; id: {department.id} </li>
+          })}
+        </ul>
       </div>
-    );
+    )
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return { user: state.user };
+function mapStateToProps(state) {
+  return {
+    currentUser: state.currentUser
+  };
 }
 
 function mapDispatchToProps(dispatch) {

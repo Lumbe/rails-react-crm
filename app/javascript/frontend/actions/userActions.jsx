@@ -1,15 +1,10 @@
 import userApi from '../api/userApi';
-
 //User list
-export const SIGN_IN_USER = 'SIGN_IN_USER'
-export const SIGN_IN_USER_SUCCESS = 'SIGN_IN_USER_SUCCESS'
-export const CREATE_USER_SESSION_SUCCESS = 'CREATE_USER_SESSION_SUCCESS'
+export const CREATE_USER_SESSION_SUCCESS = 'CREATE_USER_SESSION_SUCCESS';
 
 export const LOAD_CURRENT_USER_SUCCESS = 'LOAD_CURRENT_USER_SUCCESS';
 
-export const LOAD_USER = 'LOAD_USERS';
 export const LOAD_USER_SUCCESS = 'LOAD_USERS_SUCCESS';
-export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
 
 // Actions
 

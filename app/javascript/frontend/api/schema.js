@@ -1,8 +1,8 @@
 import { schema } from 'normalizr';
 
-const userSchema = new schema.Entity('users');
-
 const departmentSchema = new schema.Entity('departments');
+
+const userSchema = new schema.Entity('users');
 
 const lead = new schema.Entity('leads', {
   user: userSchema,

@@ -2,11 +2,7 @@ class LeadSerializer < ActiveModel::Serializer
   attributes :id, :name, :phone, :email, :location, :project,
              :square, :floor, :question, :region, :source, :online_request,
              :come_in_office, :phone_call, :status, :user, :assigned_to,
-             :department
-
-  def departmentName
-    object.department.name if object.department.present?
-  end
+             :department, :created_at, :statuses
 
   def user
     if object.user.present?
@@ -28,5 +24,9 @@ class LeadSerializer < ActiveModel::Serializer
           last_name: object.assignee.last_name
       }
     end
+  end
+
+  def statuses
+    Lead.statuses.keys
   end
 end

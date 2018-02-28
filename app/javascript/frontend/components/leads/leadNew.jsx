@@ -18,7 +18,18 @@ class LeadNew extends React.Component {
       lead: {
         name: '',
         phone: '',
-        email: ''
+        email: '',
+        location: '',
+        project: '',
+        square: '',
+        floor: '',
+        question: '',
+        region: '',
+        source: '',
+        online_request: false,
+        come_in_office: false,
+        phone_call: false,
+        department_id: ''
       }
     };
   }
@@ -39,11 +50,21 @@ class LeadNew extends React.Component {
     });
   }
 
+  handleCancel() {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <Row>
         <LeadHeader isNew={true} title="Новый лид" description=""/>
-        <LeadForm lead={this.state.lead} isSubmitting={this.state.isSubmitting} onChange={this.updateLeadState.bind(this)} onSave={this.saveLead.bind(this)}/>
+        <LeadForm
+          lead={this.state.lead}
+          isSubmitting={this.state.isSubmitting}
+          onChange={this.updateLeadState.bind(this)}
+          onSave={this.saveLead.bind(this)}
+          onCancel={this.handleCancel.bind(this)}
+        />
       </Row>
     );
   }

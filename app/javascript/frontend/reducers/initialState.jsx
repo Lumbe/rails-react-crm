@@ -19,9 +19,13 @@ export default {
     project: {},
     user: {},
     currentUser: {
-                  email: '',
                   token: null,
                   isAuthenticated: false,
+                  id: '',
+                  email: '',
+                  first_name: '',
+                  last_name: '',
+                  departments: []
                 },
     notifications: []
 }

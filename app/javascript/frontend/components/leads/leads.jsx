@@ -23,6 +23,11 @@ class Leads extends React.Component {
     this.load();
   }
 
+  handleStatusChange(data) {
+    console.log('eventKey', data);
+    this.props.actions.updateLead(data)
+  }
+
   render() {
     return (
       <Row>
@@ -36,6 +41,7 @@ class Leads extends React.Component {
                   leads={this.props.leads}
                   meta={this.props.meta}
                   load={this.load.bind(this)}
+                  handleStatusChange={this.handleStatusChange.bind(this)}
                 />
             }
           </Panel>
