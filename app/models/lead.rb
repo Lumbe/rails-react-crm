@@ -20,4 +20,13 @@ class Lead < ApplicationRecord
   #   Contact.where(department: self.department).ransack(phone_cont: self.phone.chars.last(7).join).result.or(Contact.where(department: self.department, email: self.email).where.not(email: ''))
   #
   # end
+
+  # Find associated department if department :id is passed instead of Department object
+  def department=(value)
+    if value.instance_of? String
+      self.department = Department.find_by(id: value)
+    else
+      super
+    end
+  end
 end

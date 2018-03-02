@@ -5,16 +5,12 @@ import * as leadActions from '../../actions/leadActions';
 import {Row} from 'react-bootstrap'
 import LeadHeader from './leadHeader';
 import LeadForm from './leadForm';
+import {SubmissionError} from 'redux-form'
 
 class LeadNew extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.defaultProps();
-  }
-
-  defaultProps() {
-    return {
-      isSubmitting: false,
+    this.state = {
       lead: {
         name: '',
         phone: '',
@@ -29,26 +25,22 @@ class LeadNew extends React.Component {
         online_request: false,
         come_in_office: false,
         phone_call: false,
-        department_id: ''
+        department: ''
       }
-    };
+    }
   }
 
-  updateLeadState(event) {
-    console.log('event.target', event.target);
-    const field = event.target.name;
-    const lead = this.state.lead;
-    lead[field] = event.target.value;
-    return this.setState({lead: lead});
-  }
-
-  saveLead(e) {
-    (e).preventDefault();
-    this.setState({isSubmitting: true});
-    this.props.actions.createLead(this.state.lead).then(response => {
-      this.setState({isSubmitting: false});
-      response && this.props.history.push(response.data.lead.id.toString());
-    });
+  handleFormSubmit(values) {
+    console.log('handleFormSubmit values', values);
+    return this.props.actions.createLead(values).then(
+      response => {
+        this.props.history.push(response.data.lead.id.toString());
+      },
+      error => {
+        console.log('error response',error.response.data.errors);
+        throw new SubmissionError(error.response.data.errors)
+      }
+    )
   }
 
   handleCancel() {
@@ -63,9 +55,7 @@ class LeadNew extends React.Component {
         <LeadForm
           lead={this.state.lead}
           availableDepartments={availableDepartments}
-          isSubmitting={this.state.isSubmitting}
-          onChange={this.updateLeadState.bind(this)}
-          onSave={this.saveLead.bind(this)}
+          handleFormSubmit={this.handleFormSubmit.bind(this)}
           onCancel={this.handleCancel.bind(this)}
         />
       </Row>

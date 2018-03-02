@@ -13,7 +13,8 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   end
 
   def create
-    respond_with :api, :v1, Lead.create(lead_params)
+    @lead = Lead.create(lead_params)
+    respond_with :api, :v1, @lead
   end
 
   def update
@@ -22,6 +23,7 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   end
 
   def destroy
+    asdasd
     respond_with Lead.destroy(params[:id])
   end
 
@@ -32,6 +34,6 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   end
 
   def lead_params
-    params.require(:lead).permit(:name, :email, :phone, :department_id, :status)
+    params.require(:lead).permit(:name, :email, :phone, :department, :status)
   end
 end

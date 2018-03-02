@@ -8,11 +8,12 @@ import LeadForm from './leadForm'
 import LeadDetail from './leadDetail'
 import {getLead} from '../../reducers/leadReducer'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import {SubmissionError} from 'redux-form'
 
 class LeadShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isEditing: false, isSubmitting: false}
+    this.state = {isEditing: false}
   }
 
   componentDidMount() {
@@ -26,28 +27,21 @@ class LeadShow extends React.Component {
     this.setState({isEditing: !this.state.isEditing});
   }
 
-  updateLeadState(event) {
-    const field = event.target.name;
-    const lead = this.props.lead;
-    lead[field] = event.target.value;
-    return this.setState({lead: lead});
-  }
-
-  saveLead(event) {
-    event.preventDefault();
-    this.setState({isSubmitting: true});
-    this.props.actions.updateLead(this.state.lead).then(response => {
-      this.setState({isSubmitting: false});
-      response && this.setState({isEditing: false});
-    });
+  handleFormSubmit(values) {
+    return this.props.actions.updateLead(values).then(
+      () => {
+        this.setState({isEditing: false});
+      },
+      error => {
+        throw new SubmissionError(error.response.data.errors)
+      }
+    );
   }
 
   destroyLead(event) {
     event.preventDefault();
-    this.setState({isSubmitting: true});
     if (confirm('Удалить лид ' + this.props.lead.name + '?')) {
       this.props.actions.destroyLead(this.props.lead).then(() => {
-        this.setState({isSubmitting: false});
         this.props.history.push('/leads');
       });
     }
@@ -71,9 +65,7 @@ class LeadShow extends React.Component {
             <LeadForm
               lead={lead}
               availableDepartments={availableDepartments}
-              isSubmitting={this.state.isSubmitting}
-              onChange={this.updateLeadState.bind(this)}
-              onSave={this.saveLead.bind(this)}
+              handleFormSubmit={this.handleFormSubmit.bind(this)}
               onCancel={this.toggleEdit.bind(this)}
             />
             :

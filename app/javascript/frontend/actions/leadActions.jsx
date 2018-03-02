@@ -91,8 +91,7 @@ export function createLead(lead) {
       response => {
         dispatch(createLeadSuccess(response.data.lead));
         return response;
-      },
-      () => dispatch(createLeadFailure())
+      }
     )
   };
 }
@@ -105,7 +104,10 @@ export function updateLead(lead) {
         dispatch(updateLeadSuccess(response.data.lead));
         return response;
       },
-      () => dispatch(updateLeadFailure('Не удалось изменить лид'))
+      error => {
+        dispatch(updateLeadFailure('Не удалось изменить лид'));
+        return Promise.reject(error);
+      }
     )
   };
 }
@@ -120,7 +122,10 @@ export function destroyLead(lead) {
           message: `Лид ${lead.name} был удален`
         }));
       },
-      () => dispatch(destroyLeadFailure(`Не удалось удалить лид ${lead.name}`))
+      error => {
+        dispatch(destroyLeadFailure(`Не удалось удалить лид ${lead.name}`))
+        return Promise.reject(error);
+      }
     )
   };
 }

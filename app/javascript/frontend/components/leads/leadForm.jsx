@@ -1,90 +1,51 @@
 import React from 'react';
-import {Row, Col, FormGroup, FormControl, Button, Panel, Tabs, Tab, Table,ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {Row, Col, Button, Panel, Tabs, Tab, Table,ButtonToolbar, Form} from 'react-bootstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { Field, reduxForm } from 'redux-form'
+import {renderTextField, renderSelectFieldComponent} from '../common/reduxFormFields'
 
 class LeadForm extends React.Component {
   render() {
-    const {isSubmitting, lead, availableDepartments} = this.props;
+    const {lead, availableDepartments, handleSubmit, submitting} = this.props;
     console.log('lead', lead);
     return (
       <Col md={12} xs={12}>
         <Panel>
-          <form>
-            <fieldset disabled={isSubmitting}>
+          <Form onSubmit={handleSubmit(this.props.handleFormSubmit)}>
+            <fieldset disabled={submitting}>
               <Tabs defaultActiveKey={1} id="lead-tabs">
                 <Tab eventKey={1} title="Контакты">
                   <Row>
-                    <Col md={4} xs={12}>
-                      <Table responsive>
+                    <Col md={6} xs={12}>
+                      <Table responsive={true}>
                         <tbody>
-                            <tr>
-                              <th>Имя</th>
-                              <td>
-                                <FormGroup controlId="formHorizontalName">
-                                  <FormControl
-                                    name="name"
-                                    bsSize="sm"
-                                    type="text"
-                                    placeholder="Имя или Имя и Отчество"
-                                    value={lead.name}
-                                    onChange={this.props.onChange}
-                                  />
-                                </FormGroup>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>Телефон</th>
-                              <td>
-                                <FormGroup controlId="formHorizontalPhone">
-                                  <FormControl
-                                    name="phone"
-                                    bsSize="sm"
-                                    type="text"
-                                    placeholder="+38(097)123-45-67"
-                                    value={lead.phone}
-                                    onChange={this.props.onChange}
-                                  />
-                                </FormGroup>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>e-mail</th>
-                              <td>
-                                <FormGroup controlId="formHorizontalEmail">
-                                  <FormControl
-                                    name="email"
-                                    bsSize="sm"
-                                    type="email"
-                                    placeholder="example@example.com"
-                                    value={lead.email}
-                                    onChange={this.props.onChange}
-                                  />
-                                </FormGroup>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th>Добавить в</th>
-                              <td>
-                                <FormGroup>
-                                  {availableDepartments.length > 1 ?
-                                    <FormControl
-                                      name="department_id"
-                                      bsSize="sm"
-                                      componentClass="select"
-                                      onChange={this.props.onChange}
-                                      value={lead.department ? lead.department.id : lead.department_id}
-                                    >
-                                      <option value="Выберите из списка" disabled>Выберите из списка</option>
-                                      {availableDepartments.map((department, index) => {
-                                        return <option key={index} value={department.id}>{department.name}</option>
-                                      })}
-                                    </FormControl>
-                                  :
-                                    <FormControl.Static>{availableDepartments[0].name}</FormControl.Static>
-                                  }
-                                </FormGroup>
-                              </td>
-                            </tr>
+                          <Field
+                            component={renderTextField}
+                            name="name"
+                            type="text"
+                            label="Имя"
+                          />
+                          <Field
+                            component={renderTextField}
+                            name="phone"
+                            type="text"
+                            label="Телефон"
+                          />
+                          <Field
+                            component={renderTextField}
+                            name="email"
+                            type="text"
+                            label="email"
+                          />
+                          <Field
+                            component={renderSelectFieldComponent}
+                            name="department"
+                            label="Добавить в"
+                            optionsForSelect={availableDepartments}
+                          />
                         </tbody>
                       </Table>
                     </Col>
@@ -141,18 +102,31 @@ class LeadForm extends React.Component {
               </Tabs>
             </fieldset>
             <ButtonToolbar>
-                <Button bsStyle="success" id="new-lead-button" onClick={this.props.onSave} disabled={isSubmitting}>
-                  Сохранить {isSubmitting && <FontAwesomeIcon icon="spinner" spin/>}
+                <Button bsStyle="success" id="new-lead-button" type="submit" disabled={submitting}>
+                  Сохранить {submitting && <FontAwesomeIcon icon="spinner" spin/>}
                 </Button>
                 <Button onClick={this.props.onCancel}>
                   Отмена
                 </Button>
             </ButtonToolbar>
-          </form>
+          </Form>
         </Panel>
       </Col>
     );
   }
 }
 
-export default LeadForm
+function mapStateToProps(state, ownProps) {
+  let lead = ownProps.lead;
+  return {
+    initialValues: lead
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(leadActions, dispatch)
+  }
+}
+LeadForm = reduxForm({form: 'lead'})(LeadForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LeadForm));

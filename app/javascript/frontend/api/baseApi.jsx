@@ -18,26 +18,16 @@ axios.interceptors.response.use(function (response) {
       type: 'error',
       message: error.response.data.error
     }))
-  } else if (error.response && error.response.data.errors) {
-    let errors = error.response.data.errors;
-    let message = [];
-    for (let error in errors) {
-      if (errors.hasOwnProperty(error)) {
-        message.push(error + ': ' + errors[error])
-      }
-    }
-    store.dispatch(createNotification({
-      type: 'error',
-      message: message
-    }))
   } else if (!error.response) {
     store.dispatch(createNotification({
       type: 'error',
       message: ("Проверьте подключение к интернету")
     }));
   } else {
-    console.log('unhandled error', error);
-    throw error
+    if (!(error.response.status === 422)) {
+      console.log('unhandled error', error);
+      throw error
+    }
   }
   return Promise.reject(error);
 });

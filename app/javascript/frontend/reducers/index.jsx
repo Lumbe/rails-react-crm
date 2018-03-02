@@ -5,6 +5,7 @@ import {user} from './userReducer';
 import {notifications} from './notificationReducer'
 import {projects, project} from './projectReducer'
 import {entities} from './entitiesReducer'
+import { reducer as formReducer } from 'redux-form'
 
 const appReducer = combineReducers({
   // short hand property names:
@@ -16,7 +17,8 @@ const appReducer = combineReducers({
   notifications,
   projects,
   project,
-  entities
+  entities,
+  form: formReducer
 });
 
 const rootReducer = (state, action) => {
