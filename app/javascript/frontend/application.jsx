@@ -13,15 +13,15 @@ fontawesome.library.add(icons);
 export const store = configureStore();
 
 // for tests
-window.store = store;
-import axios from 'axios';
-window.axios = axios;
-window.react = React;
-window.reactDOM = ReactDOM;
-import leadApi from './api/leadApi'
-window.leadApi = leadApi;
-import * as leadActions from './actions/leadActions'
-window.leadActions = leadActions;
+// window.store = store;
+// import axios from 'axios';
+// window.axios = axios;
+// window.react = React;
+// window.reactDOM = ReactDOM;
+// import leadApi from './api/leadApi'
+// window.leadApi = leadApi;
+// import * as leadActions from './actions/leadActions'
+// window.leadActions = leadActions;
 
 class Application extends React.Component {
   render() {
