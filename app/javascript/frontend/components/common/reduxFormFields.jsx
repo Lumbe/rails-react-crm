@@ -1,5 +1,5 @@
 import React from 'react'
-import {Col, FormGroup,FormControl,ControlLabel} from 'react-bootstrap'
+import {FormGroup, FormControl, Checkbox} from 'react-bootstrap'
 
 export const renderTextField = ({ input, label, type, meta: { submitFailed, error, invalid } }) => {
   return (
@@ -18,19 +18,17 @@ export const renderTextField = ({ input, label, type, meta: { submitFailed, erro
   )
 };
 
-export const renderHorizontalCheckbox = ({input, label, title, meta: {touched, error, warning}}) => {
-  const offset = label ? {} : {smOffset: 2};
-  return <FormGroup controlId={'form' + capitalize(input.name)}
-                    validationState={touched ? (error ? 'error' : 'success') : null}>
-    {label && <Col componentClass={ControlLabel} sm={2}>{label}</Col>}
-    <Col {...offset} sm={10}>
-      <Checkbox {...input} placeholder={label}>{title}</Checkbox>
-      {touched &&
-      ((error && <HelpBlock>{error}</HelpBlock>) ||
-        (warning && <HelpBlock>{warning}</HelpBlock>))
-      }
-    </Col>
-  </FormGroup>;
+export const renderHorizontalCheckbox = ({input, label, meta: {submitFailed, error, invalid}}) => {
+  return (
+      <Checkbox
+        checked={input.value}
+        {...input}
+        inline
+      >
+        {label}
+        {invalid && error && <span className="text-danger">{error}</span>}
+      </Checkbox>
+  )
 };
 
 export const renderSelectFieldComponent = ({ input, label, meta: {  submitFailed, error, invalid }, optionsForSelect }) => (
@@ -48,7 +46,7 @@ export const renderSelectFieldComponent = ({ input, label, meta: {  submitFailed
         >
           <option value="" disabled>Выберите из списка</option>
           {optionsForSelect.map((option, index) => {
-            return <option key={index} value={option.id}>{option.name}</option>
+            return <option key={index} value={option.value}>{option.key}</option>
           })}
         </FormControl>
         {invalid && error && <span className="text-danger">{error}</span>}

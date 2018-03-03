@@ -39,19 +39,19 @@ export default function LeadDetail(props) {
                 <tbody>
                     <tr>
                       <th className="success">Сообщение клиента</th>
-                      <td>бла бла бла</td>
+                      <td>{lead.question}</td>
                     </tr>
                     <tr>
                       <th className="success">Проект</th>
-                      <td>Амалия</td>
+                      <td>{lead.project}</td>
                     </tr>
                     <tr>
                       <th className="success">Площадь(кв.м.)</th>
-                      <td>138.68</td>
+                      <td>{lead.square}</td>
                     </tr>
                     <tr>
                       <th className="success">Этажность</th>
-                      <td>2</td>
+                      <td>{lead.floor}</td>
                     </tr>
                 </tbody>
               </Table>
@@ -61,19 +61,25 @@ export default function LeadDetail(props) {
                 <tbody>
                     <tr>
                       <th className="success">Как вышел на связь</th>
-                      <td>Запрос</td>
+                      <td>
+                        <ul>
+                          {lead.phone_call && <li> Звонок</li>}
+                          {lead.online_request && <li>Запрос</li>}
+                          {lead.come_in_office && <li>Пришел в офис</li>}
+                        </ul>
+                      </td>
                     </tr>
                     <tr>
                       <th className="success">Откуда узнал</th>
-                      <td>Интернет</td>
+                      <td>{lead.source}</td>
                     </tr>
                     <tr>
                       <th className="success">Место строительства</th>
-                      <td>Хмельницкий</td>
+                      <td>{lead.location}</td>
                     </tr>
                     <tr>
                       <th className="success">Регион</th>
-                      <td>Хмельницкая обл.</td>
+                      <td>{lead.region}</td>
                     </tr>
                 </tbody>
               </Table>

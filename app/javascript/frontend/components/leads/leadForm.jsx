@@ -2,14 +2,59 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {Row, Col, Button, Panel, Tabs, Tab, Table,ButtonToolbar, Form} from 'react-bootstrap'
+import {Row, Col, Button, Panel, Tabs, Tab, Table,ButtonToolbar, Form, FormGroup} from 'react-bootstrap'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { Field, reduxForm } from 'redux-form'
-import {renderTextField, renderSelectFieldComponent} from '../common/reduxFormFields'
+import {renderTextField, renderSelectFieldComponent, renderHorizontalCheckbox} from '../common/reduxFormFields'
 
 class LeadForm extends React.Component {
+  formatDepartments(departments) {
+    return departments.map((department) => {
+      return {key: department.name, value: department.id}
+    });
+  }
+
+  formatArrayOfStrings(array) {
+    return array.map((string) => {
+      return {key: string, value: string}
+    })
+  }
+
   render() {
     const {lead, availableDepartments, handleSubmit, submitting} = this.props;
+    const departments = this.formatDepartments(availableDepartments);
+    const sources = this.formatArrayOfStrings(['Интернет', 'Наружная реклама', 'Печатные издания','Забрендированные маршрутки',
+      'Личная рекомендация','Раздаточный материал (флаер)', 'Другое']);
+    const regions = this.formatArrayOfStrings(['г.Хмельницкий',
+      'г.Камянец-Подольский',
+      'Хмельницкая обл.',
+      'Винницкая обл.',
+      'Черновицкая обл.',
+      'Ровенская обл.',
+      'Волынская обл.',
+      'Днепропетровская обл.',
+      'Донецкая обл.',
+      'Житомирская обл.',
+      'Закарпатская обл.',
+      'Запорожская обл.',
+      'Ивано-Франковская обл.',
+      'Киевская обл.',
+      'Кировоградская обл.',
+      'Луганская обл.',
+      'Львовская обл.',
+      'Николаевская обл.',
+      'Одесская обл.',
+      'Полтавская обл.',
+      'Сумская обл.',
+      'Тернопольская обл.',
+      'Харьковская обл.',
+      'Херсонская обл.',
+      'Черкасская обл.',
+      'Черниговская обл.',
+      'Киев',
+      'Севастополь',
+      'АР Крым',
+      'Неизвестно']);
     console.log('lead', lead);
     return (
       <Col md={12} xs={12}>
@@ -44,7 +89,7 @@ class LeadForm extends React.Component {
                             component={renderSelectFieldComponent}
                             name="department"
                             label="Добавить в"
-                            optionsForSelect={availableDepartments}
+                            optionsForSelect={departments}
                           />
                         </tbody>
                       </Table>
@@ -56,44 +101,70 @@ class LeadForm extends React.Component {
                     <Col md={6} xs={12}>
                       <Table responsive bordered>
                         <tbody>
-                            <tr>
-                              <th className="success">Сообщение клиента</th>
-                              <td>бла бла бла</td>
-                            </tr>
-                            <tr>
-                              <th className="success">Проект</th>
-                              <td>Амалия</td>
-                            </tr>
-                            <tr>
-                              <th className="success">Площадь(кв.м.)</th>
-                              <td>138.68</td>
-                            </tr>
-                            <tr>
-                              <th className="success">Этажность</th>
-                              <td>2</td>
-                            </tr>
+                          <Field
+                            component={renderTextField}
+                            name="project"
+                            type="text"
+                            label="Проект"
+                          />
+                          <Field
+                            component={renderTextField}
+                            name="square"
+                            type="text"
+                            label="Площадь"
+                          />
+                          <Field
+                            component={renderSelectFieldComponent}
+                            name="floor"
+                            label="Этажность"
+                            optionsForSelect={[{key: "1 этаж", value: "1"}, {key: "2 этажа", value: "2"}]}
+                          />
                         </tbody>
                       </Table>
                     </Col>
                     <Col md={6} xs={12}>
                       <Table responsive bordered>
                         <tbody>
-                            <tr>
-                              <th className="success">Как вышел на связь</th>
-                              <td>Запрос</td>
-                            </tr>
-                            <tr>
-                              <th className="success">Откуда узнал</th>
-                              <td>Интернет</td>
-                            </tr>
-                            <tr>
-                              <th className="success">Место строительства</th>
-                              <td>Хмельницкий</td>
-                            </tr>
-                            <tr>
-                              <th className="success">Регион</th>
-                              <td>Хмельницкая обл.</td>
-                            </tr>
+                        <tr>
+                          <th>Как вышел на связь</th>
+                          <td>
+                            <FormGroup>
+                              <Field
+                                component={renderHorizontalCheckbox}
+                                name="online_request"
+                                label="Запрос"
+                              />
+                              <Field
+                                component={renderHorizontalCheckbox}
+                                name="phone_call"
+                                label="Звонок"
+                              />
+                              <Field
+                                component={renderHorizontalCheckbox}
+                                name="come_in_office"
+                                label="Пришел в офис"
+                              />
+                            </FormGroup>
+                          </td>
+                        </tr>
+                        <Field
+                          component={renderSelectFieldComponent}
+                          name="source"
+                          label="Откуда узнал"
+                          optionsForSelect={sources}
+                        />
+                        <Field
+                          component={renderTextField}
+                          name="location"
+                          type="text"
+                          label="Место строительства"
+                        />
+                        <Field
+                          component={renderSelectFieldComponent}
+                          name="region"
+                          label="Регион"
+                          optionsForSelect={regions}
+                        />
                         </tbody>
                       </Table>
                     </Col>

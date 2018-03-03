@@ -34,6 +34,8 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   end
 
   def lead_params
-    params.require(:lead).permit(:name, :email, :phone, :department, :status)
+    params.require(:lead).permit(:name, :email, :phone, :department, :status, :question,
+                                 :location, :project, :square, :floor, :question,
+                                 :region, :source, :online_request, :come_in_office, :phone_call)
   end
 end
