@@ -23,7 +23,6 @@ class Api::V1::LeadsController < Api::V1::ApplicationController
   end
 
   def destroy
-    asdasd
     respond_with Lead.destroy(params[:id])
   end
 

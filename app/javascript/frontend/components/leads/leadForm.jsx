@@ -194,10 +194,5 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(leadActions, dispatch)
-  }
-}
 LeadForm = reduxForm({form: 'lead'})(LeadForm);
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LeadForm));
+export default withRouter(connect(mapStateToProps, null)(LeadForm));

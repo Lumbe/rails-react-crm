@@ -79,7 +79,6 @@ class LeadShow extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   let itemId = ownProps.match.params.id;
-  console.log('getLead', getLead(state, itemId));
   return {
     lead: getLead(state, itemId),
     availableDepartments: state.currentUser.departments

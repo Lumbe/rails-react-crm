@@ -52,7 +52,6 @@ class Leads extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log('getLeads', getLeads(state));
   return getLeads(state)
 }
 

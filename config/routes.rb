@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
       # resources :users, only: [:index, :create, :destroy, :update]
       resources :leads
+      resources :contacts
       get '/projects/public', to: 'projects#public'
       get '/projects/popular', to: 'projects#popular'
       get '/projects/public/:id', to: 'projects#public_show'

@@ -34,3 +34,27 @@ Array.new(25) do
     assignee: User.all.sample
   )
 end
+
+Array.new(25) do
+  Contact.create!(
+      name: Faker::Name.name,
+      user: User.all.sample,
+      assignee: User.all.sample,
+      phone: Faker::PhoneNumber.cell_phone,
+      email: Faker::Internet.email,
+      location: Faker::Address.city,
+      project: Faker::Pokemon.name,
+      square: rand(40..250),
+      floor: rand(1..2),
+      question: Faker::StarWars.quote,
+      region: Faker::Address.state,
+      source: ['Запрос на сайте', 'Facebook', 'Рекомендация'].sample,
+      online_request: rand(2),
+      come_in_office: rand(2),
+      phone_call: rand(2),
+      department: departments.sample,
+      status: Contact.statuses.keys.sample,
+      alt_email: Faker::Internet.email,
+      do_not_call: [true, false].sample
+  )
+end
