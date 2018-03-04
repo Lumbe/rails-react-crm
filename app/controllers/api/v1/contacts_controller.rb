@@ -37,7 +37,7 @@ class Api::V1::ContactsController < Api::V1::ApplicationController
                                     :project, :square, :floor, :question,
                                     :region, :source, :online_request,
                                     :come_in_office, :phone_call, :status,
-                                    :user_id, :department_id, :assigned_to,
+                                    :user_id, :department, :assigned_to,
                                     :alt_email, :do_not_call)
   end
 end

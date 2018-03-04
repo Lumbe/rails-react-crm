@@ -12,6 +12,9 @@ class ProtectedLinks extends React.Component {
         <LinkContainer to="/leads">
           <NavItem eventKey={2}>Лиды</NavItem>
         </LinkContainer>
+        <LinkContainer to="/contacts">
+          <NavItem eventKey={2}>Контакты</NavItem>
+        </LinkContainer>
         <LinkContainer to="/projects">
           <NavItem eventKey={5}>Проекты</NavItem>
         </LinkContainer>

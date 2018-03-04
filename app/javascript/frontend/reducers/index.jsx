@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import {leads} from './leadReducer';
+import {contacts} from './contactReducer';
 import currentUser from './authUserReducer';
 import {user} from './userReducer';
 import {notifications} from './notificationReducer'
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   // so 'user' will contain value returned from function user (userReducer)
   currentUser,
   leads,
+  contacts,
   user,
   notifications,
   projects,

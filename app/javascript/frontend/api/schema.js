@@ -10,5 +10,13 @@ const lead = new schema.Entity('leads', {
   department: departmentSchema
 });
 
+const contact = new schema.Entity('contacts', {
+  user: userSchema,
+  assigned_to: userSchema,
+  department: departmentSchema
+});
+
 export const leadListSchema = [lead];
 export const leadSchema = lead;
+export const contactListSchema = [contact];
+export const contactSchema = contact;

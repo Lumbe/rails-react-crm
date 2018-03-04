@@ -1,5 +1,6 @@
 import initialState from './initialState';
 import {DELETE_LEAD_SUCCESS} from "../actions/leadActions";
+import {DELETE_CONTACT_SUCCESS} from "../actions/contactActions";
 import {cloneDeep} from 'lodash'
 
 export function entities(state = initialState.entities, action) {
@@ -23,6 +24,10 @@ export function entities(state = initialState.entities, action) {
     case DELETE_LEAD_SUCCESS:
       newState = cloneDeep(state);
       delete newState.leads[action.id];
+      return newState;
+    case DELETE_CONTACT_SUCCESS:
+      newState = cloneDeep(state);
+      delete newState.contacts[action.id];
       return newState;
     default:
       return state;

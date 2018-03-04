@@ -21,7 +21,7 @@ class Lead < ApplicationRecord
   #
   # end
 
-  # Find associated department if department :id is passed instead of Department object
+  # Set associated department by :id if department :id is passed instead of Department object
   def department=(value)
     if value.instance_of? String
       self.department = Department.find_by(id: value)

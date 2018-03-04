@@ -12,9 +12,11 @@ export default {
     entities: {
       users: {},
       leads: {},
-      departments: {}
+      departments: {},
+      contacts: {}
     },
     leads: {data: [], meta: {}},
+    contacts: {data: [], meta: {}},
     projects: {projects: [], meta: {}},
     project: {},
     user: {},

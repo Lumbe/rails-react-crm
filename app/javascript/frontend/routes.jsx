@@ -13,6 +13,9 @@ import PublicAppRoute from './components/layout/publicAppLayout'
 import ProjectNew from './components/projects/projectNew'
 import ProjectShow from './components/projects/projectShow'
 import Projects from './components/projects/projects'
+import Contacts from './components/contacts/contacts'
+import ContactShow from './components/contacts/contactShow'
+import ContactNew from './components/contacts/contactNew'
 
 class Routes extends React.Component {
   render() {
@@ -25,6 +28,9 @@ class Routes extends React.Component {
           <ProtectedAppRoute exact path="/leads/new" component={LeadNew}/>
           <ProtectedAppRoute exact path="/leads/:id" component={LeadShow}/>
           <ProtectedAppRoute exact path="/leads" component={Leads}/>
+          <ProtectedAppRoute exact path="/contacts/new" component={ContactNew}/>
+          <ProtectedAppRoute exact path="/contacts/:id" component={ContactShow}/>
+          <ProtectedAppRoute exact path="/contacts" component={Contacts}/>
           <ProtectedAppRoute exact path="/projects/new" component={ProjectNew}/>
           <ProtectedAppRoute exact path="/projects/:id" component={ProjectShow}/>
           <ProtectedAppRoute exact path="/projects" component={Projects}/>

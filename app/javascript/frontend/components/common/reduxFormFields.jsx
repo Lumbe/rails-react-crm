@@ -31,6 +31,26 @@ export const renderHorizontalCheckbox = ({input, label, meta: {submitFailed, err
   )
 };
 
+export const renderCheckbox = ({input, label, meta: {submitFailed, error, invalid}}) => {
+  return (
+    <tr>
+      <th>{label}</th>
+      <td>
+        <FormGroup
+          controlId={input.name + 'Form'}
+          validationState={submitFailed ? (error ? 'error' : 'success') : null}
+        >
+          <Checkbox
+            checked={input.value}
+            {...input}
+          />
+          {invalid && error && <span className="text-danger">{error}</span>}
+        </FormGroup>
+      </td>
+    </tr>
+  )
+};
+
 export const renderSelectFieldComponent = ({ input, label, meta: {  submitFailed, error, invalid }, optionsForSelect }) => (
   <tr>
     <th>{label}</th>

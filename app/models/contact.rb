@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   enum status: [:newly, :repeated, :proposal, :finished, :sended]
 
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :assignee, class_name: "User", foreign_key: :assigned_to, optional: true
   belongs_to :department
   has_many :leads
@@ -18,5 +18,14 @@ class Contact < ApplicationRecord
 
   def self.top_repeated_leads
     joins(:leads).group("contacts.id").order("count(leads.id) DESC")
+  end
+
+  # Set associated department by :id if department :id is passed instead of Department object
+  def department=(value)
+    if value.instance_of? String
+      self.department = Department.find_by(id: value)
+    else
+      super
+    end
   end
 end

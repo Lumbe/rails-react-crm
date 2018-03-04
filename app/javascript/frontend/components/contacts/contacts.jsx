@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as leadActions from '../../actions/leadActions'
+import * as contactActions from '../../actions/contactActions'
 import {Row, Col, Panel} from 'react-bootstrap'
-import LeadHeader from './leadHeader'
-import LeadsList from './leadsList'
+import ContactHeader from './contactHeader'
+import ContactsList from './contactsList'
 import Loader from '../common/loader'
-import {getLeads} from '../../reducers/leadReducer'
+import {getContacts} from '../../reducers/contactReducer'
 
-class Leads extends React.Component {
+class Contacts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isLoading: false}
@@ -16,7 +16,7 @@ class Leads extends React.Component {
 
   load(params) {
     this.setState({isLoading: true});
-    this.props.actions.loadLeads(params).then(() => {this.setState({isLoading: false})})
+    this.props.actions.loadContacts(params).then(() => {this.setState({isLoading: false})})
   }
 
   componentDidMount() {
@@ -24,20 +24,20 @@ class Leads extends React.Component {
   }
 
   handleStatusChange(data) {
-    this.props.actions.updateLead(data)
+    this.props.actions.updateContact(data)
   }
 
   render() {
     return (
       <Row>
-        <LeadHeader isIndex={true}/>
+        <ContactHeader isIndex={true}/>
         <Col md={12} xs={12}>
           <Panel>
             {this.state.isLoading ?
                 <Loader/>
               :
-                <LeadsList
-                  leads={this.props.leads}
+                <ContactsList
+                  contacts={this.props.contacts}
                   meta={this.props.meta}
                   load={this.load.bind(this)}
                   handleStatusChange={this.handleStatusChange.bind(this)}
@@ -51,13 +51,13 @@ class Leads extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return getLeads(state)
+  return getContacts(state)
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(leadActions, dispatch)
+    actions: bindActionCreators(contactActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Leads);
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
