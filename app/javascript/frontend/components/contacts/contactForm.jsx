@@ -54,7 +54,6 @@ class ContactForm extends React.Component {
       'Севастополь',
       'АР Крым',
       'Неизвестно']);
-    console.log('contact', contact);
     return (
       <Col md={12} xs={12}>
         <Panel>

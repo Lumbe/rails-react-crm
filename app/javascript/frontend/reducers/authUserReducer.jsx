@@ -11,7 +11,6 @@ export default function authUserReducer(state = initialState.currentUser, action
       }
       return state;
     case CREATE_USER_SESSION_SUCCESS:
-      console.log('CREATE_USER_SESSION_SUCCESS action', action);
       setAuthHeaderToken(action.user.token);
       return {...state, ...action.user, isAuthenticated: true};
     case DESTROY_USER_SESSION_SUCCESS:

@@ -31,7 +31,6 @@ class ContactNew extends React.Component {
   }
 
   handleFormSubmit(values) {
-    console.log('handleFormSubmit values', values);
     return this.props.actions.createContact(values).then(
       response => {
         this.props.history.push(response.data.contact.id.toString());

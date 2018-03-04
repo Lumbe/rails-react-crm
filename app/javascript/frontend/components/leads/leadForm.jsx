@@ -55,7 +55,6 @@ class LeadForm extends React.Component {
       'Севастополь',
       'АР Крым',
       'Неизвестно']);
-    console.log('lead', lead);
     return (
       <Col md={12} xs={12}>
         <Panel>

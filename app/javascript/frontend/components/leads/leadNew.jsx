@@ -31,7 +31,6 @@ class LeadNew extends React.Component {
   }
 
   handleFormSubmit(values) {
-    console.log('handleFormSubmit values', values);
     return this.props.actions.createLead(values).then(
       response => {
         this.props.history.push(response.data.lead.id.toString());

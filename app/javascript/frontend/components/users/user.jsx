@@ -6,7 +6,6 @@ import * as userActions from '../../actions/userActions'
 class User extends React.Component {
   render() {
     const user = this.props.currentUser;
-    console.log(this.props);
     return (
       <div>
         Юзер:<br/>

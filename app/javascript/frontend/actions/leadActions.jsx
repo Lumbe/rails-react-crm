@@ -100,7 +100,6 @@ export function updateLead(lead) {
   return function(dispatch) {
     return leadApi.update(lead).then(
       response => {
-        console.log('updateLead', response.data.lead);
         dispatch(updateLeadSuccess(response.data.lead));
         return response;
       },

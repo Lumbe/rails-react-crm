@@ -100,7 +100,6 @@ export function updateContact(contact) {
   return function(dispatch) {
     return contactApi.update(contact).then(
       response => {
-        console.log('updateContact', response.data.contact);
         dispatch(updateContactSuccess(response.data.contact));
         return response;
       },
