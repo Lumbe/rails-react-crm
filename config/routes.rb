@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      namespace :admin do
+        resources :users
+        resources :departments
+      end
       devise_for :users
       devise_scope :user do
         get 'users/current', to: 'sessions#current'

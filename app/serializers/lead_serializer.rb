@@ -1,4 +1,9 @@
 class LeadSerializer < ActiveModel::Serializer
+  belongs_to :user
+  class UserSerializer < ActiveModel::Serializer
+    attributes :id, :email, :first_name, :last_name
+  end
+
   attributes :id, :name, :phone, :email, :location, :project,
              :square, :floor, :question, :region, :source, :online_request,
              :come_in_office, :phone_call, :status, :user, :assigned_to,
