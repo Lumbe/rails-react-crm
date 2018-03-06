@@ -3,6 +3,7 @@ import {leads} from './leadReducer';
 import {contacts} from './contactReducer';
 import currentUser from './authUserReducer';
 import {user} from './userReducer';
+import {users} from './admin/userReducer';
 import {notifications} from './notificationReducer'
 import {projects, project} from './projectReducer'
 import {entities} from './entitiesReducer'
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
   leads,
   contacts,
   user,
+  users,
   notifications,
   projects,
   project,

@@ -19,7 +19,7 @@ export default {
     contacts: {data: [], meta: {}},
     projects: {projects: [], meta: {}},
     project: {},
-    user: {},
+    users: {data: [], meta: {}},
     currentUser: {
                   token: null,
                   isAuthenticated: false,

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
-import {IndexLinkContainer} from "react-router-bootstrap";
+import {IndexLinkContainer, LinkContainer} from "react-router-bootstrap";
 import * as authActions from '../../../actions/authActions'
 import * as userActions from '../../../actions/userActions'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
@@ -27,7 +27,7 @@ class UserLinks extends React.Component {
           :
           <Nav pullRight>
             <NavDropdown eventKey={3} title={`${user.first_name} ${user.last_name}`} id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
+              <LinkContainer to="/admin"><MenuItem eventKey={3.1}>admin</MenuItem></LinkContainer>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider/>
