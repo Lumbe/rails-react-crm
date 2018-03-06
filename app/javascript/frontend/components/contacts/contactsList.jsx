@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Table, ButtonToolbar, Pagination, Dropdown, MenuItem, DropdownButton, Tooltip, OverlayTrigger} from 'react-bootstrap'
+import {Table, ButtonToolbar, MenuItem, DropdownButton, Tooltip, OverlayTrigger} from 'react-bootstrap'
+import Pagination from '../common/pagination'
 
 class ContactsList extends React.Component {
 
@@ -121,10 +122,9 @@ class ContactsList extends React.Component {
           <div className="text-center">Ничего не найдено</div>
         }
         {(meta.total_pages > 1) && <Pagination
-          bsSize="medium"
-          items={meta.total_pages}
-          activePage={meta.current_page}
-          onSelect={this.handleSelect.bind(this)}/>}
+          totalPages={meta.total_pages}
+          currentPage={meta.current_page}
+          onChange={this.handleSelect.bind(this)}/>}
       </div>
     );
   }
