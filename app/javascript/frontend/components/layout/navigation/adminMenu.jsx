@@ -2,12 +2,12 @@ import React from 'react'
 import {PageHeader, Nav, NavItem} from 'react-bootstrap'
 import {IndexLinkContainer, LinkContainer} from "react-router-bootstrap";
 
-class NavMenu extends React.Component {
+class AdminMenu extends React.Component {
 
   render() {
     return (
       <PageHeader className="page-header-default">
-        <Nav bsStyle="pills" style={{fontSize: "16px"}}>
+        <Nav bsStyle="pills" stacked style={{fontSize: "16px"}}>
           <IndexLinkContainer to="/admin/users">
             <NavItem eventKey={1}>
               Пользователи
@@ -24,4 +24,4 @@ class NavMenu extends React.Component {
   }
 }
 
-export default NavMenu
+export default AdminMenu

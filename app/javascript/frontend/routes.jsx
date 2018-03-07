@@ -20,6 +20,7 @@ import Users from './components/admin/users/users'
 import UserShow from './components/admin/users/userShow'
 import UserNew from './components/admin/users/userNew'
 import Dashboard from './components/admin/dashboard'
+import AdminAppRoute from './components/layout/adminAppLayout'
 
 class Routes extends React.Component {
   render() {
@@ -28,10 +29,10 @@ class Routes extends React.Component {
         <Switch>
           <PublicAppRoute exact path="/about" component={About}/>
           <ProtectedAppRoute exact path="/users/sign-in" component={SignIn}/>
-          <ProtectedAppRoute exact path="/admin/users/new" component={UserNew}/>
-          <ProtectedAppRoute exact path="/admin/users/:id" component={UserShow}/>
-          <ProtectedAppRoute exact path="/admin/users" component={Users}/>
-          <ProtectedAppRoute exact path="/admin" component={Dashboard}/>
+          <AdminAppRoute exact path="/admin/users/new" component={UserNew}/>
+          <AdminAppRoute exact path="/admin/users/:id" component={UserShow}/>
+          <AdminAppRoute exact path="/admin/users" component={Users}/>
+          <AdminAppRoute exact path="/admin" component={Dashboard}/>
           <ProtectedAppRoute exact path="/" component={Home}/>
           <ProtectedAppRoute exact path="/leads/new" component={LeadNew}/>
           <ProtectedAppRoute exact path="/leads/:id" component={LeadShow}/>

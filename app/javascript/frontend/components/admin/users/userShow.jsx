@@ -9,7 +9,6 @@ import UserDetail from './userDetail'
 import {getUser} from '../../../reducers/admin/userReducer'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {SubmissionError} from 'redux-form'
-import NavMenu from '../navMenu'
 
 class UserShow extends React.Component {
   constructor(props) {
