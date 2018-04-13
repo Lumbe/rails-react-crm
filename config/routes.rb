@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :contacts
       get '/projects/public', to: 'projects#public'
       get '/projects/popular', to: 'projects#popular'
+      get '/projects/meta', to: 'projects#meta'
       get '/projects/public/:id', to: 'projects#public_show'
       resources :projects
     end

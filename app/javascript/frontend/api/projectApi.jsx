@@ -17,6 +17,10 @@ class HouseProjectApi extends BaseApi {
     // data[this.modelName()] = model;
     return axios.put(this.path('/' + id), data, {headers: {'Content-Type': 'multipart/form-data'}})
   }
+
+  static meta() {
+    return axios.get(this.path('/meta'))
+  }
 }
 
 export default HouseProjectApi;

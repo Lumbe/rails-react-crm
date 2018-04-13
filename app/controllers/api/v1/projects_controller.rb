@@ -17,6 +17,11 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     respond_with projects, meta: pagination_meta(projects)
   end
 
+  def new
+    @project = Project.new
+    respond_with @project, meta: project_meta
+  end
+
   def show
     respond_with @project
   end
@@ -48,6 +53,17 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     # projects = Project.popular
     projects = Project.where(slug: ['gnap', 'gelios', 'emiliya', 'memfis', 'kili'])
     respond_with projects
+  end
+
+  def project_meta
+    {
+      categories: Project.categories,
+      floors: Project.floors
+    }
+  end
+
+  def meta
+    respond_with project_meta
   end
 
   private

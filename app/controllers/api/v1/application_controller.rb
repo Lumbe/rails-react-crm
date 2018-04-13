@@ -30,7 +30,7 @@ class Api::V1::ApplicationController < ApplicationController
     request.env['devise.skip_trackable'] = true
   end
 
-  # override respond_with internal methods (gem 'active_model_serializers')
+  # override respond_with internal methods (gem 'responders')
   # to include SessionsController#default_serializer_options.
   # It allows to not pass :serializer parameter
   # (e.g. respond_with Lead.all, serializer: LeadSerializer)

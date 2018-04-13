@@ -199,7 +199,7 @@ class ProjectForm extends React.Component {
                                   checked={this.state.project.garage || this.props.project.garage}
                                   onChange={this.updateProjectState.bind(this)}
                                 >
-                                  Hi-Tech
+                                  Гараж
                                 </Checkbox>
                                 {' '}
                                 <Checkbox
@@ -208,7 +208,7 @@ class ProjectForm extends React.Component {
                                   checked={this.state.project.hitech || this.props.project.hitech}
                                   onChange={this.updateProjectState.bind(this)}
                                 >
-                                  Гараж
+                                  Hi-Tech
                                 </Checkbox>
                               </FormGroup>
 
@@ -371,6 +371,12 @@ class ProjectForm extends React.Component {
         </Panel>
       </Col>
     );
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+
   }
 }
 

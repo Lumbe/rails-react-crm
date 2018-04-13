@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  FLOORS = [1, 2]
+  CATEGORIES = ['Жилые дома', 'Дачные дома', 'Бани и сауны', 'Дома на две семьи', 'Отели и гостиницы', 'Офис-центры', 'Рестораны', 'Таунхаусы']
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   scope :title_search, ->(query) { ransack(title_cont: query).result }
@@ -35,6 +37,14 @@ class Project < ApplicationRecord
       else
         all.order(created_at: :desc).limit(5)
       end
+    end
+
+    def floors
+      self::FLOORS
+    end
+
+    def categories
+      self::CATEGORIES
     end
   end
 
