@@ -24,7 +24,6 @@ class ProjectForm extends React.Component {
     const project = this.state.project;
     project[field] = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({project: project});
-    console.log('state', this.state)
   }
 
   uploadFile(event) {
