@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Table, Button, ButtonToolbar, Pagination} from 'react-bootstrap'
+import {Table, Button, ButtonToolbar} from 'react-bootstrap'
+import Pagination from '../common/pagination'
 
 class ProjectsList extends React.Component {
 
@@ -43,10 +44,9 @@ class ProjectsList extends React.Component {
           </tbody>
         </Table>
         <Pagination
-          bsSize="medium"
-          items={meta.total_pages}
-          activePage={meta.current_page}
-          onSelect={this.handleSelect.bind(this)} />
+          totalPages={meta.total_pages}
+          currentPage={meta.current_page}
+          onChange={this.handleSelect.bind(this)}/>
       </div>
     );
   }

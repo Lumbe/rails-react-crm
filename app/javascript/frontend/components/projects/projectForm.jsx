@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as projectActions from '../../actions/projectActions';
-import {Row, Col, FormGroup, FormControl, Button, Image, Panel, Checkbox, Table,ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {Row, Col, FormGroup, FormControl, Button, Image, Panel, Checkbox, Table,ButtonToolbar, ButtonGroup, Radio} from 'react-bootstrap'
 import {withRouter} from 'react-router-dom'
 
 class ProjectForm extends React.Component {
@@ -24,6 +24,7 @@ class ProjectForm extends React.Component {
     const project = this.state.project;
     project[field] = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({project: project});
+    console.log('state', this.state)
   }
 
   uploadFile(event) {
@@ -168,6 +169,32 @@ class ProjectForm extends React.Component {
                                   value={this.state.project.description || this.props.project.description}
                                   onChange={this.updateProjectState.bind(this)}
                                 />
+                              </FormGroup>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Этажность</th>
+                            <td>
+                              <FormGroup>
+                                <Radio
+                                  inline
+                                  name="floors"
+                                  value={1}
+                                  checked={(this.state.project.floors || this.props.project.floors) == 1}
+                                  onChange={this.updateProjectState.bind(this)}
+                                >
+                                  1 этаж
+                                </Radio>
+                                {' '}
+                                <Radio
+                                  inline
+                                  name="floors"
+                                  value={2}
+                                  checked={(this.state.project.floors || this.props.project.floors) == 2}
+                                  onChange={this.updateProjectState.bind(this)}
+                                >
+                                  2 этажа
+                                </Radio>
                               </FormGroup>
                             </td>
                           </tr>

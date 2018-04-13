@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import BaseApi from './baseApi';
 
 class HouseProjectApi extends BaseApi {
