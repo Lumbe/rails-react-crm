@@ -7,7 +7,6 @@ import ProjectHeader from './projectHeader'
 import ProjectForm from './projectForm'
 import ProjectDetail from './projectDetail'
 
-
 class ProjectShow extends React.Component {
   constructor(props) {
     super(props);
