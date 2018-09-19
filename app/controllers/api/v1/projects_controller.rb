@@ -1,6 +1,6 @@
 class Api::V1::ProjectsController < Api::V1::ApplicationController
-  skip_before_action :authenticate_user_with_jwt!, only: [:public, :popular, :show, :public_show]
-  skip_before_action :authenticate_user_from_header_token, only: [:public, :popular, :show, :public_show]
+  skip_before_action :authenticate_user_with_jwt!, only: [:all, :public, :popular, :show, :public_show]
+  skip_before_action :authenticate_user_from_header_token, only: [:all, :public, :popular, :show, :public_show]
   before_action :load_project, only: [:show, :update, :public_show]
   has_scope :title_search, as: :search
   has_scope :by_category, as: :category
@@ -15,6 +15,11 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   def index
     projects = Project.all.order(created_at: :desc).page(params[:page] || 1)
     respond_with projects, meta: pagination_meta(projects)
+  end
+
+  def all
+    projects = Project.all.order(created_at: :desc)
+    respond_with projects
   end
 
   def new

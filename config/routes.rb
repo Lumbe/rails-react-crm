@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :leads
       resources :contacts
       get '/projects/public', to: 'projects#public'
+      get '/projects/all', to: 'projects#all'
       get '/projects/popular', to: 'projects#popular'
       get '/projects/meta', to: 'projects#meta'
       get '/projects/public/:id', to: 'projects#public_show'
